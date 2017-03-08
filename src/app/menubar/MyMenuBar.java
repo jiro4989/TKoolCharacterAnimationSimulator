@@ -7,6 +7,7 @@ import app.Main;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
@@ -54,5 +55,11 @@ public class MyMenuBar extends VBox {
     });
 
   }//}}}
+
+  @FXML private void quitMenuItemOnAction() {
+
+    Platform.exit();
+
+  }
 
 }

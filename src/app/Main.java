@@ -14,11 +14,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+  private static MyMenuBar myMenuBar;
+
   public static final String TITLE = "MV Character Chip Simulator";
   public static final String VERSION = "ver 1.0.0";
   public static final String TITLE_VERSION = TITLE + " - " + VERSION;
 
-  private static MyMenuBar myMenuBar;
   private static final String BASIC_CSS = "/app/res/css/basic.css";
   private static final String APP_ICON = "/app/res/img/app_icon.png";
 

@@ -4,15 +4,7 @@ import jiro.java.util.MyProperties;
 
 import app.menubar.MyMenuBar;
 
-//import util.ResourceBundleWithUtf8;
-//import util.PreferencesKeys;
-//import util.PropertiesFiles;
-
 import java.io.*;
-import java.net.URL;
-import java.util.Locale;
-import java.util.Properties;
-import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,16 +16,26 @@ public class Main extends Application {
 
   public static final String TITLE = "MV Character Chip Simulator";
   public static final String VERSION = "ver 1.0.0";
-  private MainController mainController;
-  private static ResourceBundle resources;
+  public static final String TITLE_VERSION = TITLE + " - " + VERSION;
+
+  private static MyMenuBar myMenuBar;
+  private static final String BASIC_CSS = "/app/res/css/basic.css";
+  private static final String APP_ICON = "/app/res/img/app_icon.png";
 
   @Override
   public void start(Stage primaryStage) {
 
+    myMenuBar = new MyMenuBar(this);
+
     VBox root = new VBox();
-    root.getChildren().add(new MyMenuBar());
+    root.getChildren().add(myMenuBar);
+
     Scene scene = new Scene(root, 200, 300);
+    scene.getStylesheets().add(BASIC_CSS);
     primaryStage.setScene(scene);
+    primaryStage.setTitle(TITLE_VERSION);
+    primaryStage.getIcons().add(new Image(APP_ICON));
+
     primaryStage.show();
 
   }
@@ -101,5 +103,11 @@ public class Main extends Application {
 
   }//}}}
   */
+
+  public void drawImage(File file) {
+
+    System.out.println("drawImage.");
+
+  }
 
 }

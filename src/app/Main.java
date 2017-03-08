@@ -2,6 +2,8 @@ package app;
 
 import jiro.java.util.MyProperties;
 
+import app.menubar.MyMenuBar;
+
 //import util.ResourceBundleWithUtf8;
 //import util.PreferencesKeys;
 //import util.PropertiesFiles;
@@ -29,6 +31,7 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
 
     VBox root = new VBox();
+    root.getChildren().add(new MyMenuBar());
     Scene scene = new Scene(root, 200, 300);
     primaryStage.setScene(scene);
     primaryStage.show();

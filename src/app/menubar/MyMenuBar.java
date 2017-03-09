@@ -13,7 +13,6 @@ import javafx.scene.layout.VBox;
 
 public class MyMenuBar extends VBox {
 
-  private final Main main;
   private final MyFileChooser mfc;
 
   // FXMLコンポーネント
@@ -22,14 +21,14 @@ public class MyMenuBar extends VBox {
 
   @FXML private Menu fileMenu;
   @FXML private MenuItem openMenuItem;
+  @FXML private ToggleGroup layoutGroup;
 
 //}}}
 
   // コンストラクタ
 
-  public MyMenuBar(Main aMain) {//{{{
+  public MyMenuBar() {//{{{
 
-    main = aMain;
     mfc = new MyFileChooser.Builder("Image Files", "*.png").build();
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("my_menu_bar.fxml"));
@@ -50,16 +49,22 @@ public class MyMenuBar extends VBox {
 
     mfc.openFile().ifPresent(file -> {
 
-      main.drawImage(file);
+      //main.drawImage(file);
 
     });
 
   }//}}}
 
-  @FXML private void quitMenuItemOnAction() {
+  @FXML private void flowLayoutMenuItemOnAction() {//{{{
+
+    System.out.println("FlowLayout");
+
+  }//}}}
+
+  @FXML private void quitMenuItemOnAction() {//{{{
 
     Platform.exit();
 
-  }
+  }//}}}
 
 }

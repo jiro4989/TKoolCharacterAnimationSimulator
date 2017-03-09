@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<fx:root type="javafx.scene.layout.FlowPane" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+
+  <padding>
+    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+  </padding>
+
+  <children>
+    <Button mnemonicParsing="false" text="1" />
+    <Button mnemonicParsing="false" text="2" />
+    <Button mnemonicParsing="false" text="3" />
+    <Button mnemonicParsing="false" text="4" />
+    <Button mnemonicParsing="false" text="5" />
+    <Button mnemonicParsing="false" text="6" />
+    <Button mnemonicParsing="false" text="7" />
+  </children>
+
+</fx:root>
+

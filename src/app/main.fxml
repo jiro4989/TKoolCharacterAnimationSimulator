@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import app.menubar.MyMenuBar?>
+<?import app.layout.PositionsFlowPane?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
+
+   <top>
+     <MyMenuBar BorderPane.alignment="CENTER"/>
+   </top>
+   <center>
+     <PositionsFlowPane BorderPane.alignment="CENTER"/>
+   </center>
+
+</BorderPane>

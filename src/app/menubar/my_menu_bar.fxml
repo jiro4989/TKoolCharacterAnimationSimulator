@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1">
   <MenuBar VBox.vgrow="NEVER">
@@ -37,6 +34,21 @@
           <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem mnemonicParsing="false" text="Select All" />
           <MenuItem mnemonicParsing="false" text="Unselect All" />
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Layout">
+        <items>
+
+          <RadioMenuItem mnemonicParsing="false" text="Flow Layout" onAction="#flowLayoutMenuItemOnAction">
+            <toggleGroup>
+              <ToggleGroup fx:id="layoutGroup"/>
+            </toggleGroup>
+          </RadioMenuItem>
+          <RadioMenuItem mnemonicParsing="false" text="Top Layout" onAction="#flowLayoutMenuItemOnAction" toggleGroup="$layoutGroup"/>
+          <RadioMenuItem mnemonicParsing="false" text="Left Layout" onAction="#flowLayoutMenuItemOnAction" toggleGroup="$layoutGroup"/>
+          <RadioMenuItem mnemonicParsing="false" text="Right Layout" onAction="#flowLayoutMenuItemOnAction" toggleGroup="$layoutGroup"/>
+          <RadioMenuItem mnemonicParsing="false" text="Bottom Layout" onAction="#flowLayoutMenuItemOnAction" toggleGroup="$layoutGroup"/>
+
         </items>
       </Menu>
       <Menu mnemonicParsing="false" text="Help">

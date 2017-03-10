@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="row">4</entry>
+  <entry key="column">3</entry>
+  <entry key="chara.width">48</entry>
+  <entry key="chara.height">48</entry>
+  <entry key="x">0</entry>
+  <entry key="y">0</entry>
+  <entry key="anim.count">3</entry>
+</properties>

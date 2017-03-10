@@ -18,7 +18,7 @@ public class MainController {
   }
 
   public void drawImage(File file) {
-    System.out.println(file.toString());
+    positionsFlowPane.drawImage(file);
   }
 
 }

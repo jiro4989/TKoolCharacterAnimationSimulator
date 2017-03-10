@@ -10,15 +10,9 @@ import javafx.scene.layout.GridPane;
 
 public class CharaChipGridPane extends GridPane {
 
-  private final Main main;
-  private final int index;
-
   @FXML private ImageView imageView;
 
-  public CharaChipGridPane(Main aMain, int anIndex) {//{{{
-
-    main = aMain;
-    index = anIndex;
+  public CharaChipGridPane() {//{{{
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("chara_chip_grid_pane.fxml"));
     loader.setRoot(this);

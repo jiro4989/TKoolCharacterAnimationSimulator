@@ -2,7 +2,7 @@ package app.menubar;
 
 import jiro.javafx.stage.MyFileChooser;
 
-import app.Main;
+import app.MainController;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -13,17 +13,18 @@ import javafx.scene.layout.VBox;
 
 public class MyMenuBar extends VBox {
 
+  private MainController mainController;
   private final MyFileChooser mfc;
 
   // FXMLコンポーネント
 
-//{{{
+  //{{{
 
   @FXML private Menu fileMenu;
   @FXML private MenuItem openMenuItem;
   @FXML private ToggleGroup layoutGroup;
 
-//}}}
+  //}}}
 
   // コンストラクタ
 
@@ -45,11 +46,12 @@ public class MyMenuBar extends VBox {
 
   // FXMLイベント
 
-  @FXML private void newFileMenuItemOnAction() {//{{{
+  @FXML private void openFileMenuItemOnAction() {//{{{
 
     mfc.openFile().ifPresent(file -> {
 
-      //main.drawImage(file);
+      // FIXME NullPointerexception 
+      mainController.drawImage(file);
 
     });
 
@@ -65,6 +67,12 @@ public class MyMenuBar extends VBox {
 
     Platform.exit();
 
+  }//}}}
+
+  // Setter
+
+  public void setMainController(MainController aMain) {//{{{
+    mainController = aMain;
   }//}}}
 
 }

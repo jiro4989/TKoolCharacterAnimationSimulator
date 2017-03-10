@@ -105,10 +105,4 @@ public class Main extends Application {
      }//}}}
      */
 
-  public void drawImage(File file) {
-
-    System.out.println("drawImage.");
-
-  }
-
 }

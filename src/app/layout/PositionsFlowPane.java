@@ -1,5 +1,7 @@
 package app.layout;
 
+import jiro.java.util.MyProperties;
+
 import app.Main;
 import app.image.MyImage;
 import app.standard.Standards;
@@ -35,18 +37,26 @@ public class PositionsFlowPane extends FlowPane {
 
   public void drawImage(String filePath, Standards standards) {//{{{
 
+    final String DEF_W = "48";
+
+    MyProperties mp = new MyProperties("./preset/mv_chara_chip.preset");
+    mp.load();
+
     // TODO TEST VALUE
-    int width = 48;
-    int height = 48;
+    int width     = Integer . parseInt(mp . getProperty("chara.width")  . orElse(DEF_W));
+    int height    = Integer . parseInt(mp . getProperty("chara.height") . orElse(DEF_W));
+    int row       = Integer . parseInt(mp . getProperty("row")          . orElse("4"));
+    int column    = Integer . parseInt(mp . getProperty("column")       . orElse("3"));
+    int animCount = Integer . parseInt(mp . getProperty("anim.count")   . orElse("3"));
 
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
 
-    IntStream.range(0, 4).forEach(row -> {
+    IntStream.range(0, row).forEach(r -> {
 
-      IntStream.range(0, 3).forEach(column -> {
+      IntStream.range(0, column).forEach(c -> {
 
-        int x = column * width;
-        int y = row * height;
+        int x = c * width;
+        int y = r * height;
 
         MyImage trimmedImage = new MyImage.Builder(originalImage)
           .x(x) .y(y)
@@ -55,7 +65,9 @@ public class PositionsFlowPane extends FlowPane {
 
         // TODO
         trimmedImages.add(trimmedImage);
-        getChildren().add(new CharaChipGridPane(trimmedImage.getImage()));
+
+        if (c == 0)
+          getChildren().add(new CharaChipGridPane(trimmedImage.getImage()));
 
       });
 

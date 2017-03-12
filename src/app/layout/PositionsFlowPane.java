@@ -1,7 +1,5 @@
 package app.layout;
 
-import jiro.java.util.MyProperties;
-
 import app.Main;
 import app.image.MyImage;
 import app.standard.Standards;
@@ -10,14 +8,18 @@ import app.charachip.CharaChipGridPane;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+import static java.util.stream.IntStream.range;
 
 public class PositionsFlowPane extends FlowPane {
 
-  private List<MyImage> trimmedImages = new ArrayList<>(12);
+  private List<CharaChipGridPane> charaChips;
 
   // コンストラクタ
 
@@ -28,7 +30,10 @@ public class PositionsFlowPane extends FlowPane {
     loader.setController(this);
 
     try {
+
       loader.load();
+      ObservableList<Node> paneList = getChildren();
+
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -37,23 +42,27 @@ public class PositionsFlowPane extends FlowPane {
 
   public void drawImage(String filePath, Standards standards) {//{{{
 
-    final String DEF_W = "48";
-
-    MyProperties mp = new MyProperties("./preset/mv_chara_chip.preset");
-    mp.load();
-
-    // TODO TEST VALUE
-    int width     = Integer . parseInt(mp . getProperty("chara.width")  . orElse(DEF_W));
-    int height    = Integer . parseInt(mp . getProperty("chara.height") . orElse(DEF_W));
-    int row       = Integer . parseInt(mp . getProperty("row")          . orElse("4"));
-    int column    = Integer . parseInt(mp . getProperty("column")       . orElse("3"));
-    int animCount = Integer . parseInt(mp . getProperty("anim.count")   . orElse("3"));
-
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
+    charaChips = createCharaChips(originalImage, standards);
+    putCharaChips(charaChips);
+    animateAll();
 
-    IntStream.range(0, row).forEach(r -> {
+  }//}}}
 
-      IntStream.range(0, column).forEach(c -> {
+  private List<CharaChipGridPane> createCharaChips(MyImage originalImage, Standards standards) {//{{{
+
+    int row    = standards.animation.row;
+    int column = standards.animation.column;
+    int width  = standards.size.width;
+    int height = standards.size.height;
+
+    List<CharaChipGridPane> ccgpList = new ArrayList<>(row * column);
+
+    range(0, row).forEach(r -> {
+
+      List<MyImage> animationList = new ArrayList<>(column);
+
+      range(0, column).forEach(c -> {
 
         int x = c * width;
         int y = r * height;
@@ -63,15 +72,30 @@ public class PositionsFlowPane extends FlowPane {
           .width(width) .height(height)
           .build();
 
-        // TODO
-        trimmedImages.add(trimmedImage);
-
-        if (c == 0)
-          getChildren().add(new CharaChipGridPane(trimmedImage.getImage()));
+        animationList.add(trimmedImage);
 
       });
 
+      CharaChipGridPane ccgp = new CharaChipGridPane(animationList);
+      ccgpList.add(ccgp);
+
     });
+
+    return ccgpList;
+
+  }//}}}
+
+  private void putCharaChips(List<CharaChipGridPane> charaChips) {//{{{
+
+    charaChips.stream().forEach(i -> getChildren().add(i));
+
+  }//}}}
+
+  private void animateAll() {//{{{
+
+    //charaChips.stream().forEach(c -> c.animate());
+    charaChips.get(0).animate();
+
   }//}}}
 
 }

@@ -2,8 +2,8 @@ package app.standard;
 
 public class AnimationStandard {
 
-  private final int row;
-  private final int column;
+  public final int row;
+  public final int column;
 
   public AnimationStandard(int row, int column) {//{{{
 

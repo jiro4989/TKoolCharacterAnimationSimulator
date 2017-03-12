@@ -5,9 +5,9 @@ package app.standard;
  */
 public class Standards {
 
-  private final Point point;
-  private final Size size;
-  private final AnimationStandard animation;
+  public final Point point;
+  public final Size size;
+  public final AnimationStandard animation;
 
   // Builder クラス
 

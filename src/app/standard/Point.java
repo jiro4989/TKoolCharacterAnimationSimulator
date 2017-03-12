@@ -5,8 +5,8 @@ package app.standard;
  */
 class Point {
 
-  final int x;
-  final int y;
+  public final int x;
+  public final int y;
 
   Point(int x, int y) {//{{{
 

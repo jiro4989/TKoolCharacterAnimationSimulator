@@ -3,10 +3,10 @@ package app.standard;
 /**
  * 1タイルあたりの幅クラス。
  */
-class Size {
+public class Size {
 
-  final int width;
-  final int height;
+  public final int width;
+  public final int height;
 
   Size(int width, int height) {//{{{
 

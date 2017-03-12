@@ -61,7 +61,7 @@ public class MainController {
 
   public void showConfigStage() {//{{{
 
-    ConfigStage cs = new ConfigStage(positionsFlowPane);
+    ConfigStage cs = new ConfigStage(positionsFlowPane, this);
     configStageOpt = Optional.ofNullable(cs);
     configStageOpt.ifPresent(c -> c.show());
 
@@ -76,5 +76,11 @@ public class MainController {
       });
 
   }//}}}
+
+  public void setOpacity(double opacity) {
+
+    System.out.println(opacity);
+
+  }
 
 }

@@ -1,6 +1,7 @@
 package app.config;
 
 import app.Main;
+import app.MainController;
 
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -10,18 +11,20 @@ import javafx.stage.*;
 
 public class ConfigStage extends Stage {
 
-  public ConfigStage(Node node) {//{{{
+  public ConfigStage(Node node, MainController aMain) {//{{{
 
-    this((Stage) node.getScene().getWindow());
+    this((Stage) node.getScene().getWindow(), aMain);
 
   }//}}}
 
-  public ConfigStage(Stage stage) {//{{{
+  public ConfigStage(Stage stage, MainController aMain) {//{{{
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("config.fxml"));
     try {
 
       AnchorPane root = (AnchorPane) loader.load();
+      ConfigStageController controller = (ConfigStageController) loader.getController();
+      controller.setMainController(aMain);
       Scene scene = new Scene(root);
       scene.getStylesheets().add(Main.BASIC_CSS);
 

@@ -14,9 +14,7 @@ public class ConfigStageController {
 
   @FXML private Slider opacitySlider;
   @FXML private Slider zoomRateSlider;
-  @FXML private Slider animationSpeedSlider;
-
-  //}}}
+  @FXML private Slider animationSpeedSlider; //}}}
 
   @FXML private void initialize() {//{{{
 
@@ -30,13 +28,13 @@ public class ConfigStageController {
 
     double value = s.getValue();
     double add = s.getBlockIncrement();
+    double min = s.getMin();
+    double max = s.getMax();
 
-    value = e.getDeltaY() < 0 ? value + add : value - add;
+    value = 0 < e.getDeltaY() ? value + add : value - add;
+    value = Math.min(max, value);
+    value = Math.max(min, value);
     s.setValue(value);
-
-    System.out.println("value: " + value);
-    System.out.println("block: " + add);
-    System.out.println("delta: " + e.getDeltaY());
 
   }//}}}
 

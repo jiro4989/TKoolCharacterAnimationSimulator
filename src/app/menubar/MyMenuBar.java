@@ -3,11 +3,14 @@ package app.menubar;
 import jiro.javafx.stage.MyFileChooser;
 
 import app.MainController;
+import util.ResourceBundleWithUtf8;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
@@ -16,13 +19,35 @@ public class MyMenuBar extends VBox {
   private MainController mainController;
   private final MyFileChooser mfc;
 
-  // FXMLコンポーネント
+  // FXMLコンポーネント{{{
 
-  //{{{
-
+  // ファイル
   @FXML private Menu fileMenu;
-  @FXML private MenuItem openMenuItem;
-  @FXML private ToggleGroup layoutGroup;
+  @FXML private MenuItem openCharaChipMenuItem;
+  @FXML private MenuItem openSideViewMenuItem;
+  @FXML private MenuItem openRecentMenuItem;
+  @FXML private MenuItem closeMenuItem;
+  @FXML private MenuItem forcedTerminateMenuItem;
+
+  // 表示
+  @FXML private Menu          displayMenu;
+  @FXML private CheckMenuItem alwaysOnTopMenuItem;
+  @FXML private CheckMenuItem windowConfigsMenuItem;
+
+  // フォントサイズ変更メニュー
+  @FXML private Menu          fontMenu;
+  @FXML private ToggleGroup   fontGroup;
+  @FXML private RadioMenuItem fontSize8RadioMenuItem;
+  @FXML private RadioMenuItem fontSize9RadioMenuItem;
+  @FXML private RadioMenuItem fontSize10RadioMenuItem;
+  @FXML private RadioMenuItem fontSize11RadioMenuItem;
+  @FXML private RadioMenuItem fontSize12RadioMenuItem;
+
+  // 言語変更メニュー
+  @FXML private Menu          langsMenu;
+  @FXML private ToggleGroup   langGroup;
+  @FXML private RadioMenuItem jpRadioMenuItem;
+  @FXML private RadioMenuItem usRadioMenuItem;
 
   //}}}
 
@@ -32,7 +57,14 @@ public class MyMenuBar extends VBox {
 
     mfc = new MyFileChooser.Builder("Image Files", "*.png").build();
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("my_menu_bar.fxml"));
+    URL location = getClass().getResource("my_menu_bar.fxml");
+    ResourceBundle resources = ResourceBundle.getBundle(
+        "app.menubar.dict"
+        , Locale.getDefault()
+        , ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL
+        );
+    FXMLLoader loader = new FXMLLoader(location, resources);
+
     loader.setRoot(this);
     loader.setController(this);
 
@@ -46,7 +78,7 @@ public class MyMenuBar extends VBox {
 
   // FXMLイベント
 
-  @FXML private void openFileMenuItemOnAction() {//{{{
+  @FXML private void openCharaChipMenuItemOnAction() {//{{{
 
     mfc.openFile().ifPresent(file -> {
 
@@ -57,13 +89,58 @@ public class MyMenuBar extends VBox {
 
   }//}}}
 
-  @FXML private void flowLayoutMenuItemOnAction() {//{{{
+  @FXML private void openSideViewMenuItemOnAction() {//{{{
 
-    System.out.println("FlowLayout");
+    mfc.openFile().ifPresent(file -> {
+
+      // FIXME NullPointerexception 
+      mainController.drawImage(file);
+
+    });
+
+  }//}}}
+
+  @FXML private void openRecentMenuItemOnAction() {//{{{
+
+    mfc.openFile().ifPresent(file -> {
+
+      // FIXME NullPointerexception 
+      mainController.drawImage(file);
+
+    });
+
+  }//}}}
+
+  @FXML private void closeMenuItemOnAction() {//{{{
+
+    mfc.openFile().ifPresent(file -> {
+
+      // FIXME NullPointerexception 
+      mainController.drawImage(file);
+
+    });
 
   }//}}}
 
   @FXML private void quitMenuItemOnAction() {//{{{
+
+    Platform.exit();
+
+  }//}}}
+
+  @FXML private void forcedTerminateMenuItemOnAction() {//{{{
+
+    Platform.exit();
+
+  }//}}}
+
+  @FXML private void jpRadioMenuItemOnAction() {//{{{
+
+    Platform.exit();
+
+  }//}}}
+
+  @FXML private void usRadioMenuItemOnAction() {//{{{
 
     Platform.exit();
 

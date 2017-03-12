@@ -76,7 +76,8 @@ public class PositionsFlowPane extends FlowPane {
 
       });
 
-      MyImage last = animationList.get(animationList.size()-1);
+      // FIXME 決め打ちindex
+      MyImage last = animationList.get(1);
       MyImage copy = new MyImage.Builder(last).build();
       animationList.add(copy);
       CharaChipGridPane ccgp = new CharaChipGridPane(animationList);

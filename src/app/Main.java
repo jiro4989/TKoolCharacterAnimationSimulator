@@ -29,7 +29,7 @@ public class Main extends Application {
 
       VBox root = (VBox) loader.load();
       controller = (MainController) loader.getController();
-      Scene scene = new Scene(root, 500, 300);
+      Scene scene = new Scene(root, 350, 140);
       scene.getStylesheets().add(BASIC_CSS);
 
       primaryStage.setScene(scene);

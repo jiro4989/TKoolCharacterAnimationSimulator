@@ -57,7 +57,7 @@ public class ConfigStage extends Stage {
     double height = stage.getHeight();
 
     setX(x);
-    setY(y + height);
+    setY(y + height + 20.0);
     setWidth(width);
 
   }//}}}

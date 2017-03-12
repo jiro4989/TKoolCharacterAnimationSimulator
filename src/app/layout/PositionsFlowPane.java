@@ -1,9 +1,10 @@
 package app.layout;
 
 import app.Main;
+import app.standard.Standards;
 import app.charachip.CharaChipGridPane;
 
-import java.io.*;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -36,8 +37,8 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  public void drawImage(File file) {
-    System.out.println("PositionsFlowPane.drawImage");
+  public void drawImage(Standards standards) {
+    System.out.println(standards);
   }
 
 }

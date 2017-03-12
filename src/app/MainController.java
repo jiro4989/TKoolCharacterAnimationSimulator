@@ -2,17 +2,21 @@ package app;
 
 import jiro.java.util.MyProperties;
 
-import app.menubar.MyMenuBar;
+import app.config.ConfigStage;
 import app.layout.PositionsFlowPane;
+import app.menubar.MyMenuBar;
 import app.standard.Standards;
 
 import java.io.*;
+import java.util.Optional;
 import javafx.fxml.FXML;
 
 public class MainController {
 
   /** 画像やアニメの規格 */
   private Standards standards;
+
+  private Optional<ConfigStage> configStageOpt = Optional.empty();
 
   // FXMLコンポーネント//{{{
 
@@ -51,6 +55,24 @@ public class MainController {
 
     String filePath = file.getPath();
     positionsFlowPane.drawImage(filePath, standards);
+
+  }//}}}
+
+  public void showConfigStage() {//{{{
+
+    ConfigStage cs = new ConfigStage(positionsFlowPane);
+    configStageOpt = Optional.ofNullable(cs);
+    configStageOpt.ifPresent(c -> c.show());
+
+  }//}}}
+
+  void resizeConfigStage() {//{{{
+
+    configStageOpt
+      .filter(c -> c.isShowing())
+      .ifPresent(c -> {
+        c.resize(positionsFlowPane);
+      });
 
   }//}}}
 

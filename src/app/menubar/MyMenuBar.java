@@ -25,7 +25,7 @@ public class MyMenuBar extends VBox {
   @FXML private Menu     fileMenu;
   @FXML private MenuItem openCharaChipMenuItem;
   @FXML private MenuItem openSideViewMenuItem;
-  @FXML private Menu openRecentMenu;
+  @FXML private Menu     openRecentMenu;
   @FXML private MenuItem closeMenuItem;
   @FXML private MenuItem quitMenuItem;
   @FXML private MenuItem forcedTerminateMenuItem;
@@ -83,6 +83,8 @@ public class MyMenuBar extends VBox {
 
   // FXMLイベント
 
+  // ファイルメニュー
+
   @FXML private void openCharaChipMenuItemOnAction() {//{{{
 
     mfc.openFile().ifPresent(file -> {
@@ -127,7 +129,7 @@ public class MyMenuBar extends VBox {
 
   }//}}}
 
-  @FXML private void quitMenuItemOnAction() {//{{{
+@FXML private void quitMenuItemOnAction() {//{{{
 
     Platform.exit();
 
@@ -138,6 +140,16 @@ public class MyMenuBar extends VBox {
     Platform.exit();
 
   }//}}}
+
+  // 表示メニュー
+
+  @FXML private void displayConfigMenuItemOnAction() {//{{{
+
+    mainController.showConfigStage();
+
+  }//}}}
+
+  // 言語メニュー
 
   @FXML private void jpRadioMenuItemOnAction() {//{{{
 

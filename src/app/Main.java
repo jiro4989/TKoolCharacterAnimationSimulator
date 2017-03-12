@@ -12,12 +12,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+  private MainController controller;
+
   public static final String TITLE         = "MV Character Chip Simulator";
   public static final String VERSION       = "ver 1.0.0";
   public static final String TITLE_VERSION = TITLE + " - " + VERSION;
 
-  private static final String BASIC_CSS = "/app/res/css/basic.css";
-  private static final String APP_ICON  = "/app/res/img/app_icon.png";
+  public static final String BASIC_CSS = "/app/res/css/basic.css";
+  public static final String APP_ICON  = "/app/res/img/app_icon.png";
 
   @Override
   public void start(Stage primaryStage) {
@@ -26,11 +28,16 @@ public class Main extends Application {
     try {
 
       VBox root = (VBox) loader.load();
+      controller = (MainController) loader.getController();
       Scene scene = new Scene(root, 500, 300);
       scene.getStylesheets().add(BASIC_CSS);
       primaryStage.setScene(scene);
       primaryStage.setTitle(TITLE_VERSION);
       primaryStage.getIcons().add(new Image(APP_ICON));
+
+      primaryStage.xProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
+      primaryStage.yProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
+      primaryStage.widthProperty  ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
 
       primaryStage.show();
 

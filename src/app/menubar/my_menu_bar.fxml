@@ -7,23 +7,23 @@
   <MenuBar VBox.vgrow="NEVER">
     <menus>
 
-      <Menu mnemonicParsing="false" text="ファイル">
+      <Menu fx:id="fileMenu" mnemonicParsing="false" text="%fileMenu">
         <items>
-          <MenuItem mnemonicParsing="false" text="開く (キャラチップ)" onAction="#openCharaChipMenuItemOnAction" />
-          <MenuItem mnemonicParsing="false" text="開く (サイドビュー)" onAction="#openSideViewMenuItemOnAction" />
-          <Menu mnemonicParsing="false" text="最近開いたファイル" onAction="#openRecentMenuItemOnAction"/>
+          <MenuItem fx:id="openCharaChipMenuItem" mnemonicParsing="false" text="%openCharaChipMenuItem" onAction="#openCharaChipMenuItemOnAction" />
+          <MenuItem fx:id="openSideViewMenuItem" mnemonicParsing="false" text="%openSideViewMenuItem" onAction="#openSideViewMenuItemOnAction" />
+          <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="%openRecentMenu" onAction="#openRecentMenuItemOnAction"/>
           <SeparatorMenuItem mnemonicParsing="false" />
-          <MenuItem mnemonicParsing="false" text="閉じる" onAction="#closeMenuItemOnAction" />
+          <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" />
           <SeparatorMenuItem mnemonicParsing="false" />
-          <MenuItem mnemonicParsing="false" text="終了" onAction="#quitMenuItemOnAction" />
-          <MenuItem mnemonicParsing="false" text="強制終了" onAction="#forcedTerminateMenuItemOnAction"/>
+          <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="%quitMenuItem" onAction="#quitMenuItemOnAction" />
+          <MenuItem fx:id="forcedTerminateMenuItem" mnemonicParsing="false" text="%forcedTerminateMenuItem" onAction="#forcedTerminateMenuItemOnAction"/>
         </items>
       </Menu>
 
-      <Menu mnemonicParsing="false" text="表示">
+      <Menu fx:id="displayMenu" mnemonicParsing="false" text="%displayMenu">
         <items>
-          <CheckMenuItem mnemonicParsing="false" text="最前面表示" />
-          <CheckMenuItem mnemonicParsing="false" text="ウィンドウ設定" />
+          <CheckMenuItem fx:id="alwaysOnTopMenuItem" mnemonicParsing="false" text="%alwaysOnTopMenuItem" />
+          <CheckMenuItem fx:id="displayConfigMenuItem" mnemonicParsing="false" text="%displayConfigMenuItem" />
         </items>
       </Menu>
 
@@ -52,9 +52,9 @@
         </items>
       </Menu>
 
-      <Menu mnemonicParsing="false" text="ヘルプ">
+      <Menu fx:id="helpMenu" mnemonicParsing="false" text="%helpMenu">
         <items>
-          <MenuItem mnemonicParsing="false" text="バージョン情報" />
+          <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" text="%aboutMenuItem" />
         </items>
       </Menu>
 

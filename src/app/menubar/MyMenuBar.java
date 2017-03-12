@@ -25,8 +25,9 @@ public class MyMenuBar extends VBox {
   @FXML private Menu     fileMenu;
   @FXML private MenuItem openCharaChipMenuItem;
   @FXML private MenuItem openSideViewMenuItem;
-  @FXML private MenuItem openRecentMenuItem;
+  @FXML private Menu openRecentMenu;
   @FXML private MenuItem closeMenuItem;
+  @FXML private MenuItem quitMenuItem;
   @FXML private MenuItem forcedTerminateMenuItem;
 
   // 表示
@@ -48,6 +49,10 @@ public class MyMenuBar extends VBox {
   @FXML private ToggleGroup   langGroup;
   @FXML private RadioMenuItem jpRadioMenuItem;
   @FXML private RadioMenuItem usRadioMenuItem;
+
+  // ヘルプメニュー
+  @FXML private Menu     helpMenu;
+  @FXML private MenuItem aboutMenuItem;
 
   //}}}
 

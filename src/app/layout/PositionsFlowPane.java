@@ -1,6 +1,7 @@
 package app.layout;
 
 import app.Main;
+import app.image.MyImage;
 import app.standard.Standards;
 import app.charachip.CharaChipGridPane;
 
@@ -42,7 +43,7 @@ public class PositionsFlowPane extends FlowPane {
   public void drawImage(String filePath, Standards standards) {
 
     // TODO
-    Image originalImage = new Image("file:" + filePath);
+    MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     //Image trimmedImage = 
 
     IntStream.range(0, 4).forEach(r -> {

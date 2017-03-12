@@ -22,7 +22,7 @@ public class MyMenuBar extends VBox {
   // FXMLコンポーネント{{{
 
   // ファイル
-  @FXML private Menu fileMenu;
+  @FXML private Menu     fileMenu;
   @FXML private MenuItem openCharaChipMenuItem;
   @FXML private MenuItem openSideViewMenuItem;
   @FXML private MenuItem openRecentMenuItem;
@@ -32,7 +32,7 @@ public class MyMenuBar extends VBox {
   // 表示
   @FXML private Menu          displayMenu;
   @FXML private CheckMenuItem alwaysOnTopMenuItem;
-  @FXML private CheckMenuItem windowConfigsMenuItem;
+  @FXML private CheckMenuItem displayConfigMenuItem;
 
   // フォントサイズ変更メニュー
   @FXML private Menu          fontMenu;

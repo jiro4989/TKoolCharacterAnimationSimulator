@@ -62,11 +62,11 @@ public class CharaChipGridPane extends GridPane {
     AtomicInteger count = new AtomicInteger(0);
     Timeline t = new Timeline(new KeyFrame(Duration.millis(100), e -> {
 
-      int i = count.get();
-      if (i < max) count.getAndIncrement();
-      else {
+      int i = count.getAndIncrement();
+
+      if (max <= i) {
         count.set(0);
-        i = count.get();
+        i = 0;
       }
 
       Image img = imageList.get(i).getImage();

@@ -76,6 +76,9 @@ public class PositionsFlowPane extends FlowPane {
 
       });
 
+      MyImage last = animationList.get(animationList.size()-1);
+      MyImage copy = new MyImage.Builder(last).build();
+      animationList.add(copy);
       CharaChipGridPane ccgp = new CharaChipGridPane(animationList);
       ccgpList.add(ccgp);
 

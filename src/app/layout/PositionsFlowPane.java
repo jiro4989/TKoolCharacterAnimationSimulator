@@ -6,6 +6,7 @@ import app.standard.Standards;
 import app.charachip.CharaChipGridPane;
 
 import java.io.IOException;
+import java.util.*;
 import java.util.stream.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -13,6 +14,8 @@ import javafx.scene.image.*;
 import javafx.scene.layout.*;
 
 public class PositionsFlowPane extends FlowPane {
+
+  private List<MyImage> trimmedImages = new ArrayList<>(12);
 
   // コンストラクタ
 
@@ -22,16 +25,6 @@ public class PositionsFlowPane extends FlowPane {
     loader.setRoot(this);
     loader.setController(this);
 
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-    getChildren().add(new CharaChipGridPane());
-
     try {
       loader.load();
     } catch (IOException e) {
@@ -40,22 +33,33 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  public void drawImage(String filePath, Standards standards) {
+  public void drawImage(String filePath, Standards standards) {//{{{
 
-    // TODO
+    // TODO TEST VALUE
+    int width = 48;
+    int height = 48;
+
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
-    //Image trimmedImage = 
 
-    IntStream.range(0, 4).forEach(r -> {
+    IntStream.range(0, 4).forEach(row -> {
 
-      IntStream.range(0, 3).forEach(c -> {
+      IntStream.range(0, 3).forEach(column -> {
+
+        int x = column * width;
+        int y = row * height;
+
+        MyImage trimmedImage = new MyImage.Builder(originalImage)
+          .x(x) .y(y)
+          .width(width) .height(height)
+          .build();
 
         // TODO
-        //Image tileImage = new Image();
+        trimmedImages.add(trimmedImage);
+        getChildren().add(new CharaChipGridPane(trimmedImage.getImage()));
 
       });
 
     });
-  }
+  }//}}}
 
 }

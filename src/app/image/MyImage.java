@@ -24,20 +24,37 @@ public class MyImage {
     private int width = 0;
     private int height = 0;
 
-    public Builder(String path) {//{{{
+    // ************************************************************
+    // コンストラクタ
+    // ************************************************************
 
-      this(new Image(path));
+    public Builder(MyImage mi)  { this(mi.getImage()); }
+    public Builder(String path) { this(new Image(path)); }
 
-    }//}}}
-
+    /**
+     * ラッピングする新しい画像。またはトリミング対象とする画像。
+     *
+     * @param img 画像
+     */
     public Builder(Image img) {//{{{
 
-      image = img;
-      width = (int) image.getWidth();
+      image  = img;
+      width  = (int) image.getWidth();
       height = (int) image.getHeight();
 
     }//}}}
 
+    // ************************************************************
+    // Setter
+    // ************************************************************
+
+
+    /**
+     * 元になった画像をトリミングする座標を指定する。
+     *
+     * @param x 座標
+     * @return Builderインスタンス
+     */
     public Builder x(int x) {//{{{
 
       if (x < 0)
@@ -48,6 +65,12 @@ public class MyImage {
 
     }//}}}
 
+    /**
+     * 元になった画像をトリミングする座標を指定する。
+     *
+     * @param y 座標
+     * @return Builderインスタンス
+     */
     public Builder y(int y) {//{{{
 
       if (y < 0)
@@ -59,6 +82,12 @@ public class MyImage {
 
     }//}}}
 
+    /**
+     * 元になった画像をトリミングする幅を指定する。
+     *
+     * @param width 横幅
+     * @return Builderインスタンス
+     */
     public Builder width(int width) {//{{{
 
       if (this.width < width)
@@ -69,6 +98,12 @@ public class MyImage {
 
     }//}}}
 
+    /**
+     * 元になった画像をトリミングする高さを指定する。
+     *
+     * @param height 高さ
+     * @return Builderインスタンス
+     */
     public Builder height(int height) {//{{{
 
       if (this.height < height)
@@ -81,15 +116,23 @@ public class MyImage {
 
     public MyImage build() {//{{{
 
-      if (width < x)
+      int w = (int) image.getWidth();
+      int h = (int) image.getHeight();
+
+      if (w < x)
         throw new IllegalArgumentException("座標xは画像幅widthの値以下でなければいけません。");
 
-      if (height < y)
+      if (h < y)
         throw new IllegalArgumentException("座標yは画像幅heightの値以下でなければいけません。");
 
       return new MyImage(this);
 
     }//}}}
+
+    @Override
+    public String toString() {
+      return String.format("MyImage.Builder: { x: %04d, y: %04d, width: %04d, height:%04d }", x, y, width, height);
+    }
 
   }//}}}
 
@@ -165,5 +208,8 @@ public class MyImage {
     return pixels;
 
   }//}}}
+
+  // Getter
+  public Image getImage() { return image; }
 
 }

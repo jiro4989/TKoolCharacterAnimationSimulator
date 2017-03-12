@@ -18,7 +18,7 @@
   </rowConstraints>
 
    <children>
-      <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 
 </fx:root>

@@ -1,0 +1,115 @@
+Buildfile: /home/jiro/workspace/java/proj/MVCharacterChipSimulator/build.xml
+
+clean:
+
+compile:
+    [javac] Compiling 12 source files to /home/jiro/workspace/java/proj/MVCharacterChipSimulator/classes
+     [copy] Copying 8 files to /home/jiro/workspace/java/proj/MVCharacterChipSimulator/classes
+     [java] MyImage.Builder: { x: 0, y: 0, width: 144, height:192 }Exception in thread "JavaFX Application Thread" java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+     [java] 
+     [java] MyImage.Builder: { x: 0, y: 0, width: 48, height:48 }
+     [java] MyImage.Builder: { x: 0, y: 48, width: 48, height:48 }
+     [java] MyImage.Builder: { x: 0, y: 96, width: 48, height:48 }
+     [java] 	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1774)
+     [java] MyImage.Builder: { x: 48, y: 0, width: 48, height:48 }
+     [java] MyImage.Builder: { x: 48, y: 48, width: 48, height:48 }
+     [java] MyImage.Builder: { x: 48, y: 96, width: 48, height:48 }	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+     [java] 
+     [java] MyImage.Builder: { x: 96, y: 0, width: 48, height:48 }	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+     [java] MyImage.Builder: { x: 96, y: 48, width: 48, height:48 }
+     [java] MyImage.Builder: { x: 96, y: 96, width: 48, height:48 }
+     [java] MyImage.Builder: { x: 144, y: 0, width: 48, height:48 }
+     [java] 
+     [java] 	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+     [java] 	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+     [java] 	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+     [java] 	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+     [java] 	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+     [java] 	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+     [java] 	at javafx.event.Event.fireEvent(Event.java:198)
+     [java] 	at javafx.scene.control.MenuItem.fire(MenuItem.java:462)
+     [java] 	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405)
+     [java] 	at com.sun.javafx.scene.control.skin.ContextMenuContent.selectMenuItem(ContextMenuContent.java:678)
+     [java] 	at com.sun.javafx.scene.control.skin.ContextMenuContent.access$900(ContextMenuContent.java:70)
+     [java] 	at com.sun.javafx.scene.control.skin.ContextMenuContent$1.handle(ContextMenuContent.java:538)
+     [java] 	at com.sun.javafx.scene.control.skin.ContextMenuContent$1.handle(ContextMenuContent.java:493)
+     [java] 	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+     [java] 	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+     [java] 	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+     [java] 	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+     [java] 	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+     [java] 	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+     [java] 	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+     [java] 	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+     [java] 	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+     [java] 	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+     [java] 	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+     [java] 	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+     [java] 	at javafx.stage.PopupWindow$PopupEventRedirector.handleKeyEvent(PopupWindow.java:987)
+     [java] 	at javafx.stage.PopupWindow$PopupEventRedirector.handleRedirectedEvent(PopupWindow.java:959)
+     [java] 	at com.sun.javafx.event.EventRedirector.dispatchCapturingEvent(EventRedirector.java:106)
+     [java] 	at com.sun.javafx.event.CompositeEventDispatcher.dispatchCapturingEvent(CompositeEventDispatcher.java:43)
+     [java] 	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:52)
+     [java] 	at com.sun.javafx.event.EventRedirector.redirectEvent(EventRedirector.java:124)
+     [java] 	at com.sun.javafx.event.EventRedirector.dispatchCapturingEvent(EventRedirector.java:103)
+     [java] 	at com.sun.javafx.event.CompositeEventDispatcher.dispatchCapturingEvent(CompositeEventDispatcher.java:43)
+     [java] 	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:52)
+     [java] 	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+     [java] 	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+     [java] 	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+     [java] 	at javafx.event.Event.fireEvent(Event.java:198)
+     [java] 	at javafx.scene.Scene$KeyHandler.process(Scene.java:3964)
+     [java] 	at javafx.scene.Scene$KeyHandler.access$1800(Scene.java:3910)
+     [java] 	at javafx.scene.Scene.impl_processKeyEvent(Scene.java:2040)
+     [java] 	at javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2501)
+     [java] 	at com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:217)
+     [java] 	at com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:149)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleKeyEvent$353(GlassViewEventHandler.java:248)
+     [java] 	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+     [java] 	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:247)
+     [java] 	at com.sun.glass.ui.View.handleKeyEvent(View.java:546)
+     [java] 	at com.sun.glass.ui.View.notifyKey(View.java:966)
+     [java] 	at com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+     [java] 	at com.sun.glass.ui.gtk.GtkApplication.lambda$null$49(GtkApplication.java:139)
+     [java] 	at java.lang.Thread.run(Thread.java:745)
+     [java] Caused by: java.lang.reflect.InvocationTargetException
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:498)
+     [java] 	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+     [java] 	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:498)
+     [java] 	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+     [java] 	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1771)
+     [java] 	... 55 more
+     [java] Caused by: java.lang.IndexOutOfBoundsException: 144, 0
+     [java] 	at com.sun.prism.Image$BaseAccessor.getIndex(Image.java:933)
+     [java] 	at com.sun.prism.Image$ByteAccess.getPixels(Image.java:1047)
+     [java] 	at com.sun.prism.Image.getPixels(Image.java:675)
+     [java] 	at javafx.scene.image.Image$2.getPixels(Image.java:1230)
+     [java] 	at app.image.MyImage.<init>(MyImage.java:135)
+     [java] 	at app.image.MyImage.<init>(MyImage.java:10)
+     [java] 	at app.image.MyImage$Builder.build(MyImage.java:101)
+     [java] 	at app.layout.PositionsFlowPane.lambda$null$0(PositionsFlowPane.java:66)
+     [java] 	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+     [java] 	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:557)
+     [java] 	at app.layout.PositionsFlowPane.lambda$drawImage$1(PositionsFlowPane.java:56)
+     [java] 	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+     [java] 	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:557)
+     [java] 	at app.layout.PositionsFlowPane.drawImage(PositionsFlowPane.java:54)
+     [java] 	at app.MainController.drawImage(MainController.java:45)
+     [java] 	at app.menubar.MyMenuBar.lambda$openFileMenuItemOnAction$0(MyMenuBar.java:54)
+     [java] 	at java.util.Optional.ifPresent(Optional.java:159)
+     [java] 	at app.menubar.MyMenuBar.openFileMenuItemOnAction(MyMenuBar.java:51)
+     [java] 	... 65 more
+
+jar:
+      [jar] Building jar: /home/jiro/workspace/java/proj/MVCharacterChipSimulator/mvccs.jar
+
+default:
+
+BUILD SUCCESSFUL
+Total time: 7 seconds

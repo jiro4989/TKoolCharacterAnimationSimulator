@@ -5,9 +5,11 @@ import app.standard.Standards;
 import app.charachip.CharaChipGridPane;
 
 import java.io.IOException;
+import java.util.stream.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
 
 public class PositionsFlowPane extends FlowPane {
 
@@ -37,8 +39,22 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  public void drawImage(Standards standards) {
-    System.out.println(standards);
+  public void drawImage(String filePath, Standards standards) {
+
+    // TODO
+    Image originalImage = new Image("file:" + filePath);
+    //Image trimmedImage = 
+
+    IntStream.range(0, 4).forEach(r -> {
+
+      IntStream.range(0, 3).forEach(c -> {
+
+        // TODO
+        //Image tileImage = new Image();
+
+      });
+
+    });
   }
 
 }

@@ -41,7 +41,8 @@ public class MainController {
       .x(x) .y(y) .row(row) .column(column)
       .build();
 
-    positionsFlowPane.drawImage(standards);
+    String filePath = file.getPath();
+    positionsFlowPane.drawImage(filePath, standards);
 
   }//}}}
 

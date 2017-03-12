@@ -22,7 +22,7 @@ public class Main extends Application {
   public static final String APP_ICON  = "/app/res/img/app_icon.png";
 
   @Override
-  public void start(Stage primaryStage) {
+  public void start(Stage primaryStage) {//{{{
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
     try {
@@ -31,22 +31,25 @@ public class Main extends Application {
       controller = (MainController) loader.getController();
       Scene scene = new Scene(root, 500, 300);
       scene.getStylesheets().add(BASIC_CSS);
+
       primaryStage.setScene(scene);
       primaryStage.setTitle(TITLE_VERSION);
       primaryStage.getIcons().add(new Image(APP_ICON));
+      primaryStage.setMinWidth(80.0);
+      primaryStage.setMinHeight(140.0);
 
       primaryStage.xProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
       primaryStage.yProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
       primaryStage.widthProperty  ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
+      primaryStage.heightProperty ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
 
       primaryStage.show();
-
 
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-  }
+  }//}}}
 
   /*
      @Override

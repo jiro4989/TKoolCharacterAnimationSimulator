@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane prefHeight="100.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane hgap="5.0" layoutX="0.0126953125" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -22,12 +21,12 @@
           <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="opacityLabel" minWidth="-Infinity" text="Opacity :" />
-            <Label fx:id="zoomRateLabel" minWidth="-Infinity" text="Zoom Rate :" GridPane.rowIndex="1" />
-            <Label fx:id="animationSpeedLabel" minWidth="-Infinity" text="Animation Speed :" GridPane.rowIndex="2" />
-            <Slider fx:id="opacitySlider" GridPane.columnIndex="1" prefWidth="200" />
-            <Slider fx:id="zoomRateSlider" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200" />
-            <Slider fx:id="animationSpeedSlider" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200" />
+            <Label fx:id="opacityLabel" text="Opacity (%) :" />
+            <Label fx:id="zoomRateLabel" text="Zoom Rate (%) :" GridPane.rowIndex="1" />
+            <Label fx:id="animationSpeedLabel" text="Animation Speed (ms) :" GridPane.rowIndex="2" />
+            <Slider fx:id="opacitySlider" prefWidth="200" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" GridPane.columnIndex="1" />
+            <Slider fx:id="zoomRateSlider" majorTickUnit="50.0" max="300.0" min="50.0" prefWidth="200" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Slider fx:id="animationSpeedSlider" majorTickUnit="50.0" max="300.0" min="50.0" prefWidth="200" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

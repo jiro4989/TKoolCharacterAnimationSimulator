@@ -93,8 +93,7 @@ public class PositionsFlowPane extends FlowPane {
 
   private void animateAll() {//{{{
 
-    //charaChips.stream().forEach(c -> c.animate());
-    charaChips.get(0).animate();
+    charaChips.stream().forEach(c -> c.animate());
 
   }//}}}
 

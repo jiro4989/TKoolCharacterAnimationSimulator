@@ -77,10 +77,24 @@ public class MainController {
 
   }//}}}
 
-  public void setOpacity(double opacity) {
+  // Setter
+
+  public void updateOpacity(double opacity) {//{{{
 
     System.out.println(opacity);
 
-  }
+  }//}}}
+
+  public void updateZoomRate(double zoom) {//{{{
+
+    System.out.println(zoom);
+
+  }//}}}
+
+  public void updateAnimationSpeed(double speed) {//{{{
+
+    System.out.println(speed);
+
+  }//}}}
 
 }

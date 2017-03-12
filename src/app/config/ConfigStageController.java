@@ -27,10 +27,14 @@ public class ConfigStageController {
   animationSpeedSlider.setOnScroll(e -> changeValue(e, animationSpeedSlider));
 
   opacitySlider.valueProperty().addListener((obs, o, n) -> {
-    mainController.setOpacity(n.doubleValue());
+    mainController.updateOpacity(n.doubleValue());
   });
-  zoomRateSlider.setOnScroll(e -> changeValue(e, zoomRateSlider));
-  animationSpeedSlider.setOnScroll(e -> changeValue(e, animationSpeedSlider));
+  zoomRateSlider.valueProperty().addListener((obs, o, n) -> {
+    mainController.updateZoomRate(n.doubleValue());
+  });
+  animationSpeedSlider.valueProperty().addListener((obs, o, n) -> {
+    mainController.updateAnimationSpeed(n.doubleValue());
+  });
 
 }//}}}
 

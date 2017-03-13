@@ -32,7 +32,7 @@ public class CharaChipGridPane extends GridPane {
     loader.setController(this);
 
     try { loader.load();
-      // TODO
+
       Image img = imageList.get(0).getImage();
       double width = img.getWidth();
       double height = img.getHeight();
@@ -46,12 +46,6 @@ public class CharaChipGridPane extends GridPane {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-  }//}}}
-
-  public void setImage(MyImage image) {//{{{
-
-    imageView.setImage(image.getImage());
 
   }//}}}
 

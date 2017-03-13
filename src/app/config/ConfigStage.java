@@ -33,7 +33,7 @@ public class ConfigStage extends Stage {
       setScene(scene);
       setTitle("表示設定");
 
-      initStyle(StageStyle.UTILITY);
+      //initStyle(StageStyle.UTILITY);
       initOwner(stage);
 
     } catch (IOException e) {

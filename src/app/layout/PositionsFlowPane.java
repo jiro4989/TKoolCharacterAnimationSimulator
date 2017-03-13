@@ -19,7 +19,7 @@ import static java.util.stream.IntStream.range;
 
 public class PositionsFlowPane extends FlowPane {
 
-  private List<CharaChipGridPane> charaChips;
+  private Optional<List<CharaChipGridPane>> charaChipOpt = Optional.empty();
 
   // コンストラクタ
 
@@ -43,9 +43,12 @@ public class PositionsFlowPane extends FlowPane {
   public void drawImage(String filePath, Standards standards) {//{{{
 
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
-    charaChips = createCharaChips(originalImage, standards);
-    putCharaChips(charaChips);
-    animateAll();
+    charaChipOpt = Optional.ofNullable(createCharaChips(originalImage, standards));
+    charaChipOpt.ifPresent(chips -> {
+      putCharaChips(chips);
+      // TODO 値を決め打ちしている
+      updateAnimationSpeed(100);
+    });
 
   }//}}}
 
@@ -89,17 +92,9 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  private void putCharaChips(List<CharaChipGridPane> charaChips) {//{{{
+  private void putCharaChips(List<CharaChipGridPane> charaChipOpt) {//{{{
 
-    charaChips.stream().forEach(i -> getChildren().add(i));
-
-  }//}}}
-
-  private void animateAll() { animateAll(100); }
-
-  private void animateAll(int duration) {//{{{
-
-    charaChips.stream().forEach(c -> c.animate(duration));
+    charaChipOpt.stream().forEach(i -> getChildren().add(i));
 
   }//}}}
 
@@ -111,7 +106,9 @@ public class PositionsFlowPane extends FlowPane {
 
   public void updateAnimationSpeed(int duration) {//{{{
 
-    animateAll(duration);
+    charaChipOpt.ifPresent(chips -> {
+      chips.stream().forEach(c -> c.animate(duration));
+    });
 
   }//}}}
 

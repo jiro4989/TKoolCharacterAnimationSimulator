@@ -34,6 +34,8 @@ public class MainController {
 
   }//}}}
 
+  // メソッド
+
   public void drawImage(File file) {//{{{
 
     MyProperties mp = new MyProperties("./preset/mv_chara_chip.preset");
@@ -77,11 +79,9 @@ public class MainController {
 
   }//}}}
 
-  // Setter
-
   public void updateOpacity(double opacity) {//{{{
 
-    System.out.println(opacity);
+    positionsFlowPane.updateOpacity(opacity);
 
   }//}}}
 
@@ -91,9 +91,24 @@ public class MainController {
 
   }//}}}
 
-  public void updateAnimationSpeed(double speed) {//{{{
+  public void updateAnimationSpeed(int duration) {//{{{
 
-    System.out.println(speed);
+    positionsFlowPane.updateAnimationSpeed(duration);
+
+  }//}}}
+
+  public void changeAlwaysOnTop() {//{{{
+
+    // TODO
+    Stage stage = getStage();
+    //boolean alwaysOnTop = getStage().getAlwaysOnTop();
+    //stage.setAlwaysOnTop(!alwaysOnTop);
+
+  }//}}}
+
+  private Stage getStage() {//{{{
+
+    return (Stage) positionsFlowPane.getScene().getWindow();
 
   }//}}}
 

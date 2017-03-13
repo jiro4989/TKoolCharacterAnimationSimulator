@@ -95,9 +95,23 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  private void animateAll() {//{{{
+  private void animateAll() { animateAll(100); }
 
-    charaChips.stream().forEach(c -> c.animate());
+  private void animateAll(int duration) {//{{{
+
+    charaChips.stream().forEach(c -> c.animate(duration));
+
+  }//}}}
+
+  public void updateOpacity(double opacity) {//{{{
+
+    setOpacity(opacity);
+
+  }//}}}
+
+  public void updateAnimationSpeed(int duration) {//{{{
+
+    animateAll(duration);
 
   }//}}}
 

@@ -16,6 +16,8 @@ import javafx.util.Duration;
 
 public class CharaChipGridPane extends GridPane {
 
+  private Timeline animationTimeline;
+
   /** アニメーションするコマ割り画像 */
   private final List<MyImage> imageList;
 
@@ -56,11 +58,21 @@ public class CharaChipGridPane extends GridPane {
   /**
    * 画像を切り替えてアニメーションする。
    */
-  public void animate() {//{{{
+  public void animate(int duration) {//{{{
+
+    if (animationTimeline != null)
+      animationTimeline.stop();
+    animationTimeline = createTimeline(duration);
+    animationTimeline.setCycleCount(Timeline.INDEFINITE);
+    animationTimeline.play();
+
+  }//}}}
+
+  private Timeline createTimeline(int duration) {//{{{
 
     final int max = imageList.size();
     AtomicInteger count = new AtomicInteger(0);
-    Timeline t = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(duration), e -> {
 
       int i = count.getAndIncrement();
 
@@ -74,8 +86,7 @@ public class CharaChipGridPane extends GridPane {
 
     }));
 
-    t.setCycleCount(Timeline.INDEFINITE);
-    t.play();
+    return timeline;
 
   }//}}}
 

@@ -33,7 +33,7 @@ public class ConfigStageController {
     mainController.updateZoomRate(n.doubleValue());
   });
   animationSpeedSlider.valueProperty().addListener((obs, o, n) -> {
-    mainController.updateAnimationSpeed(n.doubleValue());
+    mainController.updateAnimationSpeed(n.intValue());
   });
 
 }//}}}

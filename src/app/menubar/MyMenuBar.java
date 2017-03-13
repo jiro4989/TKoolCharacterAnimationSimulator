@@ -143,6 +143,12 @@ public class MyMenuBar extends VBox {
 
   // 表示メニュー
 
+  @FXML private void alwaysOnTopMenuItemOnAction() {//{{{
+
+    mainController.changeAlwaysOnTop();
+
+  }//}}}
+
   @FXML private void displayConfigMenuItemOnAction() {//{{{
 
     mainController.showConfigStage();

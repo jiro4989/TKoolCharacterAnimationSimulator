@@ -38,7 +38,7 @@ public class MainController {
 
   public void drawImage(File file) {//{{{
 
-    MyProperties mp = new MyProperties("./preset/mv_chara_chip.preset");
+    MyProperties mp = new MyProperties("./presets/walk/mv.preset");
     mp.load();
 
     final String DEF_W = "48";

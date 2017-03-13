@@ -6,6 +6,7 @@ import app.config.ConfigStage;
 import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
 import app.standard.Standards;
+import util.AlertUtils;
 
 import java.io.*;
 import java.util.Optional;
@@ -108,6 +109,10 @@ public class MainController {
     boolean alwaysOnTop = getStage().isAlwaysOnTop();
     stage.setAlwaysOnTop(!alwaysOnTop);
 
+  }//}}}
+
+  public void showLanguageAlert() {//{{{
+    AlertUtils.showLanguageAlert();
   }//}}}
 
   private Stage getStage() {//{{{

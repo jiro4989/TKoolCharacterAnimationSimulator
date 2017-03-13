@@ -4,6 +4,7 @@ import jiro.javafx.stage.MyFileChooser;
 
 import app.MainController;
 import util.ResourceBundleWithUtf8;
+import util.AlertUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +61,6 @@ public class MyMenuBar extends VBox {
   // コンストラクタ
 
   public MyMenuBar() {//{{{
-
     mfc = new MyFileChooser.Builder("Image Files", "*.png").build();
 
     URL location = getClass().getResource("my_menu_bar.fxml");
@@ -83,115 +83,76 @@ public class MyMenuBar extends VBox {
       fontSize11RadioMenuItem.setOnAction(e -> setFontSize(fontSize11RadioMenuItem));
       fontSize12RadioMenuItem.setOnAction(e -> setFontSize(fontSize12RadioMenuItem));
 
+      changeSelectedFontMenuItem();
+
     } catch (IOException e) {
       e.printStackTrace();
     }
-
   }//}}}
-
   // FXMLイベント
-
   // ファイルメニュー
-
   @FXML private void openCharaChipMenuItemOnAction() {//{{{
-
     mfc.openFile().ifPresent(file -> {
-
-      // FIXME NullPointerexception 
       mainController.drawImage(file);
-
     });
-
   }//}}}
-
   @FXML private void openSideViewMenuItemOnAction() {//{{{
-
     mfc.openFile().ifPresent(file -> {
-
       // FIXME NullPointerexception 
       mainController.drawImage(file);
-
     });
-
   }//}}}
-
   @FXML private void openRecentMenuItemOnAction() {//{{{
-
     mfc.openFile().ifPresent(file -> {
-
       // FIXME NullPointerexception 
       mainController.drawImage(file);
-
     });
-
   }//}}}
-
   @FXML private void closeMenuItemOnAction() {//{{{
-
     mfc.openFile().ifPresent(file -> {
-
       // FIXME NullPointerexception 
       mainController.drawImage(file);
-
     });
-
   }//}}}
-
 @FXML private void quitMenuItemOnAction() {//{{{
-
     Platform.exit();
-
   }//}}}
-
   @FXML private void forcedTerminateMenuItemOnAction() {//{{{
-
-    Platform.exit();
-
+    AlertUtils.showForcedTerminationAlert();
   }//}}}
-
   // 表示メニュー
-
   @FXML private void alwaysOnTopMenuItemOnAction() {//{{{
-
     mainController.changeAlwaysOnTop();
-
   }//}}}
-
   @FXML private void displayConfigMenuItemOnAction() {//{{{
-
     mainController.showConfigStage();
-
   }//}}}
-
   // 言語メニュー
-
   @FXML private void jpRadioMenuItemOnAction() {//{{{
-
-    Platform.exit();
-
   }//}}}
-
   @FXML private void usRadioMenuItemOnAction() {//{{{
-
-    Platform.exit();
-
   }//}}}
+  private void changeSelectedFontMenuItem() {//{{{
+    String defaultLanguage = Locale.getDefault().getLanguage();
+    String ja = Locale.JAPAN.getLanguage();
 
+    if (defaultLanguage.equals(ja))
+      jpRadioMenuItem.setSelected(true);
+    else
+      usRadioMenuItem.setSelected(true);
+  }//}}}
+  private void showLanguageAlert() {//{{{
+    mainController.showLanguageAlert();
+  }//}}}
   // Setter
-
   public void setMainController(MainController aMain) {//{{{
     mainController = aMain;
   }//}}}
-
   public void setDisableConfigMenuItem(boolean disable) {//{{{
-
     displayConfigMenuItem.setDisable(disable);
-
   }//}}}
-
   private void setFontSize(RadioMenuItem rmi) {//{{{
     String fontSize = rmi.getText();
     mainController.setFontSize(fontSize);
   }//}}}
-
 }

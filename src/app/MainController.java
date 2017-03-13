@@ -10,6 +10,7 @@ import app.standard.Standards;
 import java.io.*;
 import java.util.Optional;
 import javafx.fxml.FXML;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -17,6 +18,8 @@ public class MainController {
 
   /** 画像やアニメの規格 */
   private Standards standards;
+
+  private ConfigStage cs;
 
   private Optional<ConfigStage> configStageOpt = Optional.empty();
 
@@ -38,6 +41,8 @@ public class MainController {
   // メソッド
 
   public void drawImage(File file) {//{{{
+
+    cs = new ConfigStage(positionsFlowPane, this);
 
     MyProperties mp = new MyProperties("./presets/walk/mv.preset");
     mp.load();
@@ -65,9 +70,13 @@ public class MainController {
 
   public void showConfigStage() {//{{{
 
-    ConfigStage cs = new ConfigStage(positionsFlowPane, this);
     configStageOpt = Optional.ofNullable(cs);
-    configStageOpt.ifPresent(c -> c.show());
+    configStageOpt.ifPresent(c -> {
+      if (c.isShowing())
+        c.hide();
+      else
+        c.show();
+    });
 
   }//}}}
 
@@ -104,6 +113,15 @@ public class MainController {
   private Stage getStage() {//{{{
 
     return (Stage) positionsFlowPane.getScene().getWindow();
+
+  }//}}}
+
+  // Setter
+
+  public void setFontSize(String fontSize) {//{{{
+
+    VBox root = (VBox) positionsFlowPane.getScene().lookup("#root");
+    root.setStyle("-fx-font-size:" + fontSize + "pt;");
 
   }//}}}
 

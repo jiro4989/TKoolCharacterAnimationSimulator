@@ -76,6 +76,13 @@ public class MyMenuBar extends VBox {
 
     try {
       loader.load();
+
+      fontSize8RadioMenuItem.setOnAction(e -> setFontSize(fontSize8RadioMenuItem));
+      fontSize9RadioMenuItem.setOnAction(e -> setFontSize(fontSize9RadioMenuItem));
+      fontSize10RadioMenuItem.setOnAction(e -> setFontSize(fontSize10RadioMenuItem));
+      fontSize11RadioMenuItem.setOnAction(e -> setFontSize(fontSize11RadioMenuItem));
+      fontSize12RadioMenuItem.setOnAction(e -> setFontSize(fontSize12RadioMenuItem));
+
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -180,6 +187,11 @@ public class MyMenuBar extends VBox {
 
     displayConfigMenuItem.setDisable(disable);
 
+  }//}}}
+
+  private void setFontSize(RadioMenuItem rmi) {//{{{
+    String fontSize = rmi.getText();
+    mainController.setFontSize(fontSize);
   }//}}}
 
 }

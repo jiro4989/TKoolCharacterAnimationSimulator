@@ -112,4 +112,12 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
+  public void updateZoomRate(double rate) {//{{{
+
+    charaChipOpt.ifPresent(chips -> {
+      chips.stream().forEach(c -> c.setScale(rate));
+    });
+
+  }//}}}
+
 }

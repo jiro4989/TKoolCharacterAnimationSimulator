@@ -16,10 +16,14 @@ import javafx.util.Duration;
 
 public class CharaChipGridPane extends GridPane {
 
+  /** 画像切り替えタイマー */
   private Timeline animationTimeline;
 
   /** アニメーションするコマ割り画像 */
   private final List<MyImage> imageList;
+
+  private final double imageWidth;
+  private final double imageHeight;
 
   @FXML private ImageView imageView;
 
@@ -31,21 +35,27 @@ public class CharaChipGridPane extends GridPane {
     loader.setRoot(this);
     loader.setController(this);
 
+    Image img   = imageList.get(0).getImage();
+    imageWidth  = img.getWidth();
+    imageHeight = img.getHeight();
+
     try { loader.load();
 
-      Image img = imageList.get(0).getImage();
-      double width = img.getWidth();
-      double height = img.getHeight();
-      setPrefWidth(width);
-      setPrefHeight(height);
-      imageView.setFitWidth(width);
-      imageView.setFitHeight(height);
-
+      setSize(imageWidth, imageHeight);
       imageView.setImage(img);
 
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+  }//}}}
+
+  private void setSize(double width, double height) {//{{{
+
+    setPrefWidth(width);
+    setPrefHeight(height);
+    imageView.setFitWidth(width);
+    imageView.setFitHeight(height);
 
   }//}}}
 
@@ -59,6 +69,16 @@ public class CharaChipGridPane extends GridPane {
     animationTimeline = createTimeline(duration);
     animationTimeline.setCycleCount(Timeline.INDEFINITE);
     animationTimeline.play();
+
+  }//}}}
+
+  public void setScale(double rate) {//{{{
+
+    rate = rate / 100;
+    double scaledWidth = imageWidth * rate;
+    double scaledHeight = imageHeight * rate;
+
+    setSize(scaledWidth, scaledHeight);
 
   }//}}}
 

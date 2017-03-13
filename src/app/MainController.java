@@ -87,7 +87,7 @@ public class MainController {
 
   public void updateZoomRate(double zoom) {//{{{
 
-    System.out.println(zoom);
+    positionsFlowPane.updateZoomRate(zoom);
 
   }//}}}
 

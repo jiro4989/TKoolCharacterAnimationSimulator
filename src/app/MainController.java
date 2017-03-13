@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController {
 
@@ -50,7 +51,6 @@ public class MainController {
     int height    = Integer . parseInt(mp . getProperty("chara.height") . orElse(DEF_W));
     int row       = Integer . parseInt(mp . getProperty("row")          . orElse("4"));
     int column    = Integer . parseInt(mp . getProperty("column")       . orElse("3"));
-    int animCount = Integer . parseInt(mp . getProperty("anim.count")   . orElse("3"));
 
     standards = new Standards.Builder(width, height)
       .x(x) .y(y) .row(row) .column(column)
@@ -58,6 +58,8 @@ public class MainController {
 
     String filePath = file.getPath();
     positionsFlowPane.drawImage(filePath, standards);
+
+    myMenuBar.setDisableConfigMenuItem(false);
 
   }//}}}
 
@@ -79,12 +81,6 @@ public class MainController {
 
   }//}}}
 
-  public void updateOpacity(double opacity) {//{{{
-
-    positionsFlowPane.updateOpacity(opacity);
-
-  }//}}}
-
   public void updateZoomRate(double zoom) {//{{{
 
     positionsFlowPane.updateZoomRate(zoom);
@@ -99,10 +95,9 @@ public class MainController {
 
   public void changeAlwaysOnTop() {//{{{
 
-    // TODO
     Stage stage = getStage();
-    //boolean alwaysOnTop = getStage().getAlwaysOnTop();
-    //stage.setAlwaysOnTop(!alwaysOnTop);
+    boolean alwaysOnTop = getStage().isAlwaysOnTop();
+    stage.setAlwaysOnTop(!alwaysOnTop);
 
   }//}}}
 

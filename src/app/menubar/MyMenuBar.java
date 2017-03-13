@@ -33,6 +33,7 @@ public class MyMenuBar extends VBox {
   // 表示
   @FXML private Menu          displayMenu;
   @FXML private CheckMenuItem alwaysOnTopMenuItem;
+  @FXML private CheckMenuItem disableMenuBarMenuItem;
   @FXML private CheckMenuItem displayConfigMenuItem;
 
   // フォントサイズ変更メニュー
@@ -173,6 +174,12 @@ public class MyMenuBar extends VBox {
 
   public void setMainController(MainController aMain) {//{{{
     mainController = aMain;
+  }//}}}
+
+  public void setDisableConfigMenuItem(boolean disable) {//{{{
+
+    displayConfigMenuItem.setDisable(disable);
+
   }//}}}
 
 }

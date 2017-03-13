@@ -23,7 +23,7 @@
       <Menu fx:id="displayMenu" mnemonicParsing="false" text="%displayMenu">
         <items>
           <CheckMenuItem fx:id="alwaysOnTopMenuItem" mnemonicParsing="false" text="%alwaysOnTopMenuItem" onAction="#alwaysOnTopMenuItemOnAction"/>
-          <CheckMenuItem fx:id="displayConfigMenuItem" mnemonicParsing="false" text="%displayConfigMenuItem" onAction="#displayConfigMenuItemOnAction" />
+          <CheckMenuItem fx:id="displayConfigMenuItem" mnemonicParsing="false" text="%displayConfigMenuItem" onAction="#displayConfigMenuItemOnAction" disable="true" />
         </items>
       </Menu>
 

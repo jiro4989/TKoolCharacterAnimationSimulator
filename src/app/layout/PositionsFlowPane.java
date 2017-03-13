@@ -98,12 +98,6 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  public void updateOpacity(double opacity) {//{{{
-
-    setOpacity(opacity);
-
-  }//}}}
-
   public void updateAnimationSpeed(int duration) {//{{{
 
     charaChipOpt.ifPresent(chips -> {

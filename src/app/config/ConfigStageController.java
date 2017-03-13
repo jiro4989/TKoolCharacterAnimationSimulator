@@ -22,13 +22,9 @@ public class ConfigStageController {
 
 @FXML private void initialize() {//{{{
 
-  opacitySlider.setOnScroll(e -> changeValue(e, opacitySlider));
-  zoomRateSlider.setOnScroll(e -> changeValue(e, zoomRateSlider));
-  animationSpeedSlider.setOnScroll(e -> changeValue(e, animationSpeedSlider));
+  zoomRateSlider       . setOnScroll(e -> changeValue(e, zoomRateSlider));
+  animationSpeedSlider . setOnScroll(e -> changeValue(e, animationSpeedSlider));
 
-  opacitySlider.valueProperty().addListener((obs, o, n) -> {
-    mainController.updateOpacity(n.doubleValue());
-  });
   zoomRateSlider.valueProperty().addListener((obs, o, n) -> {
     mainController.updateZoomRate(n.doubleValue());
   });

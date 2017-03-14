@@ -84,7 +84,6 @@ public class MainController {
   void resizeConfigStage() {//{{{
 
     configStageOpt
-      .filter(c -> c.isShowing())
       .ifPresent(c -> {
         c.resize(positionsFlowPane);
       });

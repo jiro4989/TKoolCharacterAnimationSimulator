@@ -1,7 +1,9 @@
 package app.menubar;
 
 import jiro.javafx.stage.MyFileChooser;
+import jiro.javafx.stage.AboutStage;
 
+import app.Main;
 import app.MainController;
 import util.ResourceBundleWithUtf8;
 import util.AlertUtils;
@@ -143,6 +145,17 @@ public class MyMenuBar extends VBox {
   }//}}}
   private void showLanguageAlert() {//{{{
     mainController.showLanguageAlert();
+  }//}}}
+  // ヘルプ
+  @FXML private void aboutMenuItemOnAction() {//{{{
+    AboutStage about = new AboutStage.Builder(Main.TITLE, Main.VERSION)
+      .author("次郎 (Jiro)")
+      .blog("次ログ")
+      .blogUrl("http://jiroron666.hatenablog.com/")
+      .css("/app/res/css/basic.css")
+      .appIcon("/app/res/img/app_icon.png")
+      .build();
+    about.showAndWait();
   }//}}}
   // Setter
   public void setMainController(MainController aMain) {//{{{

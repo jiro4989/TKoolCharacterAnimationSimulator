@@ -44,6 +44,18 @@ public class Main extends Application {
       primaryStage.widthProperty  ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
       primaryStage.heightProperty ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
 
+      final Delta delta = new Delta();
+
+      root.setOnMousePressed(e -> {
+        delta.x = primaryStage.getX() - e.getScreenX();
+        delta.y = primaryStage.getY() - e.getScreenY();
+      });
+
+      root.setOnMouseDragged(e -> {
+        primaryStage.setX(e.getScreenX() + delta.x);
+        primaryStage.setY(e.getScreenY() + delta.y);
+      });
+
       primaryStage.show();
 
     } catch (IOException e) {
@@ -115,5 +127,10 @@ public class Main extends Application {
 
      }//}}}
      */
+
+  private class Delta {
+    double x;
+    double y;
+  }
 
 }

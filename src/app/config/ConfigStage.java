@@ -71,4 +71,12 @@ public class ConfigStage extends Stage {
 
   }//}}}
 
+  public void zoomDown() {//{{{
+    controller.zoomDown();
+  }//}}}
+
+  public void zoomUp() {//{{{
+    controller.zoomUp();
+  }//}}}
+
 }

@@ -36,7 +36,7 @@ public class ConfigStageController {
 
   }//}}}
 
-  @FXML private void changeValue(ScrollEvent e, Slider s) {//{{{
+  private void changeValue(ScrollEvent e, Slider s) {//{{{
 
     double value = s.getValue();
     double add = s.getBlockIncrement();
@@ -53,6 +53,40 @@ public class ConfigStageController {
   public void changeZoomRate(ScrollEvent e) {//{{{
 
     changeValue(e, zoomRateSlider);
+
+  }//}}}
+
+  public void zoomDown() {//{{{
+
+    Slider s     = zoomRateSlider;
+    double value = s.getValue();
+    double add   = s.getBlockIncrement();
+
+    value = value - add;
+    changeZoomValue(value, zoomRateSlider);
+
+
+  }//}}}
+
+  public void zoomUp() {//{{{
+
+    Slider s     = zoomRateSlider;
+    double value = s.getValue();
+    double add   = s.getBlockIncrement();
+
+    value = value + add;
+    changeZoomValue(value, zoomRateSlider);
+
+  }//}}}
+
+  private void changeZoomValue(double value, Slider s) {//{{{
+
+    double min = s.getMin();
+    double max = s.getMax();
+
+    value = Math.min(max, value);
+    value = Math.max(min, value);
+    s.setValue(value);
 
   }//}}}
 

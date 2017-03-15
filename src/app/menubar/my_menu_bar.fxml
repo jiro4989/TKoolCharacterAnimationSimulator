@@ -23,17 +23,32 @@
 
       <Menu fx:id="displayMenu" mnemonicParsing="false" text="%displayMenu">
         <items>
-          <MenuItem fx:id="previousMenuItem" mnemonicParsing="false" text="Previous" onAction="#previousMenuItemOnAction" >
+
+          <MenuItem fx:id="previousMenuItem" mnemonicParsing="false" text="%previousMenuItem" onAction="#previousMenuItemOnAction" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="nextMenuItem" mnemonicParsing="false" text="%nextMenuItem" onAction="#nextMenuItemOnAction" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="D" control="UP" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="zoomDownMenuItem" mnemonicParsing="false" text="%zoomDownMenuItem" onAction="#zoomDownMenuItemOnAction" >
             <accelerator>
               <KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
             </accelerator>
           </MenuItem>
-          <MenuItem fx:id="nextMenuItem" mnemonicParsing="false" text="Next" onAction="#nextMenuItemOnAction" >
+
+          <MenuItem fx:id="zoomUpMenuItem" mnemonicParsing="false" text="%zoomUpMenuItem" onAction="#zoomUpMenuItemOnAction" >
             <accelerator>
               <KeyCodeCombination alt="UP" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
             </accelerator>
           </MenuItem>
-          <CheckMenuItem fx:id="onlyMenuItem" mnemonicParsing="false" text="Show 1" />
+
+          <CheckMenuItem fx:id="onlyMenuItem" mnemonicParsing="false" text="%onlyMenuItem" disable="true" />
           <SeparatorMenuItem mnemonicParsing="false" />
           <CheckMenuItem fx:id="alwaysOnTopMenuItem" mnemonicParsing="false" text="%alwaysOnTopMenuItem" onAction="#alwaysOnTopMenuItemOnAction"/>
           <CheckMenuItem fx:id="displayConfigMenuItem" mnemonicParsing="false" text="%displayConfigMenuItem" onAction="#displayConfigMenuItemOnAction" disable="true" />

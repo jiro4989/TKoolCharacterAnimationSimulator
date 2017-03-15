@@ -138,6 +138,14 @@ public class MainController {
     positionsFlowPane.showNextImage();
   }//}}}
 
+  public void zoomDownImages() {//{{{
+    configStageOpt.ifPresent(cs -> cs.zoomDown());
+  }//}}}
+
+  public void zoomUpImages() {//{{{
+    configStageOpt.ifPresent(cs -> cs.zoomUp());
+  }//}}}
+
   void setConfigStageInstance() {//{{{
     ConfigStage cs = new ConfigStage(positionsFlowPane, this);
     configStageOpt = Optional.ofNullable(cs);

@@ -97,11 +97,13 @@ public class MyMenuBar extends VBox {
   // ファイルメニュー
   @FXML private void openCharaChipMenuItemOnAction() {//{{{
     mfc.openFile().ifPresent(file -> {
+      onlyMenuItem.setDisable(false);
       mainController.drawImage(file);
     });
   }//}}}
   @FXML private void openSideViewMenuItemOnAction() {//{{{
     mfc.openFile().ifPresent(file -> {
+      onlyMenuItem.setDisable(false);
       mainController.drawSideViewImage(file);
     });
   }//}}}
@@ -139,6 +141,20 @@ public class MyMenuBar extends VBox {
     boolean selected = onlyMenuItem.isSelected();
     if (selected)
       mainController.showNextImage();
+  }//}}}
+  @FXML private void zoomDownMenuItemOnAction() {//{{{
+
+    boolean selected = onlyMenuItem.isSelected();
+    if (selected)
+      mainController.zoomDownImages();
+
+  }//}}}
+  @FXML private void zoomUpMenuItemOnAction() {//{{{
+
+    boolean selected = onlyMenuItem.isSelected();
+    if (selected)
+      mainController.zoomUpImages();
+
   }//}}}
   // 言語メニュー
   @FXML private void jpRadioMenuItemOnAction() {//{{{

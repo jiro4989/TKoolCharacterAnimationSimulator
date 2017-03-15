@@ -7,9 +7,12 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.layout.*;
+import javafx.scene.input.*;
 import javafx.stage.*;
 
 public class ConfigStage extends Stage {
+
+  private ConfigStageController controller = null;
 
   public ConfigStage(Node node, MainController aMain) {//{{{
 
@@ -23,7 +26,7 @@ public class ConfigStage extends Stage {
     try {
 
       AnchorPane root = (AnchorPane) loader.load();
-      ConfigStageController controller = (ConfigStageController) loader.getController();
+      controller = (ConfigStageController) loader.getController();
       controller.setMainController(aMain);
       Scene scene = new Scene(root);
       scene.getStylesheets().add(Main.BASIC_CSS);
@@ -59,6 +62,12 @@ public class ConfigStage extends Stage {
     setX(x);
     setY(y + height + 20.0);
     setWidth(width);
+
+  }//}}}
+
+  public void changeZoomRate(ScrollEvent e) {//{{{
+
+    controller.changeZoomRate(e);
 
   }//}}}
 

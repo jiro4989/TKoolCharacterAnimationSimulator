@@ -43,10 +43,13 @@ public class Main extends Application {
       primaryStage.setMinWidth(80.0);
       primaryStage.setMinHeight(140.0);
 
+      // 設定ウィンドウの追従リスナー
       primaryStage.xProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
       primaryStage.yProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
       primaryStage.widthProperty  ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
       primaryStage.heightProperty ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
+
+      // マウスドラッグでウィンドウの位置を変更//{{{
 
       final Delta delta = new Delta();
 
@@ -59,6 +62,10 @@ public class Main extends Application {
         primaryStage.setX(e.getScreenX() + delta.x);
         primaryStage.setY(e.getScreenY() + delta.y);
       });
+
+      //}}}
+
+      root.setOnScroll(e -> controller.updateZoomRate(e));
 
       primaryStage.show();
 

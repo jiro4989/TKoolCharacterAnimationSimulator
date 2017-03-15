@@ -12,6 +12,7 @@ import java.io.*;
 import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.layout.*;
+import javafx.scene.input.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -116,6 +117,13 @@ public class MainController {
   public void updateZoomRate(double zoom) {//{{{
 
     positionsFlowPane.updateZoomRate(zoom);
+
+  }//}}}
+
+  public void updateZoomRate(ScrollEvent e) {//{{{
+
+    if (cs != null)
+      cs.changeZoomRate(e);
 
   }//}}}
 

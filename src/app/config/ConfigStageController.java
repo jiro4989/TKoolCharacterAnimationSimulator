@@ -18,41 +18,49 @@ public class ConfigStageController {
 
   @FXML private Slider opacitySlider;
   @FXML private Slider zoomRateSlider;
-  @FXML private Slider animationSpeedSlider; //}}}
+  @FXML private Slider animationSpeedSlider;
 
-@FXML private void initialize() {//{{{
+  //}}}
 
-  zoomRateSlider       . setOnScroll(e -> changeValue(e, zoomRateSlider));
-  animationSpeedSlider . setOnScroll(e -> changeValue(e, animationSpeedSlider));
+  @FXML private void initialize() {//{{{
 
-  zoomRateSlider.valueProperty().addListener((obs, o, n) -> {
-    mainController.updateZoomRate(n.doubleValue());
-  });
-  animationSpeedSlider.valueProperty().addListener((obs, o, n) -> {
-    mainController.updateAnimationSpeed(n.intValue());
-  });
+    zoomRateSlider       . setOnScroll(e -> changeValue(e, zoomRateSlider));
+    animationSpeedSlider . setOnScroll(e -> changeValue(e, animationSpeedSlider));
 
-}//}}}
+    zoomRateSlider.valueProperty().addListener((obs, o, n) -> {
+      mainController.updateZoomRate(n.doubleValue());
+    });
+    animationSpeedSlider.valueProperty().addListener((obs, o, n) -> {
+      mainController.updateAnimationSpeed(n.intValue());
+    });
 
-@FXML private void changeValue(ScrollEvent e, Slider s) {//{{{
+  }//}}}
 
-  double value = s.getValue();
-  double add = s.getBlockIncrement();
-  double min = s.getMin();
-  double max = s.getMax();
+  @FXML private void changeValue(ScrollEvent e, Slider s) {//{{{
 
-  value = 0 < e.getDeltaY() ? value + add : value - add;
-  value = Math.min(max, value);
-  value = Math.max(min, value);
-  s.setValue(value);
+    double value = s.getValue();
+    double add = s.getBlockIncrement();
+    double min = s.getMin();
+    double max = s.getMax();
 
-}//}}}
+    value = 0 < e.getDeltaY() ? value + add : value - add;
+    value = Math.min(max, value);
+    value = Math.max(min, value);
+    s.setValue(value);
 
-// Setter
+  }//}}}
 
-public void setMainController(MainController aMain) {//{{{
-  mainController = aMain;
+  public void changeZoomRate(ScrollEvent e) {//{{{
 
-}//}}}
+    changeValue(e, zoomRateSlider);
+
+  }//}}}
+
+  // Setter
+
+  public void setMainController(MainController aMain) {//{{{
+    mainController = aMain;
+
+  }//}}}
 
 }

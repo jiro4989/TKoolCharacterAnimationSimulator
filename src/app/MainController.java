@@ -9,20 +9,27 @@ import app.standard.Standards;
 import util.AlertUtils;
 
 import java.io.*;
-import java.util.Optional;
+import java.util.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.layout.*;
 import javafx.scene.input.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 public class MainController {
 
-  /** 画像やアニメの規格 */
+  // 画像の規格
   private Standards walkStandard;
   private Standards sideViewStandard;
 
+  // 設定変更画面
   private Optional<ConfigStage> configStageOpt = Optional.empty();
+
+  //private Timeline fileObserver;
+  private FileObserver fileObserver;
 
   // FXMLコンポーネント//{{{
 
@@ -37,7 +44,28 @@ public class MainController {
 
     myMenuBar.setMainController(this);
 
+    fileObserver = new FileObserver(200, new File("./presets/mvccs/walk/mv.preset"));
+
+    //fileObserver = createFileObserver(
+    //    200, new File("./presets/mvccs/walk/mv.preset"));
+    //fileObserver.setCycleCount(Timeline.INDEFINITE);
+    //fileObserver.play();
+
   }//}}}
+
+  /*
+  private Timeline createFileObserver(int duration, File file) {//{{{
+
+    Timeline timeLine = new Timeline(new KeyFrame(Duration.millis(duration), e -> {
+      long modifiedTime = file.lastModified();
+      Date date = new Date(modifiedTime);
+      System.out.println(date);
+    }));
+
+    return timeLine;
+
+  }//}}}
+  */
 
   // メソッド
 

@@ -241,16 +241,19 @@ public class MyImage {
     int row        = standards.row;
     int column     = standards.column;
     int frameCount = standards.frameCount;
-    int width      = (int) (image.getWidth() / column);
-    int height     = (int) (image.getHeight() / row);
+    int iw         = (int) image.getWidth();
+    int ih         = (int) image.getHeight();
+    int width      = iw / column;
+    int height     = ih / row;
 
     List<CharaChipGridPane> ccgpList = new ArrayList<>(row);
 
     int line = column / frameCount;
     range(0, line).forEach(l -> {
+
+      int x = l * width * frameCount;
       range(0, row).forEach(r -> {
 
-        int x = l * width;
         int y = r * height;
         CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height)
           .x(x).y(y).frameCount(frameCount)
@@ -258,6 +261,7 @@ public class MyImage {
         ccgpList.add(ccgp);
 
       });
+
     });
 
     return ccgpList;

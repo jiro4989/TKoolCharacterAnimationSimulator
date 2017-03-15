@@ -69,6 +69,8 @@ public class Main extends Application {
 
       primaryStage.show();
 
+      controller.setConfigStageInstance();
+
     } catch (IOException e) {
       e.printStackTrace();
     }

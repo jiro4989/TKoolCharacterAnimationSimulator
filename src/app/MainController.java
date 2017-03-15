@@ -22,8 +22,6 @@ public class MainController {
   private Standards walkStandard;
   private Standards sideViewStandard;
 
-  private ConfigStage cs;
-
   private Optional<ConfigStage> configStageOpt = Optional.empty();
 
   // FXMLコンポーネント//{{{
@@ -44,8 +42,6 @@ public class MainController {
   // メソッド
 
   public void drawImage(File file) {//{{{
-
-    cs = new ConfigStage(positionsFlowPane, this);
 
     MyProperties mp = new MyProperties("./presets/walk/mv.preset");
     mp.load();
@@ -71,8 +67,6 @@ public class MainController {
 
   public void drawSideViewImage(File file) {//{{{
 
-    cs = new ConfigStage(positionsFlowPane, this);
-
     MyProperties mp = new MyProperties(file.getPath());
     mp.load();
 
@@ -95,22 +89,12 @@ public class MainController {
 
   public void showConfigStage() {//{{{
 
-    configStageOpt = Optional.ofNullable(cs);
     configStageOpt.ifPresent(c -> {
       if (c.isShowing())
         c.hide();
       else
         c.show();
     });
-
-  }//}}}
-
-  void resizeConfigStage() {//{{{
-
-    configStageOpt
-      .ifPresent(c -> {
-        c.resize(positionsFlowPane);
-      });
 
   }//}}}
 
@@ -122,8 +106,9 @@ public class MainController {
 
   public void updateZoomRate(ScrollEvent e) {//{{{
 
-    if (cs != null)
+    configStageOpt.ifPresent(cs -> {
       cs.changeZoomRate(e);
+    });
 
   }//}}}
 
@@ -143,6 +128,20 @@ public class MainController {
 
   public void showLanguageAlert() {//{{{
     AlertUtils.showLanguageAlert();
+  }//}}}
+
+  void setConfigStageInstance() {//{{{
+    ConfigStage cs = new ConfigStage(positionsFlowPane, this);
+    configStageOpt = Optional.ofNullable(cs);
+  }//}}}
+
+  void resizeConfigStage() {//{{{
+
+    configStageOpt
+      .ifPresent(c -> {
+        c.resize(positionsFlowPane);
+      });
+
   }//}}}
 
   private Stage getStage() {//{{{

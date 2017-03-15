@@ -18,14 +18,14 @@ import static java.util.stream.IntStream.range;
 
 public class CharaChipGridPane extends GridPane {
 
-  /** 画像切り替えタイマー */
+  // 画像切り替えタイマー
   private Timeline animationTimeline;
 
-  /** アニメーションするコマ割り画像 */
+  // アニメーションするコマ画像
   private final List<MyImage> imageList;
 
-  private final double imageWidth;
-  private final double imageHeight;
+  private final int imageWidth;
+  private final int imageHeight;
 
   @FXML private ImageView imageView;
 
@@ -96,16 +96,13 @@ public class CharaChipGridPane extends GridPane {
   private CharaChipGridPane(Builder builder) {//{{{
 
     final MyImage src    = builder.image;
-    final int width      = builder.width;
-    final int height     = builder.height;
+    this.imageWidth      = builder.width;
+    this.imageHeight     = builder.height;
     final int x          = builder.x;
     final int y          = builder.y;
     final int frameCount = builder.frameCount;
 
-    imageWidth = width;
-    imageHeight = height;
-
-    imageList = createFrameImages(src, x, y, width, height, frameCount);
+    imageList = createFrameImages(src, x, y, imageWidth, imageHeight, frameCount);
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("chara_chip_grid_pane.fxml"));
     loader.setRoot(this);

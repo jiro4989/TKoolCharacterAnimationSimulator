@@ -51,21 +51,44 @@ public class MainController {
     final String DEF_W = "48";
 
     // TODO TEST VALUE
-    int x = 0;
-    int y = 0;
     int width     = Integer . parseInt(mp . getProperty("chara.width")  . orElse(DEF_W));
     int height    = Integer . parseInt(mp . getProperty("chara.height") . orElse(DEF_W));
     int row       = Integer . parseInt(mp . getProperty("row")          . orElse("4"));
     int column    = Integer . parseInt(mp . getProperty("column")       . orElse("3"));
 
     standards = new Standards.Builder(width, height)
-      .x(x) .y(y) .row(row) .column(column)
+      .row(row) .column(column)
       .build();
 
     String filePath = file.getPath();
     positionsFlowPane.drawImage(filePath, standards);
 
     myMenuBar.setDisableConfigMenuItem(false);
+
+  }//}}}
+
+  public void drawSideViewImage(File file) {//{{{
+
+    //cs = new ConfigStage(positionsFlowPane, this);
+
+    //MyProperties mp = new MyProperties(file.getPath());
+    //mp.load();
+
+    //final String DEF_W = "48";
+
+    //// TODO TEST VALUE
+    //int row       = Integer . parseInt(mp . getProperty("row")          . orElse("4"));
+    //int column    = Integer . parseInt(mp . getProperty("column")       . orElse("3"));
+    //int animFrame = Integer . parseInt(mp . getProperty("anim.frame")   . orElse("3"));
+
+    //standards = new Standards.Builder(width, height)
+    //  .x(x) .y(y) .row(row) .column(column)
+    //  .build();
+
+    //String filePath = file.getPath();
+    //positionsFlowPane.drawImage(filePath, standards);
+
+    //myMenuBar.setDisableConfigMenuItem(false);
 
   }//}}}
 

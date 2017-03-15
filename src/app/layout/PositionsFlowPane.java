@@ -43,52 +43,12 @@ public class PositionsFlowPane extends FlowPane {
   public void drawImage(String filePath, Standards standards) {//{{{
 
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
-    charaChipOpt = Optional.ofNullable(createCharaChips(originalImage, standards));
+    charaChipOpt = Optional.ofNullable(originalImage.createWarkChips(standards));
     charaChipOpt.ifPresent(chips -> {
       putCharaChips(chips);
       // TODO 値を決め打ちしている
       updateAnimationSpeed(100);
     });
-
-  }//}}}
-
-  private List<CharaChipGridPane> createCharaChips(MyImage originalImage, Standards standards) {//{{{
-
-    int row    = standards.animation.row;
-    int column = standards.animation.column;
-    int width  = standards.size.width;
-    int height = standards.size.height;
-
-    List<CharaChipGridPane> ccgpList = new ArrayList<>(row * column);
-
-    range(0, row).forEach(r -> {
-
-      List<MyImage> animationList = new ArrayList<>(column);
-
-      range(0, column).forEach(c -> {
-
-        int x = c * width;
-        int y = r * height;
-
-        MyImage trimmedImage = new MyImage.Builder(originalImage)
-          .x(x) .y(y)
-          .width(width) .height(height)
-          .build();
-
-        animationList.add(trimmedImage);
-
-      });
-
-      // FIXME 決め打ちindex
-      MyImage last = animationList.get(1);
-      MyImage copy = new MyImage.Builder(last).build();
-      animationList.add(copy);
-      CharaChipGridPane ccgp = new CharaChipGridPane(animationList);
-      ccgpList.add(ccgp);
-
-    });
-
-    return ccgpList;
 
   }//}}}
 

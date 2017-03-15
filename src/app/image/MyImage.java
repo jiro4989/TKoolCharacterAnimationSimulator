@@ -1,7 +1,12 @@
 package app.image;
 
-import javafx.scene.image.*;
+import app.standard.Standards;
+import app.charachip.CharaChipGridPane;
+
 import java.nio.IntBuffer;
+import java.util.*;
+import static java.util.stream.IntStream.range;
+import javafx.scene.image.*;
 
 /**
  * ラッパーImageクラス。このクラスは不変クラスである。
@@ -149,7 +154,7 @@ public class MyImage {
     // 読み込んだ画像と、ビルダにセットした値が異なる場合、
     // トリミングした新たな画像を生成してセットする。
     if (
-           imgWidth  != bldWidth
+        imgWidth  != bldWidth
         || imgHeight != bldHeight
        )
     {
@@ -203,6 +208,62 @@ public class MyImage {
 
   }//}}}
 
+  /**
+   * 歩行グラフィックのキャラチップを作成する。
+   */
+  public List<CharaChipGridPane> createWarkChips(Standards standards) {//{{{
+
+    int row        = standards.row;
+    int column     = standards.column;
+    int width      = standards.width;
+    int height     = standards.height;
+    int frameCount = standards.frameCount;
+
+    List<CharaChipGridPane> ccgpList = new ArrayList<>(row);
+
+    range(0, row).forEach(r -> {
+
+      int x = 0;
+      int y = r * height;
+      CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height)
+        .x(x).y(y).frameCount(frameCount)
+        .build();
+      ccgpList.add(ccgp);
+
+    });
+
+    return ccgpList;
+
+  }//}}}
+
+  /*
+     public List<CharaChipGridPane> createSideViewChips(Standards standards) {//{{{
+
+     int row    = standards.animation.row;
+     int column = standards.animation.column;
+     int line   = 3;
+
+     List<CharaChipGridPane> ccgpList = new ArrayList<>();
+     range(0, line).forEach(l -> {
+     ccgpList.addAll(createLineList(row, column, line));
+     });
+
+     return ccgpList;
+
+     }//}}}
+     */
+
+  /*
+  private List<CharaChipGridPane> createLineList(int row, int column, int line) {//{{{
+
+    List<CharaChipGridPane> lineList = new ArrayList<>();
+    range(0, row).forEach(r -> {
+      //lineList.addAll();
+    });
+
+  }//}}}
+  */
+
   private int[] getPixels() {//{{{
 
     PixelReader reader = image.getPixelReader();
@@ -215,5 +276,7 @@ public class MyImage {
 
   // Getter
   public Image getImage() { return image; }
+  public int getWidth()  { return (int) image.getWidth();}
+  public int getHeight() { return (int) image.getHeight();}
 
 }

@@ -100,8 +100,7 @@ public class MyMenuBar extends VBox {
   }//}}}
   @FXML private void openSideViewMenuItemOnAction() {//{{{
     mfc.openFile().ifPresent(file -> {
-      // FIXME NullPointerexception 
-      mainController.drawImage(file);
+      mainController.drawSideViewImage(file);
     });
   }//}}}
   @FXML private void openRecentMenuItemOnAction() {//{{{

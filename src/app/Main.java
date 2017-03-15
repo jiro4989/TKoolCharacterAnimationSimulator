@@ -13,14 +13,18 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
+  private static final String PROP_DIR = "./properties/mvccs";
+  private MyProperties window = new MyProperties(PROP_DIR + "/main.xml");
   private MainController controller;
 
+  // 定数{{{
   public static final String TITLE         = "MV Character Chip Simulator";
   public static final String VERSION       = "ver 1.0.0";
   public static final String TITLE_VERSION = TITLE + " - " + VERSION;
 
   public static final String BASIC_CSS = "/app/res/css/basic.css";
   public static final String APP_ICON  = "/app/res/img/app_icon.png";
+  //}}}
 
   @Override
   public void start(Stage primaryStage) {//{{{

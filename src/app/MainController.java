@@ -146,6 +146,10 @@ public class MainController {
     configStageOpt.ifPresent(cs -> cs.zoomUp());
   }//}}}
 
+  public void showOneImage() {//{{{
+    positionsFlowPane.switchViewerMode();
+  }//}}}
+
   void setConfigStageInstance() {//{{{
     ConfigStage cs = new ConfigStage(positionsFlowPane, this);
     configStageOpt = Optional.ofNullable(cs);

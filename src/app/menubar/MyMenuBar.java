@@ -40,6 +40,8 @@ public class MyMenuBar extends VBox {
   @FXML private CheckMenuItem onlyMenuItem;
   @FXML private MenuItem      previousMenuItem;
   @FXML private MenuItem      nextMenuItem;
+  @FXML private MenuItem      zoomDownMenuItem;
+  @FXML private MenuItem      zoomUpMenuItem;
 
   // フォントサイズ変更メニュー
   @FXML private Menu          fontMenu;
@@ -97,15 +99,24 @@ public class MyMenuBar extends VBox {
   // ファイルメニュー
   @FXML private void openCharaChipMenuItemOnAction() {//{{{
     mfc.openFile().ifPresent(file -> {
-      onlyMenuItem.setDisable(false);
+      setDisables(false);
       mainController.drawImage(file);
     });
   }//}}}
   @FXML private void openSideViewMenuItemOnAction() {//{{{
     mfc.openFile().ifPresent(file -> {
-      onlyMenuItem.setDisable(false);
+      setDisables(false);
       mainController.drawSideViewImage(file);
     });
+  }//}}}
+  private void setDisables(boolean disable) {//{{{
+
+    onlyMenuItem     . setDisable(disable);
+    previousMenuItem . setDisable(disable);
+    nextMenuItem     . setDisable(disable);
+    zoomDownMenuItem . setDisable(disable);
+    zoomUpMenuItem   . setDisable(disable);
+
   }//}}}
   @FXML private void openRecentMenuItemOnAction() {//{{{
     mfc.openFile().ifPresent(file -> {
@@ -154,6 +165,11 @@ public class MyMenuBar extends VBox {
     boolean selected = onlyMenuItem.isSelected();
     if (selected)
       mainController.zoomUpImages();
+
+  }//}}}
+  @FXML private void onlyMenuItemOnAction() {//{{{
+
+    mainController.showOneImage();
 
   }//}}}
   // 言語メニュー

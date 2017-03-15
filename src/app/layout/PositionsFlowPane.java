@@ -148,6 +148,23 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
+  public void switchViewerMode() {//{{{
+
+    charaChipOpt.ifPresent(ccgpList -> {
+
+      int size = getChildren().size();
+      if (1 < size) {
+        CharaChipGridPane first = ccgpList.get(0);
+        disableAllCharaChips();
+        getChildren().add(first);
+        return;
+      }
+      showAllPane();
+
+    });
+
+  }//}}}
+
   /**
    * トリミングした画像インスタンスから何から全部クリアする。
    */

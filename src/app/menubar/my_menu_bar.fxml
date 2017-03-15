@@ -24,25 +24,25 @@
       <Menu fx:id="displayMenu" mnemonicParsing="false" text="%displayMenu">
         <items>
 
-          <MenuItem fx:id="previousMenuItem" mnemonicParsing="false" text="%previousMenuItem" onAction="#previousMenuItemOnAction" >
+          <MenuItem fx:id="previousMenuItem" mnemonicParsing="false" text="%previousMenuItem" onAction="#previousMenuItemOnAction" disable="true" >
             <accelerator>
               <KeyCodeCombination alt="UP" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
             </accelerator>
           </MenuItem>
 
-          <MenuItem fx:id="nextMenuItem" mnemonicParsing="false" text="%nextMenuItem" onAction="#nextMenuItemOnAction" >
+          <MenuItem fx:id="nextMenuItem" mnemonicParsing="false" text="%nextMenuItem" onAction="#nextMenuItemOnAction" disable="true" >
             <accelerator>
               <KeyCodeCombination alt="UP" code="D" control="UP" meta="UP" shift="UP" shortcut="UP" />
             </accelerator>
           </MenuItem>
 
-          <MenuItem fx:id="zoomDownMenuItem" mnemonicParsing="false" text="%zoomDownMenuItem" onAction="#zoomDownMenuItemOnAction" >
+          <MenuItem fx:id="zoomDownMenuItem" mnemonicParsing="false" text="%zoomDownMenuItem" onAction="#zoomDownMenuItemOnAction" disable="true" >
             <accelerator>
               <KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
             </accelerator>
           </MenuItem>
 
-          <MenuItem fx:id="zoomUpMenuItem" mnemonicParsing="false" text="%zoomUpMenuItem" onAction="#zoomUpMenuItemOnAction" >
+          <MenuItem fx:id="zoomUpMenuItem" mnemonicParsing="false" text="%zoomUpMenuItem" onAction="#zoomUpMenuItemOnAction" disable="true" >
             <accelerator>
               <KeyCodeCombination alt="UP" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
             </accelerator>

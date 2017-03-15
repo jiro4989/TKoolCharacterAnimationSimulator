@@ -41,6 +41,7 @@ public class PositionsFlowPane extends FlowPane {
 
   public void drawWalkImage(String filePath, Standards standards) {//{{{
 
+    clear();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createWalkChips(standards));
     drawImages(charaChipOpt);
@@ -49,20 +50,10 @@ public class PositionsFlowPane extends FlowPane {
 
   public void drawSideViewImage(String filePath, Standards standards) {//{{{
 
+    clear();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createSideViewChips(standards));
     drawImages(charaChipOpt);
-
-  }//}}}
-
-  private void drawImages(Optional<List<CharaChipGridPane>> ccgpo) {//{{{
-
-    clear();
-    ccgpo.ifPresent(chips -> {
-      putCharaChips(chips);
-      // TODO 値を決め打ちしている
-      updateAnimationSpeed(100);
-    });
 
   }//}}}
 
@@ -90,6 +81,16 @@ public class PositionsFlowPane extends FlowPane {
   private void putCharaChips(List<CharaChipGridPane> charaChipOpt) {//{{{
 
     charaChipOpt.stream().forEach(i -> getChildren().add(i));
+
+  }//}}}
+
+  private void drawImages(Optional<List<CharaChipGridPane>> ccgpo) {//{{{
+
+    ccgpo.ifPresent(chips -> {
+      putCharaChips(chips);
+      // TODO 値を決め打ちしている
+      updateAnimationSpeed(100);
+    });
 
   }//}}}
 

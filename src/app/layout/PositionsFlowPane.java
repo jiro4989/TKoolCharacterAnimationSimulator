@@ -97,6 +97,60 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
+  public void showPreviousImage() {//{{{
+
+    CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
+    charaChipOpt.ifPresent(ccgpList -> {
+
+      int i = 0;
+      for (CharaChipGridPane ccgp : ccgpList) {
+        if (first == ccgp) {
+
+          disableAllCharaChips();
+
+          int lastIndex = ccgpList.size() - 1;
+          int previousIndex = 0 < i ? i - 1 : lastIndex;
+          getChildren().add(ccgpList.get(previousIndex));
+
+          return;
+
+        }
+
+        i++;
+
+      }
+
+    });
+
+  }//}}}
+
+  public void showNextImage() {//{{{
+
+    CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
+    charaChipOpt.ifPresent(ccgpList -> {
+
+      int i = 0;
+      for (CharaChipGridPane ccgp : ccgpList) {
+        if (first == ccgp) {
+
+          disableAllCharaChips();
+          int nextIndex = i < ccgpList.size() - 1 ? i + 1 : 0;
+          getChildren().add(ccgpList.get(nextIndex));
+          return;
+
+        }
+
+        i++;
+
+      }
+
+    });
+
+  }//}}}
+
+  /**
+   * トリミングした画像インスタンスから何から全部クリアする。
+   */
   private void clear() {//{{{
     getChildren().clear();
     charaChipOpt = Optional.empty();
@@ -118,6 +172,9 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
+  /**
+   * トリミングした画像インスタンスは保持し、Stage上に表示しないだけ。
+   */
   private void disableAllCharaChips() {//{{{
 
     charaChipOpt.ifPresent(ccgpList -> {

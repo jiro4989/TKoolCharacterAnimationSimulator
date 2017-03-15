@@ -130,6 +130,14 @@ public class MainController {
     AlertUtils.showLanguageAlert();
   }//}}}
 
+  public void showPreviousImage() {//{{{
+    positionsFlowPane.showPreviousImage();
+  }//}}}
+
+  public void showNextImage() {//{{{
+    positionsFlowPane.showNextImage();
+  }//}}}
+
   void setConfigStageInstance() {//{{{
     ConfigStage cs = new ConfigStage(positionsFlowPane, this);
     configStageOpt = Optional.ofNullable(cs);

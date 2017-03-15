@@ -117,7 +117,7 @@ public class MyMenuBar extends VBox {
       mainController.drawImage(file);
     });
   }//}}}
-@FXML private void quitMenuItemOnAction() {//{{{
+  @FXML private void quitMenuItemOnAction() {//{{{
     Platform.exit();
   }//}}}
   @FXML private void forcedTerminateMenuItemOnAction() {//{{{
@@ -131,10 +131,14 @@ public class MyMenuBar extends VBox {
     mainController.showConfigStage();
   }//}}}
   @FXML private void previousMenuItemOnAction() {//{{{
-    System.out.println("previous.");
+    boolean selected = onlyMenuItem.isSelected();
+    if (selected)
+      mainController.showPreviousImage();
   }//}}}
   @FXML private void nextMenuItemOnAction() {//{{{
-    System.out.println("next.");
+    boolean selected = onlyMenuItem.isSelected();
+    if (selected)
+      mainController.showNextImage();
   }//}}}
   // 言語メニュー
   @FXML private void jpRadioMenuItemOnAction() {//{{{

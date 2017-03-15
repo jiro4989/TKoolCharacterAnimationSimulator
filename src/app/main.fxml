@@ -8,6 +8,9 @@
 <?import app.layout.PositionsFlowPane?>
 
 <VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
+  <accelerator>
+    <KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
+  </accelerator>
   <children>
     <MyMenuBar fx:id="myMenuBar"/>
     <PositionsFlowPane fx:id="positionsFlowPane"/>

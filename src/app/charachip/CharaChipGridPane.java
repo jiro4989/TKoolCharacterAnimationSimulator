@@ -221,7 +221,6 @@ public class CharaChipGridPane extends GridPane {
 
     if (e.getClickCount() == 2) {
       parent.switchViewerMode(this);
-
     }
 
   }//}}}

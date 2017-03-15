@@ -16,6 +16,9 @@
           <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" disable="true"/>
           <SeparatorMenuItem mnemonicParsing="false" />
+          <MenuItem fx:id="walkPresetMenuItem" mnemonicParsing="false" text="%walkPresetMenuItem" onAction="#walkPresetMenuItemOnAction" />
+          <MenuItem fx:id="sideViewPresetMenuItem" mnemonicParsing="false" text="%sideViewPresetMenuItem" onAction="#sideViewPresetMenuItemOnAction" />
+          <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="%quitMenuItem" onAction="#quitMenuItemOnAction" />
           <MenuItem fx:id="forcedTerminateMenuItem" mnemonicParsing="false" text="%forcedTerminateMenuItem" onAction="#forcedTerminateMenuItemOnAction"/>
         </items>

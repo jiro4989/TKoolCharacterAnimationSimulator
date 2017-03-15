@@ -20,7 +20,9 @@ import javafx.scene.layout.VBox;
 public class MyMenuBar extends VBox {
 
   private MainController mainController;
-  private final MyFileChooser mfc;
+  private final MyFileChooser imagefileChooser;
+  private final MyFileChooser walkPresetFileChooser;
+  private final MyFileChooser sideViewPresetFileChooser;
 
   // FXMLコンポーネント{{{
 
@@ -30,6 +32,8 @@ public class MyMenuBar extends VBox {
   @FXML private MenuItem openSideViewMenuItem;
   @FXML private Menu     openRecentMenu;
   @FXML private MenuItem closeMenuItem;
+  @FXML private MenuItem walkPresetMenuItem;
+  @FXML private MenuItem sideViewPresetMenuItem;
   @FXML private MenuItem quitMenuItem;
   @FXML private MenuItem forcedTerminateMenuItem;
 
@@ -67,7 +71,14 @@ public class MyMenuBar extends VBox {
   // コンストラクタ
 
   public MyMenuBar() {//{{{
-    mfc = new MyFileChooser.Builder("Image Files", "*.png").build();
+
+    imagefileChooser  = new MyFileChooser.Builder("Image Files", "*.png").build();
+    walkPresetFileChooser = new MyFileChooser.Builder("Preset Files", "*.preset")
+      .initDir("./presets/mvccs/walk")
+      .build();
+    sideViewPresetFileChooser = new MyFileChooser.Builder("Preset Files", "*.preset")
+      .initDir("./presets/mvccs/side_view")
+      .build();
 
     URL location = getClass().getResource("my_menu_bar.fxml");
     ResourceBundle resources = ResourceBundle.getBundle(
@@ -98,19 +109,19 @@ public class MyMenuBar extends VBox {
   // FXMLイベント
   // ファイルメニュー
   @FXML private void openCharaChipMenuItemOnAction() {//{{{
-    mfc.openFile().ifPresent(file -> {
+    imagefileChooser.openFile().ifPresent(file -> {
       setDisables(false);
       mainController.drawImage(file);
     });
   }//}}}
   @FXML private void openSideViewMenuItemOnAction() {//{{{
-    mfc.openFile().ifPresent(file -> {
+    imagefileChooser.openFile().ifPresent(file -> {
       setDisables(false);
       mainController.drawSideViewImage(file);
     });
   }//}}}
   @FXML private void openRecentMenuItemOnAction() {//{{{
-    mfc.openFile().ifPresent(file -> {
+    imagefileChooser.openFile().ifPresent(file -> {
       // FIXME NullPointerexception 
       mainController.drawImage(file);
     });
@@ -118,6 +129,16 @@ public class MyMenuBar extends VBox {
   @FXML private void closeMenuItemOnAction() {//{{{
     mainController.clearImages();
     setDisables(true);
+  }//}}}
+  @FXML private void walkPresetMenuItemOnAction() {//{{{
+    walkPresetFileChooser.openFile().ifPresent(file -> {
+
+    });
+  }//}}}
+  @FXML private void sideViewPresetMenuItemOnAction() {//{{{
+    sideViewPresetFileChooser.openFile().ifPresent(file -> {
+
+    });
   }//}}}
   @FXML private void quitMenuItemOnAction() {//{{{
     Platform.exit();

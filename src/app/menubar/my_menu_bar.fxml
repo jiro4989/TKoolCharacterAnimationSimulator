@@ -14,7 +14,7 @@
           <MenuItem fx:id="openSideViewMenuItem" mnemonicParsing="false" text="%openSideViewMenuItem" onAction="#openSideViewMenuItemOnAction" />
           <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="%openRecentMenu" onAction="#openRecentMenuItemOnAction"/>
           <SeparatorMenuItem mnemonicParsing="false" />
-          <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" />
+          <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" disable="true"/>
           <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="%quitMenuItem" onAction="#quitMenuItemOnAction" />
           <MenuItem fx:id="forcedTerminateMenuItem" mnemonicParsing="false" text="%forcedTerminateMenuItem" onAction="#forcedTerminateMenuItemOnAction"/>

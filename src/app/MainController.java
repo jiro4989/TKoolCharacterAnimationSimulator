@@ -87,6 +87,10 @@ public class MainController {
 
   }//}}}
 
+  public void clearImages() {//{{{
+    positionsFlowPane.clearImages();
+  }//}}}
+
   public void showConfigStage() {//{{{
 
     configStageOpt.ifPresent(c -> {

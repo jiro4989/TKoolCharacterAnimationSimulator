@@ -109,15 +109,6 @@ public class MyMenuBar extends VBox {
       mainController.drawSideViewImage(file);
     });
   }//}}}
-  private void setDisables(boolean disable) {//{{{
-
-    onlyMenuItem     . setDisable(disable);
-    previousMenuItem . setDisable(disable);
-    nextMenuItem     . setDisable(disable);
-    zoomDownMenuItem . setDisable(disable);
-    zoomUpMenuItem   . setDisable(disable);
-
-  }//}}}
   @FXML private void openRecentMenuItemOnAction() {//{{{
     mfc.openFile().ifPresent(file -> {
       // FIXME NullPointerexception 
@@ -125,10 +116,8 @@ public class MyMenuBar extends VBox {
     });
   }//}}}
   @FXML private void closeMenuItemOnAction() {//{{{
-    mfc.openFile().ifPresent(file -> {
-      // FIXME NullPointerexception 
-      mainController.drawImage(file);
-    });
+    mainController.clearImages();
+    setDisables(true);
   }//}}}
   @FXML private void quitMenuItemOnAction() {//{{{
     Platform.exit();
@@ -144,27 +133,19 @@ public class MyMenuBar extends VBox {
     mainController.showConfigStage();
   }//}}}
   @FXML private void previousMenuItemOnAction() {//{{{
-    boolean selected = onlyMenuItem.isSelected();
-    if (selected)
-      mainController.showPreviousImage();
+    mainController.showPreviousImage();
   }//}}}
   @FXML private void nextMenuItemOnAction() {//{{{
-    boolean selected = onlyMenuItem.isSelected();
-    if (selected)
-      mainController.showNextImage();
+    mainController.showNextImage();
   }//}}}
   @FXML private void zoomDownMenuItemOnAction() {//{{{
 
-    boolean selected = onlyMenuItem.isSelected();
-    if (selected)
-      mainController.zoomDownImages();
+    mainController.zoomDownImages();
 
   }//}}}
   @FXML private void zoomUpMenuItemOnAction() {//{{{
 
-    boolean selected = onlyMenuItem.isSelected();
-    if (selected)
-      mainController.zoomUpImages();
+    mainController.zoomUpImages();
 
   }//}}}
   @FXML private void onlyMenuItemOnAction() {//{{{
@@ -176,6 +157,34 @@ public class MyMenuBar extends VBox {
   @FXML private void jpRadioMenuItemOnAction() {//{{{
   }//}}}
   @FXML private void usRadioMenuItemOnAction() {//{{{
+  }//}}}
+  // ヘルプ
+  @FXML private void aboutMenuItemOnAction() {//{{{
+    AboutStage about = new AboutStage.Builder(Main.TITLE, Main.VERSION)
+      .author("次郎 (Jiro)")
+      .blog("次ログ")
+      .blogUrl("http://jiroron666.hatenablog.com/")
+      .css("/app/res/css/basic.css")
+      .appIcon("/app/res/img/app_icon.png")
+      .build();
+    about.showAndWait();
+  }//}}}
+  // private メソッド
+  private void setFontSize(RadioMenuItem rmi) {//{{{
+    String fontSize = rmi.getText();
+    mainController.setFontSize(fontSize);
+  }//}}}
+  private void setDisables(boolean disable) {//{{{
+
+    onlyMenuItem     . setDisable(disable);
+    previousMenuItem . setDisable(disable);
+    nextMenuItem     . setDisable(disable);
+    zoomDownMenuItem . setDisable(disable);
+    zoomUpMenuItem   . setDisable(disable);
+    closeMenuItem    . setDisable(disable);
+
+    onlyMenuItem.setSelected(false);
+
   }//}}}
   private void changeSelectedFontMenuItem() {//{{{
     String defaultLanguage = Locale.getDefault().getLanguage();
@@ -189,26 +198,11 @@ public class MyMenuBar extends VBox {
   private void showLanguageAlert() {//{{{
     mainController.showLanguageAlert();
   }//}}}
-  // ヘルプ
-  @FXML private void aboutMenuItemOnAction() {//{{{
-    AboutStage about = new AboutStage.Builder(Main.TITLE, Main.VERSION)
-      .author("次郎 (Jiro)")
-      .blog("次ログ")
-      .blogUrl("http://jiroron666.hatenablog.com/")
-      .css("/app/res/css/basic.css")
-      .appIcon("/app/res/img/app_icon.png")
-      .build();
-    about.showAndWait();
-  }//}}}
   // Setter
   public void setMainController(MainController aMain) {//{{{
     mainController = aMain;
   }//}}}
   public void setDisableConfigMenuItem(boolean disable) {//{{{
     displayConfigMenuItem.setDisable(disable);
-  }//}}}
-  private void setFontSize(RadioMenuItem rmi) {//{{{
-    String fontSize = rmi.getText();
-    mainController.setFontSize(fontSize);
   }//}}}
 }

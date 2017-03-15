@@ -31,9 +31,6 @@ public class CharaChipGridPane extends GridPane {
   // このインスタンスを設置している親パネル
   private final PositionsFlowPane parent;
 
-  // 選択された単一パネルのみ表示している状態を表すスイッチ
-  private boolean onlyViewSwitch = false;
-
   @FXML private ImageView imageView;
 
   // Builderクラス
@@ -223,12 +220,8 @@ public class CharaChipGridPane extends GridPane {
   private void switchPanesVisibles(MouseEvent e) {//{{{
 
     if (e.getClickCount() == 2) {
-      onlyViewSwitch = !onlyViewSwitch;
-      if (!onlyViewSwitch) {
-        parent.showAllPane();
-      } else {
-        parent.showSelectedPane(this);
-      }
+      parent.switchViewerMode(this);
+
     }
 
   }//}}}

@@ -20,6 +20,7 @@ import static java.util.stream.IntStream.range;
 public class PositionsFlowPane extends FlowPane {
 
   private Optional<List<CharaChipGridPane>> charaChipOpt = Optional.empty();
+  private boolean viewerMode = false;
 
   // コンストラクタ
 
@@ -41,7 +42,7 @@ public class PositionsFlowPane extends FlowPane {
 
   public void drawWalkImage(String filePath, Standards standards) {//{{{
 
-    clear();
+    clearImages();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createWalkChips(standards, this));
     drawImages(charaChipOpt);
@@ -50,7 +51,7 @@ public class PositionsFlowPane extends FlowPane {
 
   public void drawSideViewImage(String filePath, Standards standards) {//{{{
 
-    clear();
+    clearImages();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createSideViewChips(standards, this));
     drawImages(charaChipOpt);
@@ -73,35 +74,12 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  public void showSelectedPane(CharaChipGridPane selectedPane) {//{{{
-
-    disableAllCharaChips();
-    charaChipOpt.ifPresent(ccgpList -> {
-      ccgpList.stream()
-        .filter(ccgp -> ccgp == selectedPane)
-        .forEach(ccgp -> {
-          getChildren().add(ccgp);
-        });
-    });
-
-  }//}}}
-
-  public void showAllPane() {//{{{
-
-    disableAllCharaChips();
-    charaChipOpt.ifPresent(ccgpList -> {
-      ccgpList.stream().forEach(ccgp -> {
-        getChildren().add(ccgp);
-      });
-    });
-
-  }//}}}
-
   public void showPreviousImage() {//{{{
 
     CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
     charaChipOpt.ifPresent(ccgpList -> {
 
+      viewerMode = true;
       int i = 0;
       for (CharaChipGridPane ccgp : ccgpList) {
         if (first == ccgp) {
@@ -129,6 +107,7 @@ public class PositionsFlowPane extends FlowPane {
     CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
     charaChipOpt.ifPresent(ccgpList -> {
 
+      viewerMode = true;
       int i = 0;
       for (CharaChipGridPane ccgp : ccgpList) {
         if (first == ccgp) {
@@ -148,12 +127,25 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
+  /**
+   * トリミングした画像インスタンスから何から全部クリアする。
+   */
+  public void clearImages() {//{{{
+    getChildren().clear();
+    charaChipOpt = Optional.empty();
+    viewerMode = false;
+  }//}}}
+
+  /**
+   * {@link MainController}から呼び出されるメソッド。
+   * 表示しているパネルの先頭の要素を表示する。
+   */
   public void switchViewerMode() {//{{{
 
     charaChipOpt.ifPresent(ccgpList -> {
 
-      int size = getChildren().size();
-      if (1 < size) {
+      if (!viewerMode) {
+        viewerMode = true;
         CharaChipGridPane first = ccgpList.get(0);
         disableAllCharaChips();
         getChildren().add(first);
@@ -166,11 +158,16 @@ public class PositionsFlowPane extends FlowPane {
   }//}}}
 
   /**
-   * トリミングした画像インスタンスから何から全部クリアする。
+   * {@link CharaChipGridPane}から呼ばれるメソッド。
+   * 渡されたインスタンスのパネル以外を表示しなくする。
    */
-  private void clear() {//{{{
-    getChildren().clear();
-    charaChipOpt = Optional.empty();
+  public void switchViewerMode(CharaChipGridPane selectedPane) {//{{{
+    if (!viewerMode) {
+      viewerMode = true;
+      showSelectedPane(selectedPane);
+      return;
+    }
+    showAllPane();
   }//}}}
 
   private void putCharaChips(List<CharaChipGridPane> charaChipOpt) {//{{{
@@ -196,6 +193,31 @@ public class PositionsFlowPane extends FlowPane {
 
     charaChipOpt.ifPresent(ccgpList -> {
       getChildren().removeAll(ccgpList);
+    });
+
+  }//}}}
+
+  private void showSelectedPane(CharaChipGridPane selectedPane) {//{{{
+
+    disableAllCharaChips();
+    charaChipOpt.ifPresent(ccgpList -> {
+      ccgpList.stream()
+        .filter(ccgp -> ccgp == selectedPane)
+        .forEach(ccgp -> {
+          getChildren().add(ccgp);
+        });
+    });
+
+  }//}}}
+
+  private void showAllPane() {//{{{
+
+    disableAllCharaChips();
+    charaChipOpt.ifPresent(ccgpList -> {
+      viewerMode = false;
+      ccgpList.stream().forEach(ccgp -> {
+        getChildren().add(ccgp);
+      });
     });
 
   }//}}}

@@ -67,7 +67,7 @@ public class MainController {
 
   public void drawSideViewImage(File file) {//{{{
 
-    MyProperties mp = new MyProperties(file.getPath());
+    MyProperties mp = new MyProperties("./presets/side_view/mv.preset");
     mp.load();
 
     //// TODO TEST VALUE

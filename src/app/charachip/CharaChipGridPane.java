@@ -4,7 +4,7 @@ import app.Main;
 import app.image.MyImage;
 import app.layout.PositionsFlowPane;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import javafx.animation.KeyFrame;
@@ -31,6 +31,9 @@ public class CharaChipGridPane extends GridPane {
   // このインスタンスを設置している親パネル
   private final PositionsFlowPane parent;
 
+  // インスタンス生成時に渡された情報を保持するビルダ
+  private final Builder builder;
+
   @FXML private ImageView imageView;
 
   // Builderクラス
@@ -47,10 +50,10 @@ public class CharaChipGridPane extends GridPane {
     private int frameCount = 1;
 
     public Builder(MyImage image, int width, int height, PositionsFlowPane parent) {//{{{
-      this.image  = image;
-      this.width  = width;
-      this.height = height;
-      this.parent = parent;
+      this.image   = image;
+      this.width   = width;
+      this.height  = height;
+      this.parent  = parent;
     }//}}}
 
     public Builder x(int x)                   { this.x = x;                   return this; }
@@ -99,15 +102,16 @@ public class CharaChipGridPane extends GridPane {
 
   // private コンストラクタ
 
-  private CharaChipGridPane(Builder builder) {//{{{
+  private CharaChipGridPane(Builder aBuilder) {//{{{
 
-    final MyImage src    = builder.image;
-    this.imageWidth      = builder.width;
-    this.imageHeight     = builder.height;
-    final int x          = builder.x;
-    final int y          = builder.y;
-    final int frameCount = builder.frameCount;
-    this.parent          = builder.parent;
+    builder              = aBuilder;
+    final MyImage src    = aBuilder.image;
+    this.imageWidth      = aBuilder.width;
+    this.imageHeight     = aBuilder.height;
+    final int x          = aBuilder.x;
+    final int y          = aBuilder.y;
+    final int frameCount = aBuilder.frameCount;
+    this.parent          = aBuilder.parent;
 
     imageList = createFrameImages(src, x, y, imageWidth, imageHeight, frameCount);
 
@@ -158,6 +162,21 @@ public class CharaChipGridPane extends GridPane {
     double scaledHeight = imageHeight * rate;
 
     setSize(scaledWidth, scaledHeight);
+
+  }//}}}
+
+  /**
+   * ファイルが更新されて画像表示を更新する。
+   */
+  public void updateImage() {//{{{
+
+    //final MyImage src    = new MyImage.Builder(builder.srcFile).build();
+    //final int x          = builder.x;
+    //final int y          = builder.y;
+    //final int frameCount = builder.frameCount;
+
+    //imageList.clear();
+    //imageList.addAll(createFrameImages(src, x, y, imageWidth, imageHeight, frameCount));
 
   }//}}}
 

@@ -5,7 +5,7 @@ import app.image.MyImage;
 import app.standard.Standards;
 import app.charachip.CharaChipGridPane;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.*;
 import javafx.collections.FXCollections;
@@ -71,6 +71,15 @@ public class PositionsFlowPane extends FlowPane {
     charaChipOpt.ifPresent(chips -> {
       chips.stream().forEach(c -> c.setScale(rate));
     });
+
+  }//}}}
+
+  public void updateImages(File file) {//{{{
+
+    //clearImages();
+    //charaChipOpt.ifPresent(ccgpList -> {
+    //  ccgpList.stream().forEach(ccgp -> ccgp.updateImage());
+    //});
 
   }//}}}
 

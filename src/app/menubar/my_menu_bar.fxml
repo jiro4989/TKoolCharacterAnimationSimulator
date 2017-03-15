@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.input.*?>
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1">
   <MenuBar VBox.vgrow="NEVER">
@@ -22,6 +23,18 @@
 
       <Menu fx:id="displayMenu" mnemonicParsing="false" text="%displayMenu">
         <items>
+          <MenuItem mnemonicParsing="false" text="Previous" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+          <MenuItem mnemonicParsing="false" text="Next" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+          <CheckMenuItem mnemonicParsing="false" text="Show 1" />
+          <SeparatorMenuItem mnemonicParsing="false" />
           <CheckMenuItem fx:id="alwaysOnTopMenuItem" mnemonicParsing="false" text="%alwaysOnTopMenuItem" onAction="#alwaysOnTopMenuItemOnAction"/>
           <CheckMenuItem fx:id="displayConfigMenuItem" mnemonicParsing="false" text="%displayConfigMenuItem" onAction="#displayConfigMenuItemOnAction" disable="true" />
         </items>

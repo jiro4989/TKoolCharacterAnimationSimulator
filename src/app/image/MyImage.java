@@ -236,47 +236,47 @@ public class MyImage {
 
   }//}}}
 
-  /*
-     public List<CharaChipGridPane> createSideViewChips(Standards standards) {//{{{
+  public List<CharaChipGridPane> createSideViewChips(Standards standards) {//{{{
 
-     int row    = standards.animation.row;
-     int column = standards.animation.column;
-     int line   = 3;
+    int row        = standards.row;
+    int column     = standards.column;
+    int frameCount = standards.frameCount;
+    int width      = (int) (image.getWidth() / column);
+    int height     = (int) (image.getHeight() / row);
 
-     List<CharaChipGridPane> ccgpList = new ArrayList<>();
-     range(0, line).forEach(l -> {
-     ccgpList.addAll(createLineList(row, column, line));
-     });
+    List<CharaChipGridPane> ccgpList = new ArrayList<>(row);
 
-     return ccgpList;
+    int line = column / frameCount;
+    range(0, line).forEach(l -> {
+      range(0, row).forEach(r -> {
 
-     }//}}}
-     */
+        int x = l * width;
+        int y = r * height;
+        CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height)
+          .x(x).y(y).frameCount(frameCount)
+          .build();
+        ccgpList.add(ccgp);
 
-  /*
-  private List<CharaChipGridPane> createLineList(int row, int column, int line) {//{{{
-
-    List<CharaChipGridPane> lineList = new ArrayList<>();
-    range(0, row).forEach(r -> {
-      //lineList.addAll();
+      });
     });
 
-  }//}}}
-  */
-
-  private int[] getPixels() {//{{{
-
-    PixelReader reader = image.getPixelReader();
-    int[] pixels       = new int[width * height];
-    reader.getPixels(0, 0, width, height, FORMAT, pixels, 0, width);
-
-    return pixels;
+    return ccgpList;
 
   }//}}}
 
-  // Getter
-  public Image getImage() { return image; }
-  public int getWidth()  { return (int) image.getWidth();}
-  public int getHeight() { return (int) image.getHeight();}
+private int[] getPixels() {//{{{
+
+  PixelReader reader = image.getPixelReader();
+  int[] pixels       = new int[width * height];
+  reader.getPixels(0, 0, width, height, FORMAT, pixels, 0, width);
+
+  return pixels;
+
+}//}}}
+
+// Getter
+public Image getImage() { return image; }
+public int getWidth()  { return (int) image.getWidth();}
+public int getHeight() { return (int) image.getHeight();}
 
 }

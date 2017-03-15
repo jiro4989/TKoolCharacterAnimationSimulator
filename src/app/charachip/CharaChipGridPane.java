@@ -113,30 +113,7 @@ public class CharaChipGridPane extends GridPane {
     try { loader.load();
 
       setSize(imageWidth, imageHeight);
-      imageView.setImage(src.getImage());
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-  }//}}}
-
-  /*
-  public CharaChipGridPane(List<MyImage> imgs) {//{{{
-
-    imageList = imgs;
-
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("chara_chip_grid_pane.fxml"));
-    loader.setRoot(this);
-    loader.setController(this);
-
-    Image img   = imageList.get(0).getImage();
-    imageWidth  = img.getWidth();
-    imageHeight = img.getHeight();
-
-    try { loader.load();
-
-      setSize(imageWidth, imageHeight);
+      Image img = imageList.get(0).getImage();
       imageView.setImage(img);
 
     } catch (IOException e) {
@@ -144,7 +121,6 @@ public class CharaChipGridPane extends GridPane {
     }
 
   }//}}}
-  */
 
   private void setSize(double width, double height) {//{{{
 

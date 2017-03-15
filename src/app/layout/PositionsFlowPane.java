@@ -32,7 +32,6 @@ public class PositionsFlowPane extends FlowPane {
     try {
 
       loader.load();
-      ObservableList<Node> paneList = getChildren();
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -40,7 +39,9 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  public void drawImage(String filePath, Standards standards) {//{{{
+  public void drawWalkImage(String filePath, Standards standards) {//{{{
+
+    clear();
 
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createWarkChips(standards));
@@ -52,9 +53,17 @@ public class PositionsFlowPane extends FlowPane {
 
   }//}}}
 
-  private void putCharaChips(List<CharaChipGridPane> charaChipOpt) {//{{{
+  public void drawSideViewImage(String filePath, Standards standards) {//{{{
 
-    charaChipOpt.stream().forEach(i -> getChildren().add(i));
+    clear();
+
+    MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
+    charaChipOpt = Optional.ofNullable(originalImage.createSideViewChips(standards));
+    charaChipOpt.ifPresent(chips -> {
+      putCharaChips(chips);
+      // TODO 値を決め打ちしている
+      updateAnimationSpeed(100);
+    });
 
   }//}}}
 
@@ -71,6 +80,17 @@ public class PositionsFlowPane extends FlowPane {
     charaChipOpt.ifPresent(chips -> {
       chips.stream().forEach(c -> c.setScale(rate));
     });
+
+  }//}}}
+
+  private void clear() {//{{{
+    getChildren().clear();
+    charaChipOpt = Optional.empty();
+  }//}}}
+
+  private void putCharaChips(List<CharaChipGridPane> charaChipOpt) {//{{{
+
+    charaChipOpt.stream().forEach(i -> getChildren().add(i));
 
   }//}}}
 

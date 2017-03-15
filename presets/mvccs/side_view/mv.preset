@@ -3,4 +3,5 @@
 <properties>
   <entry key="row">6</entry>
   <entry key="column">9</entry>
+  <entry key="frameCount">3</entry>
 </properties>

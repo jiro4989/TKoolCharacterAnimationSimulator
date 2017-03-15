@@ -18,7 +18,8 @@ import javafx.stage.StageStyle;
 public class MainController {
 
   /** 画像やアニメの規格 */
-  private Standards standards;
+  private Standards walkStandard;
+  private Standards sideViewStandard;
 
   private ConfigStage cs;
 
@@ -56,12 +57,12 @@ public class MainController {
     int row       = Integer . parseInt(mp . getProperty("row")          . orElse("4"));
     int column    = Integer . parseInt(mp . getProperty("column")       . orElse("3"));
 
-    standards = new Standards.Builder(width, height)
+    walkStandard = new Standards.Builder(width, height)
       .row(row) .column(column)
       .build();
 
     String filePath = file.getPath();
-    positionsFlowPane.drawImage(filePath, standards);
+    positionsFlowPane.drawWalkImage(filePath, walkStandard);
 
     myMenuBar.setDisableConfigMenuItem(false);
 
@@ -69,26 +70,25 @@ public class MainController {
 
   public void drawSideViewImage(File file) {//{{{
 
-    //cs = new ConfigStage(positionsFlowPane, this);
+    cs = new ConfigStage(positionsFlowPane, this);
 
-    //MyProperties mp = new MyProperties(file.getPath());
-    //mp.load();
-
-    //final String DEF_W = "48";
+    MyProperties mp = new MyProperties(file.getPath());
+    mp.load();
 
     //// TODO TEST VALUE
-    //int row       = Integer . parseInt(mp . getProperty("row")          . orElse("4"));
-    //int column    = Integer . parseInt(mp . getProperty("column")       . orElse("3"));
-    //int animFrame = Integer . parseInt(mp . getProperty("anim.frame")   . orElse("3"));
+    int row        = Integer . parseInt(mp . getProperty("row")          . orElse("6"));
+    int column     = Integer . parseInt(mp . getProperty("column")       . orElse("9"));
+    int frameCount = Integer . parseInt(mp . getProperty("frameCount")   . orElse("3"));
 
-    //standards = new Standards.Builder(width, height)
-    //  .x(x) .y(y) .row(row) .column(column)
-    //  .build();
+    // サイドビューは歩行グラと規格が異なるため
+    sideViewStandard = new Standards.Builder(1, 1)
+      .row(row) .column(column) .frameCount(frameCount)
+      .build();
 
-    //String filePath = file.getPath();
-    //positionsFlowPane.drawImage(filePath, standards);
+    String filePath = file.getPath();
+    positionsFlowPane.drawSideViewImage(filePath, sideViewStandard);
 
-    //myMenuBar.setDisableConfigMenuItem(false);
+    myMenuBar.setDisableConfigMenuItem(false);
 
   }//}}}
 

@@ -11,6 +11,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import static java.util.stream.IntStream.range;
@@ -110,6 +111,8 @@ public class CharaChipGridPane extends GridPane {
     loader.setRoot(this);
     loader.setController(this);
 
+    setOnMouseClicked(e -> showSelectedPanel(e));
+
     try { loader.load();
 
       setSize(imageWidth, imageHeight);
@@ -207,6 +210,13 @@ public class CharaChipGridPane extends GridPane {
     frameImages.add(last);
 
     return frameImages;
+
+  }//}}}
+
+  private void showSelectedPanel(MouseEvent e) {//{{{
+
+    if (e.getClickCount() == 2) {
+    }
 
   }//}}}
 

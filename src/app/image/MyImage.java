@@ -10,7 +10,9 @@ import javafx.scene.image.*;
 
 /**
  * ラッパーImageクラス。このクラスは不変クラスである。
- * 自身のインスタンスを返すメソッドの戻り値はすべて新しく生成されたインスタンスであり、メソッド呼び出しの副作用で元のインスタンスのピクセルデータが変更されることはない。
+ * 自身のインスタンスを返すメソッドの戻り値はすべて新しく生成されたインスタンス
+ * であり、メソッド呼び出しの副作用で元のインスタンスのピクセルデータが変更され
+ * ることはない。
  */
 public class MyImage {
 
@@ -211,7 +213,7 @@ public class MyImage {
   /**
    * 歩行グラフィックのキャラチップを作成する。
    */
-  public List<CharaChipGridPane> createWarkChips(Standards standards) {//{{{
+  public List<CharaChipGridPane> createWalkChips(Standards standards) {//{{{
 
     int row        = standards.row;
     int column     = standards.column;

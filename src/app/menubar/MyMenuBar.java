@@ -36,8 +36,10 @@ public class MyMenuBar extends VBox {
   // 表示
   @FXML private Menu          displayMenu;
   @FXML private CheckMenuItem alwaysOnTopMenuItem;
-  @FXML private CheckMenuItem disableMenuBarMenuItem;
   @FXML private CheckMenuItem displayConfigMenuItem;
+  @FXML private CheckMenuItem onlyMenuItem;
+  @FXML private MenuItem      previousMenuItem;
+  @FXML private MenuItem      nextMenuItem;
 
   // フォントサイズ変更メニュー
   @FXML private Menu          fontMenu;
@@ -127,6 +129,12 @@ public class MyMenuBar extends VBox {
   }//}}}
   @FXML private void displayConfigMenuItemOnAction() {//{{{
     mainController.showConfigStage();
+  }//}}}
+  @FXML private void previousMenuItemOnAction() {//{{{
+    System.out.println("previous.");
+  }//}}}
+  @FXML private void nextMenuItemOnAction() {//{{{
+    System.out.println("next.");
   }//}}}
   // 言語メニュー
   @FXML private void jpRadioMenuItemOnAction() {//{{{

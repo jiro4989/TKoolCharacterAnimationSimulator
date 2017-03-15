@@ -2,6 +2,7 @@ package app.charachip;
 
 import app.Main;
 import app.image.MyImage;
+import app.layout.PositionsFlowPane;
 
 import java.io.IOException;
 import java.util.*;
@@ -27,6 +28,12 @@ public class CharaChipGridPane extends GridPane {
   private final int imageWidth;
   private final int imageHeight;
 
+  // このインスタンスを設置している親パネル
+  private final PositionsFlowPane parent;
+
+  // 選択された単一パネルのみ表示している状態を表すスイッチ
+  private boolean onlyViewSwitch = false;
+
   @FXML private ImageView imageView;
 
   // Builderクラス
@@ -36,15 +43,17 @@ public class CharaChipGridPane extends GridPane {
     private final MyImage image;
     private final int width;
     private final int height;
+    private final PositionsFlowPane parent;
 
     private int x          = 0;
     private int y          = 0;
     private int frameCount = 1;
 
-    public Builder(MyImage image, int width, int height) {//{{{
+    public Builder(MyImage image, int width, int height, PositionsFlowPane parent) {//{{{
       this.image  = image;
       this.width  = width;
       this.height = height;
+      this.parent = parent;
     }//}}}
 
     public Builder x(int x)                   { this.x = x;                   return this; }
@@ -101,6 +110,7 @@ public class CharaChipGridPane extends GridPane {
     final int x          = builder.x;
     final int y          = builder.y;
     final int frameCount = builder.frameCount;
+    this.parent          = builder.parent;
 
     imageList = createFrameImages(src, x, y, imageWidth, imageHeight, frameCount);
 
@@ -108,7 +118,7 @@ public class CharaChipGridPane extends GridPane {
     loader.setRoot(this);
     loader.setController(this);
 
-    setOnMouseClicked(e -> showSelectedPanel(e));
+    setOnMouseClicked(e -> switchPanesVisibles(e));
 
     try { loader.load();
 
@@ -210,9 +220,15 @@ public class CharaChipGridPane extends GridPane {
 
   }//}}}
 
-  private void showSelectedPanel(MouseEvent e) {//{{{
+  private void switchPanesVisibles(MouseEvent e) {//{{{
 
     if (e.getClickCount() == 2) {
+      onlyViewSwitch = !onlyViewSwitch;
+      if (!onlyViewSwitch) {
+        parent.showAllPane();
+      } else {
+        parent.showSelectedPane(this);
+      }
     }
 
   }//}}}

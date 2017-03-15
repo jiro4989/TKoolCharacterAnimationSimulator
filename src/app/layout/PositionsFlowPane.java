@@ -43,7 +43,7 @@ public class PositionsFlowPane extends FlowPane {
 
     clear();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
-    charaChipOpt = Optional.ofNullable(originalImage.createWalkChips(standards));
+    charaChipOpt = Optional.ofNullable(originalImage.createWalkChips(standards, this));
     drawImages(charaChipOpt);
 
   }//}}}
@@ -52,7 +52,7 @@ public class PositionsFlowPane extends FlowPane {
 
     clear();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
-    charaChipOpt = Optional.ofNullable(originalImage.createSideViewChips(standards));
+    charaChipOpt = Optional.ofNullable(originalImage.createSideViewChips(standards, this));
     drawImages(charaChipOpt);
 
   }//}}}
@@ -69,6 +69,30 @@ public class PositionsFlowPane extends FlowPane {
 
     charaChipOpt.ifPresent(chips -> {
       chips.stream().forEach(c -> c.setScale(rate));
+    });
+
+  }//}}}
+
+  public void showSelectedPane(CharaChipGridPane selectedPane) {//{{{
+
+    disableAllCharaChips();
+    charaChipOpt.ifPresent(ccgpList -> {
+      ccgpList.stream()
+        .filter(ccgp -> ccgp == selectedPane)
+        .forEach(ccgp -> {
+          getChildren().add(ccgp);
+        });
+    });
+
+  }//}}}
+
+  public void showAllPane() {//{{{
+
+    disableAllCharaChips();
+    charaChipOpt.ifPresent(ccgpList -> {
+      ccgpList.stream().forEach(ccgp -> {
+        getChildren().add(ccgp);
+      });
     });
 
   }//}}}
@@ -90,6 +114,14 @@ public class PositionsFlowPane extends FlowPane {
       putCharaChips(chips);
       // TODO 値を決め打ちしている
       updateAnimationSpeed(100);
+    });
+
+  }//}}}
+
+  private void disableAllCharaChips() {//{{{
+
+    charaChipOpt.ifPresent(ccgpList -> {
+      getChildren().removeAll(ccgpList);
     });
 
   }//}}}

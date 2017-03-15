@@ -2,6 +2,7 @@ package app.image;
 
 import app.standard.Standards;
 import app.charachip.CharaChipGridPane;
+import app.layout.PositionsFlowPane;
 
 import java.nio.IntBuffer;
 import java.util.*;
@@ -213,7 +214,7 @@ public class MyImage {
   /**
    * 歩行グラフィックのキャラチップを作成する。
    */
-  public List<CharaChipGridPane> createWalkChips(Standards standards) {//{{{
+  public List<CharaChipGridPane> createWalkChips(Standards standards, PositionsFlowPane pos) {//{{{
 
     int row        = standards.row;
     int column     = standards.column;
@@ -227,7 +228,7 @@ public class MyImage {
 
       int x = 0;
       int y = r * height;
-      CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height)
+      CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height, pos)
         .x(x).y(y).frameCount(frameCount)
         .build();
       ccgpList.add(ccgp);
@@ -238,7 +239,7 @@ public class MyImage {
 
   }//}}}
 
-  public List<CharaChipGridPane> createSideViewChips(Standards standards) {//{{{
+  public List<CharaChipGridPane> createSideViewChips(Standards standards, PositionsFlowPane pos) {//{{{
 
     int row        = standards.row;
     int column     = standards.column;
@@ -257,7 +258,7 @@ public class MyImage {
       range(0, row).forEach(r -> {
 
         int y = r * height;
-        CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height)
+        CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height, pos)
           .x(x).y(y).frameCount(frameCount)
           .build();
         ccgpList.add(ccgp);

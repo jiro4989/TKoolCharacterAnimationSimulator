@@ -15,7 +15,7 @@ public class Texts {
 
   public static final String WALK_PREST_DIR      = "./presets/" + JAR_NAME + "/walk";
   public static final String SIDE_VIEW_PREST_DIR = "./presets/" + JAR_NAME + "/side_view";
-  public static final String WALK_PREST          = WALK_PREST_DIR + "/mv.preset";
+  public static final String WALK_PREST          = WALK_PREST_DIR + "/vxace.preset";
   public static final String SIDE_VIEW_PREST     = SIDE_VIEW_PREST_DIR + "/mv.preset";
 
 }

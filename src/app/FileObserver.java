@@ -26,6 +26,10 @@ class FileObserver {
 
   }//}}}
 
+  void stop() {
+    timeline.stop();
+  }
+
   class ModifiedTime {//{{{
 
     private long time;

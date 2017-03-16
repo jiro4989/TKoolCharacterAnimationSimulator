@@ -111,7 +111,7 @@ public class MyMenuBar extends VBox {
   @FXML private void openCharaChipMenuItemOnAction() {//{{{
     imagefileChooser.openFile().ifPresent(file -> {
       setDisables(false);
-      mainController.drawImage(file);
+      mainController.drawWalkImage(file);
     });
   }//}}}
   @FXML private void openSideViewMenuItemOnAction() {//{{{
@@ -123,7 +123,7 @@ public class MyMenuBar extends VBox {
   @FXML private void openRecentMenuItemOnAction() {//{{{
     imagefileChooser.openFile().ifPresent(file -> {
       // FIXME NullPointerexception 
-      mainController.drawImage(file);
+      mainController.drawWalkImage(file);
     });
   }//}}}
   @FXML private void closeMenuItemOnAction() {//{{{

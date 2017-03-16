@@ -165,21 +165,6 @@ public class CharaChipGridPane extends GridPane {
 
   }//}}}
 
-  /**
-   * ファイルが更新されて画像表示を更新する。
-   */
-  public void updateImage() {//{{{
-
-    //final MyImage src    = new MyImage.Builder(builder.srcFile).build();
-    //final int x          = builder.x;
-    //final int y          = builder.y;
-    //final int frameCount = builder.frameCount;
-
-    //imageList.clear();
-    //imageList.addAll(createFrameImages(src, x, y, imageWidth, imageHeight, frameCount));
-
-  }//}}}
-
   private Timeline createTimeline(int duration) {//{{{
 
     final int max = imageList.size();

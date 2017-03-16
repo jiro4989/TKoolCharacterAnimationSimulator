@@ -66,7 +66,7 @@ public class MyImage {
     public Builder x(int x) {//{{{
 
       if (x < 0)
-        throw new IllegalArgumentException("座標xに0未満の値をセットできません。");
+        throw new IllegalArgumentException("座標xに0未満の値をセットできません。" + this);
 
       this.x = x;
       return this;
@@ -82,7 +82,7 @@ public class MyImage {
     public Builder y(int y) {//{{{
 
       if (y < 0)
-        throw new IllegalArgumentException("座標yに0未満の値をセットできません。");
+        throw new IllegalArgumentException("座標yに0未満の値をセットできません。" + this);
 
 
       this.y = y;
@@ -99,7 +99,7 @@ public class MyImage {
     public Builder width(int width) {//{{{
 
       if (this.width < width)
-        throw new IllegalArgumentException("オプションのwidthに読み込む画像のwidthより大きな値をセットできません。");
+        throw new IllegalArgumentException("オプションのwidthに読み込む画像のwidthより大きな値をセットできません。" + this);
 
       this.width = width;
       return this;
@@ -115,7 +115,7 @@ public class MyImage {
     public Builder height(int height) {//{{{
 
       if (this.height < height)
-        throw new IllegalArgumentException("オプションのheightに読み込む画像のheightより大きな値をセットできません。");
+        throw new IllegalArgumentException("オプションのheightに読み込む画像のheightより大きな値をセットできません。" + this);
 
       this.height = height;
       return this;
@@ -128,10 +128,10 @@ public class MyImage {
       int h = (int) image.getHeight();
 
       if (w < x)
-        throw new IllegalArgumentException("座標xは画像幅widthの値以下でなければいけません。");
+        throw new IllegalArgumentException("座標xは画像幅widthの値以下でなければいけません。" + this);
 
       if (h < y)
-        throw new IllegalArgumentException("座標yは画像幅heightの値以下でなければいけません。");
+        throw new IllegalArgumentException("座標yは画像幅heightの値以下でなければいけません。" + this);
 
       return new MyImage(this);
 

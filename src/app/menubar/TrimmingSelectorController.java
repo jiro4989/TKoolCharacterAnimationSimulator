@@ -145,6 +145,11 @@ public class TrimmingSelectorController {
     blockWidth  = width * column;
     blockHeight = height * row;
 
+    selectedGridPane.setPrefWidth(width * column);
+    selectedGridPane.setPrefHeight(height * row);
+    focusGridPane.setPrefWidth(width * column);
+    focusGridPane.setPrefHeight(height * row);
+
   }//}}}
 
 }

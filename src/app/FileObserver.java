@@ -26,9 +26,9 @@ class FileObserver {
 
   }//}}}
 
-  void stop() {
+  void stop() {//{{{
     timeline.stop();
-  }
+  }//}}}
 
   class ModifiedTime {//{{{
 

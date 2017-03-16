@@ -41,7 +41,6 @@ public class PositionsFlowPane extends FlowPane {
   }//}}}
 
   public void drawWalkImage(String filePath, Standards standards) {//{{{
-
     clearImages();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createWalkChips(standards, this));
@@ -71,15 +70,6 @@ public class PositionsFlowPane extends FlowPane {
     charaChipOpt.ifPresent(chips -> {
       chips.stream().forEach(c -> c.setScale(rate));
     });
-
-  }//}}}
-
-  public void updateImages(File file) {//{{{
-
-    //clearImages();
-    //charaChipOpt.ifPresent(ccgpList -> {
-    //  ccgpList.stream().forEach(ccgp -> ccgp.updateImage());
-    //});
 
   }//}}}
 

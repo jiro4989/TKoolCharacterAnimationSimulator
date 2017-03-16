@@ -67,9 +67,9 @@ public class Main extends Application {
 
       root.setOnScroll(e -> controller.updateZoomRate(e));
 
-      primaryStage.show();
-
       controller.setConfigStageInstance();
+
+      primaryStage.show();
 
     } catch (IOException e) {
       e.printStackTrace();

@@ -29,7 +29,7 @@ public class MainController {
   private Optional<ConfigStage> configStageOpt = Optional.empty();
 
   // ファイルの更新時間監視
-  private FileObserver fileObserver;
+  private static FileObserver fileObserver;
 
   // FXMLコンポーネント//{{{
 
@@ -56,7 +56,7 @@ public class MainController {
 
   public void drawWalkImage(File file) {//{{{
 
-    //if (fileObserver != null) fileObserver.stop();
+    if (fileObserver != null) fileObserver.stop();
 
     fileObserver = new FileObserver(200, file, this);
     strategy     = new WalkGraphicsStrategy(this);
@@ -68,7 +68,7 @@ public class MainController {
 
   public void drawSideViewImage(File file) {//{{{
 
-    //if (fileObserver != null) fileObserver.stop();
+    if (fileObserver != null) fileObserver.stop();
 
     fileObserver = new FileObserver(200, file, this);
     strategy     = new SideViewStrategy(this);

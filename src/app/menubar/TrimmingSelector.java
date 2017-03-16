@@ -1,6 +1,7 @@
 package app.menubar;
 
 import app.Main;
+import app.standard.Standards;
 
 import java.io.*;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,7 @@ import javafx.stage.*;
 
 class TrimmingSelector extends Stage {
 
-  TrimmingSelector(File file) {//{{{
+  TrimmingSelector(File file, Standards std) {//{{{
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("trimming_selector.fxml"));
 
@@ -27,6 +28,7 @@ class TrimmingSelector extends Stage {
       sizeToScene();
 
       controller.setImage(file);
+      controller.setStandards(std);
 
     } catch (IOException e) {
       e.printStackTrace();

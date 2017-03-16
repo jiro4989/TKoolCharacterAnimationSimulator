@@ -181,6 +181,10 @@ public class MainController {
 
   }//}}}
 
+  // Getter
+
+  public Standards getWalkStandards() { return walkStandard; }
+
   // Setter
 
   public void setFontSize(String fontSize) {//{{{

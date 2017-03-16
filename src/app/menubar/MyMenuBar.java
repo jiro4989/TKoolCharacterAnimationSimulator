@@ -5,6 +5,7 @@ import jiro.javafx.stage.AboutStage;
 
 import app.Main;
 import app.MainController;
+import app.standard.Standards;
 import util.ResourceBundleWithUtf8;
 import util.AlertUtils;
 
@@ -114,7 +115,8 @@ public class MyMenuBar extends VBox {
 
     imagefileChooser.openFile().ifPresent(file -> {
 
-      TrimmingSelector ts = new TrimmingSelector(file);
+      Standards std = mainController.getWalkStandards();
+      TrimmingSelector ts = new TrimmingSelector(file, std);
       ts.showAndWait();
 
       setDisables(false);

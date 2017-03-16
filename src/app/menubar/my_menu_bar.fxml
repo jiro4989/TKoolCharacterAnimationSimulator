@@ -19,6 +19,8 @@
           <MenuItem fx:id="walkPresetMenuItem" mnemonicParsing="false" text="%walkPresetMenuItem" onAction="#walkPresetMenuItemOnAction" />
           <MenuItem fx:id="sideViewPresetMenuItem" mnemonicParsing="false" text="%sideViewPresetMenuItem" onAction="#sideViewPresetMenuItemOnAction" />
           <SeparatorMenuItem mnemonicParsing="false" />
+          <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" text="%preferencesMenuItem" onAction="#preferencesMenuItemOnAction" />
+          <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="%quitMenuItem" onAction="#quitMenuItemOnAction" />
           <MenuItem fx:id="forcedTerminateMenuItem" mnemonicParsing="false" text="%forcedTerminateMenuItem" onAction="#forcedTerminateMenuItemOnAction"/>
         </items>
@@ -51,10 +53,25 @@
             </accelerator>
           </MenuItem>
 
-          <CheckMenuItem fx:id="onlyMenuItem" mnemonicParsing="false" text="%onlyMenuItem" disable="true" />
+          <MenuItem fx:id="durationDownMenuItem" mnemonicParsing="false" text="%durationDownMenuItem" onAction="#durationDownMenuItemOnAction" disable="true" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="durationUpMenuItem" mnemonicParsing="false" text="%durationUpMenuItem" onAction="#durationUpMenuItemOnAction" disable="true" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="W" control="UP" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="onlyMenuItem" mnemonicParsing="false" text="%onlyMenuItem" onAction="#onlyMenuItemOnAction" disable="true" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
           <SeparatorMenuItem mnemonicParsing="false" />
           <CheckMenuItem fx:id="alwaysOnTopMenuItem" mnemonicParsing="false" text="%alwaysOnTopMenuItem" onAction="#alwaysOnTopMenuItemOnAction"/>
-          <CheckMenuItem fx:id="displayConfigMenuItem" mnemonicParsing="false" text="%displayConfigMenuItem" onAction="#displayConfigMenuItemOnAction" disable="true" />
         </items>
       </Menu>
 

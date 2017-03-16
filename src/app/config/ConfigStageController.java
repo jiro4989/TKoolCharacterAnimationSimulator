@@ -63,7 +63,7 @@ public class ConfigStageController {
     double add   = s.getBlockIncrement();
 
     value = value - add;
-    changeZoomValue(value, zoomRateSlider);
+    changeZoomValue(value, s);
 
 
   }//}}}
@@ -75,7 +75,29 @@ public class ConfigStageController {
     double add   = s.getBlockIncrement();
 
     value = value + add;
-    changeZoomValue(value, zoomRateSlider);
+    changeZoomValue(value, s);
+
+  }//}}}
+
+  public void durationDown() {//{{{
+
+    Slider s     = animationSpeedSlider;
+    double value = s.getValue();
+    double add   = s.getBlockIncrement();
+
+    value = value - add;
+    changeZoomValue(value, s);
+
+  }//}}}
+
+  public void durationUp() {//{{{
+
+    Slider s     = animationSpeedSlider;
+    double value = s.getValue();
+    double add   = s.getBlockIncrement();
+
+    value = value + add;
+    changeZoomValue(value, s);
 
   }//}}}
 

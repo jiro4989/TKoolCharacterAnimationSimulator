@@ -68,8 +68,6 @@ public class MainController {
       cs.applyAnimationSpeed();
     });
 
-    myMenuBar.setDisableConfigMenuItem(false);
-
   }//}}}
 
   public void drawSideViewImage(File file) {//{{{
@@ -85,8 +83,6 @@ public class MainController {
       cs.applyZoomRate();
       cs.applyAnimationSpeed();
     });
-
-    myMenuBar.setDisableConfigMenuItem(false);
 
   }//}}}
 
@@ -151,6 +147,14 @@ public class MainController {
 
   public void zoomUpImages() {//{{{
     configStageOpt.ifPresent(cs -> cs.zoomUp());
+  }//}}}
+
+  public void durationDown() {//{{{
+    configStageOpt.ifPresent(cs -> cs.durationDown());
+  }//}}}
+
+  public void durationUp() {//{{{
+    configStageOpt.ifPresent(cs -> cs.durationUp());
   }//}}}
 
   public void showOneImage() {//{{{

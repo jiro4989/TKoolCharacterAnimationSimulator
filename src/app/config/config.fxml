@@ -20,8 +20,8 @@
           <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="zoomRateLabel" text="Zoom Rate (%) :" />
-            <Label fx:id="animationSpeedLabel" text="Animation Speed (ms) :" GridPane.rowIndex="1" />
+            <Label fx:id="zoomRateLabel" text="%zoomRateLabel" />
+            <Label fx:id="animationSpeedLabel" text="%animationSpeedLabel" GridPane.rowIndex="1" />
             <Slider fx:id="zoomRateSlider" majorTickUnit="50.0" max="300.0" min="50.0" prefWidth="200" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" GridPane.columnIndex="1" />
             <Slider fx:id="animationSpeedSlider" majorTickUnit="50.0" max="300.0" min="50.0" prefWidth="200" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>

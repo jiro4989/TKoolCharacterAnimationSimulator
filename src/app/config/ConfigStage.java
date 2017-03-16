@@ -1,14 +1,18 @@
 package app.config;
 
 import app.MainController;
+import util.ResourceBundleWithUtf8;
 
 import static util.Texts.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.Locale;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.layout.*;
 import javafx.scene.input.*;
+import javafx.scene.layout.*;
 import javafx.stage.*;
 
 public class ConfigStage extends Stage {
@@ -23,7 +27,14 @@ public class ConfigStage extends Stage {
 
   public ConfigStage(Stage stage, MainController aMain) {//{{{
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("config.fxml"));
+    URL location = getClass().getResource("config.fxml");
+    ResourceBundle resources = ResourceBundle.getBundle(
+        "app.config.dict"
+        , Locale.getDefault()
+        , ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL
+        );
+    FXMLLoader loader = new FXMLLoader(location, resources);
+
     try {
 
       AnchorPane root = (AnchorPane) loader.load();

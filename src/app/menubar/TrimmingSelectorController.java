@@ -8,8 +8,12 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 public class TrimmingSelectorController {
+
+  public static int baseX = 0;
+  public static int baseY = 0;
 
   private int blockWidth = 0;
   private int blockHeight = 0;
@@ -77,6 +81,16 @@ public class TrimmingSelectorController {
 
   }//}}}
 
+  @FXML private void selectedGridPaneOnMouseClicked(MouseEvent e) {//{{{
+
+    if (2 <= e.getClickCount()) {
+
+      okButtonOnAction();
+
+    }
+
+  }//}}}
+
   @FXML private void focusGridPaneOnMouseClicked(MouseEvent e) {//{{{
 
     int x = (int) focusGridPane.getLayoutX();
@@ -84,6 +98,26 @@ public class TrimmingSelectorController {
 
     selectedGridPane.setLayoutX(x);
     selectedGridPane.setLayoutY(y);
+
+  }//}}}
+
+  @FXML private void okButtonOnAction() {//{{{
+
+    baseX = (int) selectedGridPane.getLayoutX();
+    baseY = (int) selectedGridPane.getLayoutY();
+    getStage().hide();
+
+  }//}}}
+
+  @FXML private void cancelButtonOnAction() {//{{{
+
+    getStage().hide();
+
+  }//}}}
+
+  private Stage getStage() {//{{{
+
+    return (Stage) okButton.getScene().getWindow();
 
   }//}}}
 

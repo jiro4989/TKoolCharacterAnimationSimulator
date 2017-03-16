@@ -1,7 +1,8 @@
 package app.config;
 
-import app.Main;
 import app.MainController;
+
+import static util.Texts.*;
 
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,7 @@ public class ConfigStage extends Stage {
       controller = (ConfigStageController) loader.getController();
       controller.setMainController(aMain);
       Scene scene = new Scene(root);
-      scene.getStylesheets().add(Main.BASIC_CSS);
+      scene.getStylesheets().add(BASIC_CSS);
 
       resize(stage);
 

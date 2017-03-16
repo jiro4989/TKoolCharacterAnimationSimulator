@@ -3,11 +3,11 @@ package app.menubar;
 import jiro.javafx.stage.MyFileChooser;
 import jiro.javafx.stage.AboutStage;
 
-import app.Main;
 import app.MainController;
 import app.standard.Standards;
 import util.ResourceBundleWithUtf8;
 import util.AlertUtils;
+import static util.Texts.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -77,10 +77,10 @@ public class MyMenuBar extends VBox {
 
     imagefileChooser  = new MyFileChooser.Builder("Image Files", "*.png").build();
     walkPresetFileChooser = new MyFileChooser.Builder("Preset Files", "*.preset")
-      .initDir("./presets/mvccs/walk")
+      .initDir(WALK_PREST_DIR)
       .build();
     sideViewPresetFileChooser = new MyFileChooser.Builder("Preset Files", "*.preset")
-      .initDir("./presets/mvccs/side_view")
+      .initDir(SIDE_VIEW_PREST_DIR)
       .build();
 
     URL location = getClass().getResource("my_menu_bar.fxml");
@@ -198,12 +198,12 @@ public class MyMenuBar extends VBox {
   }//}}}
   // ヘルプ
   @FXML private void aboutMenuItemOnAction() {//{{{
-    AboutStage about = new AboutStage.Builder(Main.TITLE, Main.VERSION)
+    AboutStage about = new AboutStage.Builder(TITLE, VERSION)
       .author("次郎 (Jiro)")
       .blog("次ログ")
       .blogUrl("http://jiroron666.hatenablog.com/")
-      .css("/app/res/css/basic.css")
-      .appIcon("/app/res/img/app_icon.png")
+      .css(BASIC_CSS)
+      .appIcon(APP_ICON)
       .build();
     about.showAndWait();
   }//}}}

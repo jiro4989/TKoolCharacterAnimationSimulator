@@ -7,6 +7,7 @@ import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
 import app.standard.Standards;
 import util.AlertUtils;
+import static util.Texts.*;
 
 import java.io.*;
 import java.util.*;
@@ -43,8 +44,8 @@ public class MainController {
   @FXML private void initialize() {//{{{
 
     myMenuBar.setMainController(this);
-    walkStandard = WalkGraphicsStrategy.createStandard("./presets/mvccs/walk/mv.preset");
-    sideViewStandard = SideViewStrategy.createStandard("./presets/mvccs/side_view/mv.preset");
+    walkStandard = WalkGraphicsStrategy.createStandard(WALK_PREST);
+    sideViewStandard = SideViewStrategy.createStandard(SIDE_VIEW_PREST);
 
   }//}}}
 

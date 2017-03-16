@@ -3,6 +3,7 @@ package app.image;
 import app.standard.Standards;
 import app.charachip.CharaChipGridPane;
 import app.layout.PositionsFlowPane;
+import app.menubar.TrimmingSelectorController;
 
 import java.nio.IntBuffer;
 import java.util.*;
@@ -225,8 +226,8 @@ public class MyImage {
 
     range(0, row).forEach(r -> {
 
-      int x = 0;
-      int y = r * height;
+      int x = TrimmingSelectorController.baseX;
+      int y = r * height + TrimmingSelectorController.baseY;
       CharaChipGridPane ccgp = new CharaChipGridPane.Builder(this, width, height, pos)
         .x(x).y(y).frameCount(frameCount)
         .build();

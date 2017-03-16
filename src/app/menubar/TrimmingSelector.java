@@ -1,7 +1,7 @@
 package app.menubar;
 
-import app.Main;
 import app.standard.Standards;
+import static util.Texts.*;
 
 import java.io.*;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,7 @@ class TrimmingSelector extends Stage {
       GridPane root = (GridPane) loader.load();
       TrimmingSelectorController controller = (TrimmingSelectorController) loader.getController();
       Scene scene = new Scene(root);
-      scene.getStylesheets().add(getClass().getResource(Main.BASIC_CSS).toExternalForm());
+      scene.getStylesheets().add(getClass().getResource(BASIC_CSS).toExternalForm());
       setScene(scene);
 
       initStyle(StageStyle.UTILITY);

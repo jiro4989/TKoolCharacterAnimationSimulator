@@ -55,7 +55,7 @@
                           </rowConstraints>
                         </GridPane>
 
-                        <GridPane fx:id="selectedGridPane" layoutX="0.0" layoutY="0.0" style="-fx-background-color: rgb(0, 255, 25); -fx-opacity: 0.25;" onMouseMoved="#selectedGridPaneOnMouseMoved" >
+                        <GridPane fx:id="selectedGridPane" layoutX="0.0" layoutY="0.0" style="-fx-background-color: rgb(0, 255, 25); -fx-opacity: 0.25;" onMouseMoved="#selectedGridPaneOnMouseMoved" onMouseClicked="#selectedGridPaneOnMouseClicked" >
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="144.0" />
                           </columnConstraints>
@@ -76,8 +76,8 @@
     </AnchorPane>
     <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.rowIndex="1">
       <children>
-        <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="OK" />
-        <Button fx:id="cancelButton" minWidth="80.0" mnemonicParsing="false" text="CANCEL" />
+        <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="OK" onAction="#okButtonOnAction" />
+        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="CANCEL" onAction="#cancelButtonOnAction"/>
       </children>
     </HBox>
   </children>

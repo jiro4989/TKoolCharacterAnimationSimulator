@@ -102,6 +102,7 @@ public class MainController {
         c.hide();
       else
         c.show();
+      getStage().requestFocus();
     });
 
   }//}}}
@@ -133,10 +134,6 @@ public class MainController {
     stage.setAlwaysOnTop(!alwaysOnTop);
     preferences.setProperty(KEY_ALWAYS_ON_TOP, "" + alwaysOnTop);
 
-  }//}}}
-
-  public void showLanguageAlert() {//{{{
-    AlertUtils.showLanguageAlert();
   }//}}}
 
   public void showPreviousImage() {//{{{

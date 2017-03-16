@@ -244,9 +244,6 @@ public class MyMenuBar extends VBox {
     else
       usRadioMenuItem.setSelected(true);
   }//}}}
-  private void showLanguageAlert() {//{{{
-    mainController.showLanguageAlert();
-  }//}}}
   // Setter
   public void setMainController(MainController aMain) {//{{{
     mainController = aMain;

@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainController {
-  
+
   // 画像描画戦略
   private DrawImageStrategy strategy;
 
@@ -60,7 +60,13 @@ public class MainController {
 
     fileObserver = new FileObserver(200, file, this);
     strategy     = new WalkGraphicsStrategy(this);
+
     positionsFlowPane.drawWalkImage(file.getPath(), walkStandard);
+
+    configStageOpt.ifPresent(cs -> {
+      cs.applyZoomRate();
+      cs.applyAnimationSpeed();
+    });
 
     myMenuBar.setDisableConfigMenuItem(false);
 
@@ -72,7 +78,13 @@ public class MainController {
 
     fileObserver = new FileObserver(200, file, this);
     strategy     = new SideViewStrategy(this);
+
     positionsFlowPane.drawSideViewImage(file.getPath(), sideViewStandard);
+
+    configStageOpt.ifPresent(cs -> {
+      cs.applyZoomRate();
+      cs.applyAnimationSpeed();
+    });
 
     myMenuBar.setDisableConfigMenuItem(false);
 

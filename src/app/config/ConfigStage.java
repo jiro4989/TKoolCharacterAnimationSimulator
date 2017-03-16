@@ -79,4 +79,12 @@ public class ConfigStage extends Stage {
     controller.zoomUp();
   }//}}}
 
+  public void applyZoomRate() {//{{{
+    controller.applyZoomRate();
+  }//}}}
+
+  public void applyAnimationSpeed() {//{{{
+    controller.applyAnimationSpeed();
+  }//}}}
+
 }

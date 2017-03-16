@@ -169,18 +169,10 @@ public class PositionsFlowPane extends FlowPane {
     showAllPane();
   }//}}}
 
-  private void putCharaChips(List<CharaChipGridPane> charaChipOpt) {//{{{
-
-    charaChipOpt.stream().forEach(i -> getChildren().add(i));
-
-  }//}}}
-
   private void drawImages(Optional<List<CharaChipGridPane>> ccgpo) {//{{{
 
     ccgpo.ifPresent(chips -> {
-      putCharaChips(chips);
-      // TODO 値を決め打ちしている
-      updateAnimationSpeed(100);
+      chips.stream().forEach(i -> getChildren().add(i));
     });
 
   }//}}}

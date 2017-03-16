@@ -141,9 +141,9 @@ public class Main extends Application {
      }//}}}
      */
 
-  private class Delta {
+  private class Delta {//{{{
     double x;
     double y;
-  }
+  }//}}}
 
 }

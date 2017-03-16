@@ -79,6 +79,22 @@ public class ConfigStageController {
 
   }//}}}
 
+  public void applyZoomRate() {//{{{
+
+    Slider s     = zoomRateSlider;
+    double value = s.getValue();
+    mainController.updateZoomRate(value);
+
+  }//}}}
+
+  public void applyAnimationSpeed() {//{{{
+
+    Slider s     = animationSpeedSlider;
+    double value = s.getValue();
+    mainController.updateAnimationSpeed((int)value);
+
+  }//}}}
+
   private void changeZoomValue(double value, Slider s) {//{{{
 
     double min = s.getMin();

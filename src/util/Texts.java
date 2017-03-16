@@ -20,5 +20,7 @@ public class Texts {
   public static final String PREFERENCES_FILE  = PROP_DIR + "/preferences.xml";
   public static final String KEY_LANGS         = "languages";
   public static final String KEY_ALWAYS_ON_TOP = "alwaysOnTop";
+  public static final String KEY_ZOOM_RATE     = "zoomRate";
+  public static final String KEY_DURATION      = "duration";
 
 }

@@ -128,9 +128,8 @@ public class ConfigStageController {
 
   // Setter
 
-  public void setMainController(MainController aMain) {//{{{
-    mainController = aMain;
-
-  }//}}}
+  public void setMainController(MainController aMain) { mainController = aMain               ; }
+  public void setZoomRate(double value)               { zoomRateSlider.setValue(value)       ; }
+  public void setDuration(double value)               { animationSpeedSlider.setValue(value) ; }
 
 }

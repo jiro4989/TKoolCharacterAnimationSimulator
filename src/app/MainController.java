@@ -167,6 +167,7 @@ public class MainController {
   void setConfigStageInstance() {//{{{
     ConfigStage cs = new ConfigStage(positionsFlowPane, this);
     configStageOpt = Optional.ofNullable(cs);
+    setConfigs();
   }//}}}
 
   void resizeConfigStage() {//{{{
@@ -203,6 +204,22 @@ public class MainController {
 
     File sideViewPresetDir = new File(SIDE_VIEW_PREST_DIR);
     sideViewPresetDir.mkdirs();
+
+  }//}}}
+
+  private void setConfigs() {//{{{
+
+    String r = preferences.getProperty(KEY_ZOOM_RATE).orElse("100");
+    String d = preferences.getProperty(KEY_DURATION).orElse("200");
+    double rate     = Double.parseDouble(r);
+    double duration = Double.parseDouble(d);
+
+    configStageOpt.ifPresent(cs -> {
+
+      cs.setZoomRate(rate);
+      cs.setDuration(duration);
+
+    });
 
   }//}}}
 

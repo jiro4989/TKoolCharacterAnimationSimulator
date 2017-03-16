@@ -77,34 +77,17 @@ public class ConfigStage extends Stage {
 
   }//}}}
 
-  public void changeZoomRate(ScrollEvent e) {//{{{
+  public void applyAnimationSpeed()         { controller.applyAnimationSpeed() ; }
+  public void applyZoomRate()               { controller.applyZoomRate()       ; }
+  public void changeZoomRate(ScrollEvent e) { controller.changeZoomRate(e)     ; }
+  public void durationDown()                { controller.durationDown()        ; }
+  public void durationUp()                  { controller.durationUp()          ; }
+  public void zoomDown()                    { controller.zoomDown()            ; }
+  public void zoomUp()                      { controller.zoomUp()              ; }
 
-    controller.changeZoomRate(e);
+  // Setter
 
-  }//}}}
-
-  public void zoomDown() {//{{{
-    controller.zoomDown();
-  }//}}}
-
-  public void zoomUp() {//{{{
-    controller.zoomUp();
-  }//}}}
-
-  public void durationDown() {//{{{
-    controller.durationDown();
-  }//}}}
-
-  public void durationUp() {//{{{
-    controller.durationUp();
-  }//}}}
-
-  public void applyZoomRate() {//{{{
-    controller.applyZoomRate();
-  }//}}}
-
-  public void applyAnimationSpeed() {//{{{
-    controller.applyAnimationSpeed();
-  }//}}}
+  public void setZoomRate(double rate)     { controller.setZoomRate(rate); }
+  public void setDuration(double duration) { controller.setDuration(duration); }
 
 }

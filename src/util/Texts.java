@@ -11,11 +11,14 @@ public class Texts {
   public static final String BASIC_CSS           = "/app/res/css/basic.css";
   public static final String APP_ICON            = "/app/res/img/app_icon.png";
 
-  public static final String PROP_DIR            = "./properties/" + JAR_NAME;
-
   public static final String WALK_PREST_DIR      = "./presets/" + JAR_NAME + "/walk";
   public static final String SIDE_VIEW_PREST_DIR = "./presets/" + JAR_NAME + "/side_view";
   public static final String WALK_PREST          = WALK_PREST_DIR + "/vxace.preset";
   public static final String SIDE_VIEW_PREST     = SIDE_VIEW_PREST_DIR + "/mv.preset";
+
+  public static final String PROP_DIR          = "./properties/" + JAR_NAME;
+  public static final String PREFERENCES_FILE  = PROP_DIR + "/preferences.xml";
+  public static final String KEY_LANGS         = "languages";
+  public static final String KEY_ALWAYS_ON_TOP = "alwaysOnTop";
 
 }

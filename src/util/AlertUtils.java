@@ -9,6 +9,7 @@ import javafx.scene.control.ButtonType;
 public class AlertUtils {
 
   public static final void showLanguageAlert() {//{{{
+
     Locale locale = Locale.getDefault();
 
     Alert alert = new Alert(AlertType.INFORMATION);
@@ -16,9 +17,13 @@ public class AlertUtils {
       ? "言語の変更は次回起動時に適用されます"
       : "Apply changing Languages when next Starting";
     alert.setHeaderText(header);
+
     alert.showAndWait();
+
   }//}}}
+
   public static final void showForcedTerminationAlert() {//{{{
+
     Locale locale = Locale.getDefault();
 
     Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -36,6 +41,7 @@ public class AlertUtils {
     alert.showAndWait()
       .filter(r -> r == ButtonType.OK)
       .ifPresent(r -> Platform.exit());
+
   }//}}}
 
 }

@@ -32,6 +32,9 @@ public class MainController {
   // ファイルの更新時間監視
   private static FileObserver fileObserver;
 
+  // 設定ファイル
+  private final MyProperties preferences = new MyProperties(PREFERENCES_FILE);
+
   // FXMLコンポーネント//{{{
 
   @FXML private MyMenuBar myMenuBar;
@@ -43,6 +46,7 @@ public class MainController {
 
   @FXML private void initialize() {//{{{
 
+    mkInitDirs();
     myMenuBar.setMainController(this);
     walkStandard = WalkGraphicsStrategy.createStandard(WALK_PREST);
     sideViewStandard = SideViewStrategy.createStandard(SIDE_VIEW_PREST);
@@ -127,6 +131,7 @@ public class MainController {
     Stage stage = getStage();
     boolean alwaysOnTop = getStage().isAlwaysOnTop();
     stage.setAlwaysOnTop(!alwaysOnTop);
+    preferences.setProperty(KEY_ALWAYS_ON_TOP, "" + alwaysOnTop);
 
   }//}}}
 
@@ -176,9 +181,31 @@ public class MainController {
 
   }//}}}
 
+  public void closeRequest() {//{{{
+
+    preferences.store();
+
+    Main.mainMp.setProperty(myMenuBar);
+    Main.mainMp.store();
+
+  }//}}}
+
   private Stage getStage() {//{{{
 
     return (Stage) positionsFlowPane.getScene().getWindow();
+
+  }//}}}
+
+  private void mkInitDirs() {//{{{
+
+    File propDir = new File(PROP_DIR);
+    propDir.mkdirs();
+
+    File walkPresetDir = new File(WALK_PREST_DIR);
+    walkPresetDir.mkdirs();
+
+    File sideViewPresetDir = new File(SIDE_VIEW_PREST_DIR);
+    sideViewPresetDir.mkdirs();
 
   }//}}}
 
@@ -192,6 +219,12 @@ public class MainController {
 
     VBox root = (VBox) positionsFlowPane.getScene().lookup("#root");
     root.setStyle("-fx-font-size:" + fontSize + "pt;");
+
+  }//}}}
+
+  public void setLanguages(String languages) {//{{{
+
+    preferences.setProperty(KEY_LANGS, languages);
 
   }//}}}
 

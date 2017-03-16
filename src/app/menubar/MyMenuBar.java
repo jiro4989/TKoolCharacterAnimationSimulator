@@ -155,6 +155,7 @@ public class MyMenuBar extends VBox {
     mainController.showConfigStage();
   }//}}}
   @FXML private void quitMenuItemOnAction() {//{{{
+    mainController.closeRequest();
     Platform.exit();
   }//}}}
   @FXML private void forcedTerminateMenuItemOnAction() {//{{{
@@ -193,8 +194,18 @@ public class MyMenuBar extends VBox {
   }//}}}
   // 言語メニュー
   @FXML private void jpRadioMenuItemOnAction() {//{{{
+
+    AlertUtils.showLanguageAlert();
+    String langs = Locale.JAPAN.getLanguage();
+    mainController.setLanguages(langs);
+
   }//}}}
   @FXML private void usRadioMenuItemOnAction() {//{{{
+
+    AlertUtils.showLanguageAlert();
+    String langs = Locale.ENGLISH.getLanguage();
+    mainController.setLanguages(langs);
+
   }//}}}
   // ヘルプ
   @FXML private void aboutMenuItemOnAction() {//{{{

@@ -18,7 +18,8 @@ public class TrimmingSelectorController {
 
   @FXML private TitledPane titledPane;
   @FXML private ImageView imageView;
-  @FXML private GridPane gridPane;
+  @FXML private GridPane focusGridPane;
+  @FXML private GridPane selectedGridPane;
 
   @FXML private Button okButton;
   @FXML private Button cancelButton;
@@ -32,11 +33,10 @@ public class TrimmingSelectorController {
 
   // イベントメソッド
 
-  @FXML private void imageViewOnMouseDragOver(MouseEvent e) {//{{{
+  @FXML private void imageViewOnMouseMoved(MouseEvent e) {//{{{
 
     int x = (int) e.getX();
     int y = (int) e.getY();
-
     int gridX = x / blockWidth * blockWidth;
     int gridY = y / blockHeight * blockHeight;
 
@@ -48,10 +48,42 @@ public class TrimmingSelectorController {
        )
     {
 
-      gridPane.setLayoutX(gridX);
-      gridPane.setLayoutY(gridY);
+      focusGridPane.setLayoutX(gridX);
+      focusGridPane.setLayoutY(gridY);
 
     }
+
+  }//}}}
+
+  @FXML private void selectedGridPaneOnMouseMoved(MouseEvent e) {//{{{
+
+    int x = (int) (e.getX() + selectedGridPane.getLayoutX());
+    int y = (int) (e.getY() + selectedGridPane.getLayoutY());
+    int gridX = x / blockWidth * blockWidth;
+    int gridY = y / blockHeight * blockHeight;
+
+    int imgWidth  = (int) imageView.getFitWidth();
+    int imgHeight = (int) imageView.getFitHeight();
+
+    if (   (gridX + blockWidth)  <= imgWidth
+        && (gridY + blockHeight) <= imgHeight
+       )
+    {
+
+      focusGridPane.setLayoutX(gridX);
+      focusGridPane.setLayoutY(gridY);
+
+    }
+
+  }//}}}
+
+  @FXML private void focusGridPaneOnMouseClicked(MouseEvent e) {//{{{
+
+    int x = (int) focusGridPane.getLayoutX();
+    int y = (int) focusGridPane.getLayoutY();
+
+    selectedGridPane.setLayoutX(x);
+    selectedGridPane.setLayoutY(y);
 
   }//}}}
 

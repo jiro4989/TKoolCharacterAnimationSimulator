@@ -18,7 +18,7 @@ public class Main extends Application {
   private MainController controller;
 
   // 定数{{{
-  public static final String TITLE         = "MV Character Chip Simulator";
+  public static final String TITLE         = "TKool Character Chip Simulator";
   public static final String VERSION       = "ver 1.0.0";
   public static final String TITLE_VERSION = TITLE + " - " + VERSION;
 

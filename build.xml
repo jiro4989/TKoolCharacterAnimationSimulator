@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<project name="MVCharacterChipSimulator" default="default" basedir="."
+<project name="TKoolCharacterChipSimulator" default="default" basedir="."
   xmlns:fx="javafx:com.sun.javafx.tools.ant">
 
   <!-- プロパティ --><!--{{{-->
@@ -11,7 +11,7 @@
   <property name="build.lib.dir" value="lib"/>
   <property name="build.classes.dir" value="classes"/>
   <property name="build.javadoc.dir" value="doc"/>
-  <property name="jar.name" value="mvccs.jar"/>
+  <property name="jar.name" value="tkccs.jar"/>
 
   <!--}}}-->
 
@@ -91,8 +91,6 @@
       classpath="${build.classes.dir}"
       classpathref="lib"
       >
-
-      <sysproperty key="app.preferences.id" value="MVCharacterChipSimulatorID"/>
 
     </java>
 

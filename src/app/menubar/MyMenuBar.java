@@ -111,10 +111,17 @@ public class MyMenuBar extends VBox {
   // FXMLイベント
   // ファイルメニュー
   @FXML private void openCharaChipMenuItemOnAction() {//{{{
+
     imagefileChooser.openFile().ifPresent(file -> {
+
+      TrimmingSelector ts = new TrimmingSelector(file);
+      ts.showAndWait();
+
       setDisables(false);
       mainController.drawWalkImage(file);
+
     });
+
   }//}}}
   @FXML private void openSideViewMenuItemOnAction() {//{{{
     imagefileChooser.openFile().ifPresent(file -> {

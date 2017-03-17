@@ -7,6 +7,8 @@ import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
 import app.standard.Standards;
 import util.AlertUtils;
+import util.PresetsUtils;
+
 import static util.Texts.*;
 
 import java.io.*;
@@ -47,7 +49,8 @@ public class MainController {
   @FXML private void initialize() {//{{{
 
     preferences.load();
-    mkInitDirs();
+    PresetsUtils.mkInitDirs();
+    PresetsUtils.mkInitPresets();
     myMenuBar.setMainController(this);
     walkStandard = WalkGraphicsStrategy.createStandard(WALK_PREST);
     sideViewStandard = SideViewStrategy.createStandard(SIDE_VIEW_PREST);
@@ -165,21 +168,6 @@ public class MainController {
     positionsFlowPane.switchViewerMode();
   }//}}}
 
-  void setConfigStageInstance() {//{{{
-    ConfigStage cs = new ConfigStage(positionsFlowPane, this);
-    configStageOpt = Optional.ofNullable(cs);
-    setConfigs();
-  }//}}}
-
-  void resizeConfigStage() {//{{{
-
-    configStageOpt
-      .ifPresent(c -> {
-        c.resize(positionsFlowPane);
-      });
-
-  }//}}}
-
   public void closeRequest() {//{{{
 
     configStageOpt.ifPresent(cs -> {
@@ -198,22 +186,24 @@ public class MainController {
 
   }//}}}
 
-  private Stage getStage() {//{{{
+  void setConfigStageInstance() {//{{{
+    ConfigStage cs = new ConfigStage(positionsFlowPane, this);
+    configStageOpt = Optional.ofNullable(cs);
+    setConfigs();
+  }//}}}
 
-    return (Stage) positionsFlowPane.getScene().getWindow();
+  void resizeConfigStage() {//{{{
+
+    configStageOpt
+      .ifPresent(c -> {
+        c.resize(positionsFlowPane);
+      });
 
   }//}}}
 
-  private void mkInitDirs() {//{{{
+  private Stage getStage() {//{{{
 
-    File propDir = new File(PROP_DIR);
-    propDir.mkdirs();
-
-    File walkPresetDir = new File(WALK_PREST_DIR);
-    walkPresetDir.mkdirs();
-
-    File sideViewPresetDir = new File(SIDE_VIEW_PREST_DIR);
-    sideViewPresetDir.mkdirs();
+    return (Stage) positionsFlowPane.getScene().getWindow();
 
   }//}}}
 

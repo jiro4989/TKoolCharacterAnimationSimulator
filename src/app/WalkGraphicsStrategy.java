@@ -5,13 +5,13 @@ import jiro.java.util.MyProperties;
 import app.MainController;
 import app.standard.Standards;
 
+import static util.Texts.*;
+
 import java.io.File;
 
 class WalkGraphicsStrategy implements DrawImageStrategy {
 
   private final MainController controller;
-
-  private static final String WIDTH = "48";
 
   WalkGraphicsStrategy(MainController controller) {//{{{
 
@@ -30,10 +30,10 @@ class WalkGraphicsStrategy implements DrawImageStrategy {
 
     MyProperties myProperties = new MyProperties(path);
     myProperties.load();
-    int width     = Integer . parseInt(myProperties . getProperty("chara.width")  . orElse(WIDTH));
-    int height    = Integer . parseInt(myProperties . getProperty("chara.height") . orElse(WIDTH));
-    int row       = Integer . parseInt(myProperties . getProperty("row")          . orElse("4"));
-    int column    = Integer . parseInt(myProperties . getProperty("column")       . orElse("3"));
+    int width     = Integer . parseInt(myProperties . getProperty(KEY_CHARA_WIDTH)  . orElse(WALK_PREST_DEFAULT_VALUE_CHARA_WIDTH));
+    int height    = Integer . parseInt(myProperties . getProperty(KEY_CHARA_HEIGHT) . orElse(WALK_PREST_DEFAULT_VALUE_CHARA_HEIGHT));
+    int row       = Integer . parseInt(myProperties . getProperty(KEY_ROW)          . orElse(WALK_PREST_DEFAULT_VALUE_ROW));
+    int column    = Integer . parseInt(myProperties . getProperty(KEY_COLUMN)       . orElse(WALK_PREST_DEFAULT_VALUE_COLUMN));
 
     Standards std = new Standards.Builder(width, height)
       .row(row) .column(column)

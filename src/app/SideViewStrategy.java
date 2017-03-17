@@ -5,6 +5,8 @@ import jiro.java.util.MyProperties;
 import app.MainController;
 import app.standard.Standards;
 
+import static util.Texts.*;
+
 import java.io.File;
 
 class SideViewStrategy implements DrawImageStrategy {
@@ -28,9 +30,9 @@ class SideViewStrategy implements DrawImageStrategy {
 
     MyProperties mp = new MyProperties(path);
     mp.load();
-    int row        = Integer . parseInt(mp . getProperty("row")          . orElse("6"));
-    int column     = Integer . parseInt(mp . getProperty("column")       . orElse("9"));
-    int frameCount = Integer . parseInt(mp . getProperty("frameCount")   . orElse("3"));
+    int row        = Integer . parseInt(mp . getProperty(KEY_ROW)         . orElse(SIDE_VIEW_PREST_DEFAULT_VALUE_ROW));
+    int column     = Integer . parseInt(mp . getProperty(KEY_COLUMN)      . orElse(SIDE_VIEW_PREST_DEFAULT_VALUE_COLUMN));
+    int frameCount = Integer . parseInt(mp . getProperty(KEY_FRAME_COUNT) . orElse(SIDE_VIEW_PREST_DEFAULT_VALUE_FRAME_COUNT));
 
     // サイドビューは歩行グラと規格が異なるため
     Standards std = new Standards.Builder(1, 1)

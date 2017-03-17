@@ -143,12 +143,12 @@ public class MyMenuBar extends VBox {
   }//}}}
   @FXML private void walkPresetMenuItemOnAction() {//{{{
     walkPresetFileChooser.openFile().ifPresent(file -> {
-
+      mainController.setWalkStandard(file);
     });
   }//}}}
   @FXML private void sideViewPresetMenuItemOnAction() {//{{{
     sideViewPresetFileChooser.openFile().ifPresent(file -> {
-
+      mainController.setSideViewStandard(file);
     });
   }//}}}
   @FXML private void preferencesMenuItemOnAction() {//{{{

@@ -7,7 +7,6 @@ import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
 import app.standard.Standards;
 import util.AlertUtils;
-import util.PresetsUtils;
 
 import static util.Texts.*;
 
@@ -49,11 +48,14 @@ public class MainController {
   @FXML private void initialize() {//{{{
 
     preferences.load();
-    PresetsUtils.mkInitDirs();
-    PresetsUtils.mkInitPresets();
     myMenuBar.setMainController(this);
-    walkStandard = WalkGraphicsStrategy.createStandard(WALK_PREST);
-    sideViewStandard = SideViewStrategy.createStandard(SIDE_VIEW_PREST);
+
+    // TODO 一時的な設定
+    String walk     = WALK_PREST;
+    String sideView = SIDE_VIEW_PREST;
+
+    walkStandard     = WalkGraphicsStrategy.createStandard(walk);
+    sideViewStandard = SideViewStrategy.createStandard(sideView);
 
   }//}}}
 
@@ -211,8 +213,8 @@ public class MainController {
 
     configStageOpt.ifPresent(cs -> {
 
-      String r = preferences.getProperty(KEY_ZOOM_RATE).orElse("100");
-      String d = preferences.getProperty(KEY_DURATION).orElse("200");
+      String r = preferences.getProperty(KEY_ZOOM_RATE).orElse(DEFAULT_VALUE_ZOOM_RATE);
+      String d = preferences.getProperty(KEY_DURATION).orElse(DEFAULT_VALUE_DURATION);
       double rate     = Double.parseDouble(r);
       double duration = Double.parseDouble(d);
 
@@ -239,6 +241,20 @@ public class MainController {
   public void setLanguages(String languages) {//{{{
 
     preferences.setProperty(KEY_LANGS, languages);
+
+  }//}}}
+
+  public void setWalkStandard(File file) {//{{{
+
+    String path = file.getPath();
+    walkStandard = WalkGraphicsStrategy.createStandard(path);
+
+  }//}}}
+
+  public void setSideViewStandard(File file) {//{{{
+
+    String path = file.getPath();
+    walkStandard = SideViewStrategy.createStandard(path);
 
   }//}}}
 

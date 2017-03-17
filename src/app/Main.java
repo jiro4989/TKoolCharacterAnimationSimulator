@@ -2,6 +2,8 @@ package app;
 
 import jiro.java.util.MyProperties;
 
+import util.PresetsUtils;
+
 import static util.Texts.*;
 
 import java.io.*;
@@ -23,6 +25,8 @@ public class Main extends Application {
   public void start(Stage primaryStage) {//{{{
 
     changeLanguages();
+    PresetsUtils.mkInitDirs();
+    PresetsUtils.mkInitPresets();
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
 

@@ -11,19 +11,54 @@
       <Menu fx:id="fileMenu" mnemonicParsing="false" text="%fileMenu">
         <items>
 
-          <MenuItem fx:id="openCharaChipMenuItem"          mnemonicParsing="false" text="%openCharaChipMenuItem" onAction="#openCharaChipMenuItemOnAction" />
-          <MenuItem fx:id="openSideViewMenuItem"           mnemonicParsing="false" text="%openSideViewMenuItem" onAction="#openSideViewMenuItemOnAction" />
+          <MenuItem fx:id="openCharaChipMenuItem" mnemonicParsing="false" text="%openCharaChipMenuItem" onAction="#openCharaChipMenuItemOnAction">
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="openSideViewMenuItem"           mnemonicParsing="false" text="%openSideViewMenuItem" onAction="#openSideViewMenuItemOnAction" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
           <Menu     fx:id="openWalkRecentMenu"             mnemonicParsing="false" text="%openWalkRecentMenu" />
           <Menu     fx:id="openSideViewRecentMenu"         mnemonicParsing="false" text="%openSideViewRecentMenu" />
+
           <SeparatorMenuItem                               mnemonicParsing="false" />
+
           <MenuItem fx:id="closeMenuItem"                  mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" disable="true"/>
+
           <SeparatorMenuItem                               mnemonicParsing="false" />
+
           <MenuItem fx:id="currentWalkPresetMenuItem"      mnemonicParsing="false" text="%currentWalkPresetMenuItem" />
           <MenuItem fx:id="currentSideViewPresetMenuItem"  mnemonicParsing="false" text="%currentSideViewPresetMenuItem" />
-          <MenuItem fx:id="walkPresetMenuItem"             mnemonicParsing="false" text="%walkPresetMenuItem" onAction="#walkPresetMenuItemOnAction" />
-          <MenuItem fx:id="sideViewPresetMenuItem"         mnemonicParsing="false" text="%sideViewPresetMenuItem" onAction="#sideViewPresetMenuItemOnAction" />
-          <MenuItem fx:id="editWalkPresetMenuItem"         mnemonicParsing="false" text="%editWalkPresetMenuItem" onAction="#editWalkPresetMenuItemOnAction" />
-          <MenuItem fx:id="editSideViewPresetMenuItem"     mnemonicParsing="false" text="%editSideViewPresetMenuItem" onAction="#editSideViewPresetMenuItemOnAction" />
+
+          <MenuItem fx:id="walkPresetMenuItem"             mnemonicParsing="false" text="%walkPresetMenuItem" onAction="#walkPresetMenuItemOnAction" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="sideViewPresetMenuItem"         mnemonicParsing="false" text="%sideViewPresetMenuItem" onAction="#sideViewPresetMenuItemOnAction" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="editWalkPresetMenuItem"         mnemonicParsing="false" text="%editWalkPresetMenuItem" onAction="#editWalkPresetMenuItemOnAction" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
+          <MenuItem fx:id="editSideViewPresetMenuItem"     mnemonicParsing="false" text="%editSideViewPresetMenuItem" onAction="#editSideViewPresetMenuItemOnAction" >
+            <accelerator>
+              <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+            </accelerator>
+          </MenuItem>
+
           <SeparatorMenuItem                               mnemonicParsing="false" />
           <MenuItem fx:id="preferencesMenuItem"            mnemonicParsing="false" text="%preferencesMenuItem" onAction="#preferencesMenuItemOnAction" />
           <SeparatorMenuItem                               mnemonicParsing="false" />

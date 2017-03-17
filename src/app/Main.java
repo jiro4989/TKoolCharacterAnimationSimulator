@@ -88,7 +88,7 @@ public class Main extends Application {
       controller.setSideViewStandard(new File(sideView));
 
       // 最近開いたファイルを更新
-      controller.setRecentFile();
+      controller.setRecentFiles();
 
       primaryStage.show();
 

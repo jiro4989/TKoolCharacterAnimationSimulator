@@ -41,7 +41,8 @@ public class MainController {
   private final MyProperties preferences = new MyProperties(PREFERENCES_FILE);
 
   // 最近開いたファイル
-  private final MyProperties log = new MyProperties(LOG_FILE);
+  private final MyProperties walkLog = new MyProperties(LOG_FILE_WALK);
+  private final MyProperties sideViewLog = new MyProperties(LOG_FILE_SIDE_VIEW);
 
   // FXMLコンポーネント//{{{
 
@@ -216,18 +217,10 @@ public class MainController {
   public void closeRequest() {//{{{
 
     // 最近開いた画像を保存
-    List<String> openedFiles = myMenuBar.getRecentOpenedFiles();
-    List<String> newList = OpenRecentFilesUtils.createContainsNullList(openedFiles);
-
-    range(0, OpenRecentFilesUtils.MAX).forEach(i -> {
-
-      String key = KEY_LOG + i;
-      String value = newList.get(i);
-      log.setProperty(key, value);
-
-    });
-
-    log.store();
+    List<String> openedWalkFiles     = myMenuBar.getRecentOpenedWalkFiles();
+    List<String> openedSideViewFiles = myMenuBar.getRecentOpenedSideViewFiles();
+    storeRecentFile(walkLog     , openedWalkFiles);
+    storeRecentFile(sideViewLog , openedSideViewFiles);
 
     configStageOpt.ifPresent(cs -> {
 
@@ -247,12 +240,31 @@ public class MainController {
 
   }//}}}
 
+  // package methods
+
   void resizeConfigStage() {//{{{
 
     configStageOpt
       .ifPresent(c -> {
         c.resize(positionsFlowPane);
       });
+
+  }//}}}
+
+  // private methods
+
+  private void storeRecentFile(MyProperties log, List<String> openedList) {//{{{
+
+    List<String> newList = OpenRecentFilesUtils.createContainsNullList(openedList);
+    range(0, OpenRecentFilesUtils.MAX).forEach(i -> {
+
+      String key = KEY_LOG + i;
+      String value = newList.get(i);
+      log.setProperty(key, value);
+
+    });
+
+    log.store();
 
   }//}}}
 
@@ -278,6 +290,26 @@ public class MainController {
 
   }//}}}
 
+  private List<String> createRecentListWith(MyProperties log) {//{{{
+
+    log.load();
+
+    String empty = OpenRecentFilesUtils.EMPTY;
+    int max      = OpenRecentFilesUtils.MAX;
+
+    List<String> list = new ArrayList<>(max);
+    for (int i=0; i<max; i++) {
+
+      String path = log.getProperty(KEY_LOG + i).orElse(empty);
+      if (path.equals(empty)) break;
+      list.add(path);
+
+    }
+
+    return list;
+
+  }//}}}
+
   // Getter
 
   public Standards getWalkStandards() { return walkStandard; }
@@ -300,6 +332,8 @@ public class MainController {
 
   public void setWalkStandard(File file) {//{{{
 
+    myMenuBar.setCurrentWalkPreset(file);
+
     String path = file.getPath();
     walkStandard = WalkGraphicsStrategy.createStandard(path);
 
@@ -311,6 +345,8 @@ public class MainController {
   }//}}}
 
   public void setSideViewStandard(File file) {//{{{
+
+    myMenuBar.setCurrentSideViewPreset(file);
 
     String path = file.getPath();
     sideViewStandard = SideViewStrategy.createStandard(path);
@@ -343,22 +379,13 @@ public class MainController {
 
   }//}}}
 
-  void setRecentFile() {//{{{
+  void setRecentFiles() {//{{{
 
-    log.load();
-    String empty = OpenRecentFilesUtils.EMPTY;
-    int max      = OpenRecentFilesUtils.MAX;
-    List<String> list = new ArrayList<>(max);
+    List<String> walkList = createRecentListWith(walkLog);
+    myMenuBar.setRecentWalkFilePaths(walkList);
 
-    for (int i=0; i<max; i++) {
-
-      String path = log.getProperty(KEY_LOG + i).orElse(empty);
-      if (path.equals(empty)) break;;
-      list.add(path);
-
-    }
-
-    myMenuBar.setRecentFilePaths(list);
+    List<String> sideViewList = createRecentListWith(sideViewLog);
+    myMenuBar.setRecentSideViewFilePaths(sideViewList);
 
   }//}}}
 

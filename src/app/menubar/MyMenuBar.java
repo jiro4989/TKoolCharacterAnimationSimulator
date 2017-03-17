@@ -36,8 +36,11 @@ public class MyMenuBar extends VBox {
   @FXML private Menu     fileMenu;
   @FXML private MenuItem openCharaChipMenuItem;
   @FXML private MenuItem openSideViewMenuItem;
-  @FXML private Menu     openRecentMenu;
+  @FXML private Menu     openWalkRecentMenu;
+  @FXML private Menu     openSideViewRecentMenu;
   @FXML private MenuItem closeMenuItem;
+  @FXML private MenuItem currentWalkPresetMenuItem;
+  @FXML private MenuItem currentSideViewPresetMenuItem;
   @FXML private MenuItem walkPresetMenuItem;
   @FXML private MenuItem sideViewPresetMenuItem;
   @FXML private MenuItem editWalkPresetMenuItem;
@@ -130,7 +133,7 @@ public class MyMenuBar extends VBox {
       mainController.drawWalkImage(file);
 
       String path = file.getPath();
-      openRecentMenu.getItems().add(new MenuItem(path));
+      openWalkRecentMenu.getItems().add(createMenuItemHasWalkAction(path));
 
     });
 
@@ -142,11 +145,17 @@ public class MyMenuBar extends VBox {
       mainController.drawSideViewImage(file);
 
       String path = file.getPath();
-      openRecentMenu.getItems().add(new MenuItem(path));
+      openSideViewRecentMenu.getItems().add(createMenuItemHasSideViewAction(path));
 
     });
   }//}}}
-  @FXML private void openRecentMenuItemOnAction() {//{{{
+  @FXML private void openWalkRecentMenuItemOnAction() {//{{{
+    imagefileChooser.openFile().ifPresent(file -> {
+      // FIXME NullPointerexception 
+      mainController.drawWalkImage(file);
+    });
+  }//}}}
+  @FXML private void openSideViewRecentMenuItemOnAction() {//{{{
     imagefileChooser.openFile().ifPresent(file -> {
       // FIXME NullPointerexception 
       mainController.drawWalkImage(file);
@@ -159,11 +168,13 @@ public class MyMenuBar extends VBox {
   @FXML private void walkPresetMenuItemOnAction() {//{{{
     walkPresetFileChooser.openFile().ifPresent(file -> {
       mainController.setWalkStandard(file);
+      setCurrentWalkPreset(file);
     });
   }//}}}
   @FXML private void sideViewPresetMenuItemOnAction() {//{{{
     sideViewPresetFileChooser.openFile().ifPresent(file -> {
       mainController.setSideViewStandard(file);
+      setCurrentSideViewPreset(file);
     });
   }//}}}
   @FXML private void editWalkPresetMenuItemOnAction() {//{{{
@@ -171,6 +182,7 @@ public class MyMenuBar extends VBox {
       PresetEditor editor = new PresetEditor(file);
       editor.showAndWait();
       mainController.setWalkStandard(file);
+      setCurrentWalkPreset(file);
     });
   }//}}}
   @FXML private void editSideViewPresetMenuItemOnAction() {//{{{
@@ -178,6 +190,7 @@ public class MyMenuBar extends VBox {
       SideViewEditor editor = new SideViewEditor(file);
       editor.showAndWait();
       mainController.setSideViewStandard(file);
+      setCurrentSideViewPreset(file);
     });
   }//}}}
   @FXML private void preferencesMenuItemOnAction() {//{{{
@@ -264,6 +277,14 @@ public class MyMenuBar extends VBox {
     closeMenuItem        . setDisable(disable);
 
   }//}}}
+  private void setPresetText(MenuItem item, String text) {//{{{
+
+    String current = item.getText();
+    String top = current.split(":")[0];
+    String newText = top + ": " + text;
+    item.setText(newText);
+
+  }//}}}
   private void changeSelectedFontMenuItem() {//{{{
     String defaultLanguage = Locale.getDefault().getLanguage();
     String ja = Locale.JAPAN.getLanguage();
@@ -273,21 +294,60 @@ public class MyMenuBar extends VBox {
     else
       usRadioMenuItem.setSelected(true);
   }//}}}
-  // Getter
-  public List<String> getRecentOpenedFiles() {//{{{
+  private MenuItem createMenuItemHasWalkAction(String path) {//{{{
 
-    return openRecentMenu.getItems().stream()
+    MenuItem item = new MenuItem(path);
+    item.setOnAction(e -> {
+
+      File file = new File(item.getText());
+
+      if (file.exists()) {
+
+        Standards std = mainController.getWalkStandards();
+        TrimmingSelector ts = new TrimmingSelector(file, std);
+        ts.showAndWait();
+
+        setDisables(false);
+        mainController.drawWalkImage(file);
+
+      }
+
+    });
+
+    return item;
+
+  }//}}}
+  private MenuItem createMenuItemHasSideViewAction(String path) {//{{{
+
+    MenuItem item = new MenuItem(path);
+    item.setOnAction(e -> {
+
+      setDisables(false);
+      File file = new File(item.getText());
+      if (file.exists())
+        mainController.drawSideViewImage(file);
+
+    });
+
+    return item;
+
+  }//}}}
+  // Getter
+  public List<String> getRecentOpenedWalkFiles() {//{{{
+
+    return openWalkRecentMenu.getItems().stream()
+      .map(item -> item.getText())
+      .collect(Collectors.toList());
+
+  }//}}}
+  public List<String> getRecentOpenedSideViewFiles() {//{{{
+
+    return openSideViewRecentMenu.getItems().stream()
       .map(item -> item.getText())
       .collect(Collectors.toList());
 
   }//}}}
   // Setter
-  public void setMainController(MainController aMain) {//{{{
-    mainController = aMain;
-  }//}}}
-  public void setAlwaysOnTop(boolean alwaysOnTop) {//{{{
-    alwaysOnTopMenuItem.setSelected(alwaysOnTop);
-  }//}}}
   public void setFontSizeOfMenuBar(String fontSize) {//{{{
 
     fontGroup.getToggles().stream()
@@ -296,14 +356,30 @@ public class MyMenuBar extends VBox {
       .forEach(t -> t.setSelected(true));
 
   }//}}}
-  public void setRecentFilePaths(List<String> paths) {//{{{
+  public void setRecentWalkFilePaths(List<String> paths) {//{{{
 
     paths.stream()
       .distinct()
-      .map(MenuItem::new)
+      .map(this::createMenuItemHasWalkAction)
       .forEach(item -> {
-        openRecentMenu.getItems().add(item);
+        openWalkRecentMenu.getItems().add(item);
       });
 
   }//}}}
+  public void setRecentSideViewFilePaths(List<String> paths) {//{{{
+
+    paths.stream()
+      .distinct()
+      .map(this::createMenuItemHasSideViewAction)
+      .forEach(item -> {
+        openSideViewRecentMenu.getItems().add(item);
+      });
+
+  }//}}}
+  public void setMainController(MainController aMain) { mainController = aMain;                                       }
+  public void setAlwaysOnTop(boolean alwaysOnTop)     { alwaysOnTopMenuItem.setSelected(alwaysOnTop);                 }
+  public void setCurrentWalkPreset(String text)       { setPresetText(currentWalkPresetMenuItem, text);               }
+  public void setCurrentWalkPreset(File file)         { setPresetText(currentWalkPresetMenuItem, file.getName());     }
+  public void setCurrentSideViewPreset(String text)   { setPresetText(currentSideViewPresetMenuItem, text);           }
+  public void setCurrentSideViewPreset(File file)     { setPresetText(currentSideViewPresetMenuItem, file.getName()); }
 }

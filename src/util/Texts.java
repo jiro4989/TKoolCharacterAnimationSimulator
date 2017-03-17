@@ -73,8 +73,9 @@ public class Texts {
 
   // log
 
-  public static final String LOG_DIR  = "./logs/" + JAR_NAME;
-  public static final String LOG_FILE = LOG_DIR + "/recent.xml";
-  public static final String KEY_LOG  = "log";
+  public static final String LOG_DIR            = "./logs/" + JAR_NAME;
+  public static final String LOG_FILE_WALK      = LOG_DIR + "/walk.xml";
+  public static final String LOG_FILE_SIDE_VIEW = LOG_DIR + "/side_view.xml";
+  public static final String KEY_LOG            = "log";
 
 }

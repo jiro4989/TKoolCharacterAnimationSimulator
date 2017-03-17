@@ -13,10 +13,13 @@
 
           <MenuItem fx:id="openCharaChipMenuItem"          mnemonicParsing="false" text="%openCharaChipMenuItem" onAction="#openCharaChipMenuItemOnAction" />
           <MenuItem fx:id="openSideViewMenuItem"           mnemonicParsing="false" text="%openSideViewMenuItem" onAction="#openSideViewMenuItemOnAction" />
-          <Menu     fx:id="openRecentMenu"                 mnemonicParsing="false" text="%openRecentMenu" onAction="#openRecentMenuItemOnAction"/>
+          <Menu     fx:id="openWalkRecentMenu"             mnemonicParsing="false" text="%openWalkRecentMenu" />
+          <Menu     fx:id="openSideViewRecentMenu"         mnemonicParsing="false" text="%openSideViewRecentMenu" />
           <SeparatorMenuItem                               mnemonicParsing="false" />
           <MenuItem fx:id="closeMenuItem"                  mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" disable="true"/>
           <SeparatorMenuItem                               mnemonicParsing="false" />
+          <MenuItem fx:id="currentWalkPresetMenuItem"      mnemonicParsing="false" text="%currentWalkPresetMenuItem" />
+          <MenuItem fx:id="currentSideViewPresetMenuItem"  mnemonicParsing="false" text="%currentSideViewPresetMenuItem" />
           <MenuItem fx:id="walkPresetMenuItem"             mnemonicParsing="false" text="%walkPresetMenuItem" onAction="#walkPresetMenuItemOnAction" />
           <MenuItem fx:id="sideViewPresetMenuItem"         mnemonicParsing="false" text="%sideViewPresetMenuItem" onAction="#sideViewPresetMenuItemOnAction" />
           <MenuItem fx:id="editWalkPresetMenuItem"         mnemonicParsing="false" text="%editWalkPresetMenuItem" onAction="#editWalkPresetMenuItemOnAction" />

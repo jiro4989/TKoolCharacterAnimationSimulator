@@ -251,6 +251,12 @@ public class MainController {
 
   }//}}}
 
+  void setFontSizeOfMenuBar(String fontSize) {//{{{
+
+    myMenuBar.setFontSizeOfMenuBar(fontSize);
+
+  }//}}}
+
   private Stage getStage() {//{{{
 
     return (Stage) positionsFlowPane.getScene().getWindow();
@@ -283,6 +289,7 @@ public class MainController {
 
     VBox root = (VBox) positionsFlowPane.getScene().lookup("#root");
     root.setStyle("-fx-font-size:" + fontSize + "pt;");
+    preferences.setProperty(KEY_FONT_SIZE, fontSize);
 
   }//}}}
 
@@ -297,6 +304,8 @@ public class MainController {
     String path = file.getPath();
     walkStandard = WalkGraphicsStrategy.createStandard(path);
 
+    preferences.setProperty(KEY_WALK_PRESET, path);
+
     if (fileObserver != null) fileObserver.stop();
     clearImages();
 
@@ -305,7 +314,9 @@ public class MainController {
   public void setSideViewStandard(File file) {//{{{
 
     String path = file.getPath();
-    walkStandard = SideViewStrategy.createStandard(path);
+    sideViewStandard = SideViewStrategy.createStandard(path);
+
+    preferences.setProperty(KEY_SIDE_VIEW_PRESET, path);
 
     if (fileObserver != null) fileObserver.stop();
     clearImages();

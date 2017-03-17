@@ -1,4 +1,4 @@
-package app.preset;
+package app.preset.sideview;
 
 import jiro.java.util.MyProperties;
 import jiro.javafx.stage.MyFileChooser;
@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 
-public class PresetEditorController {
+public class SideViewEditorController {
 
   private File presetFile;
   private MyFileChooser mfc = new MyFileChooser.Builder("Image Files", "*.png").build();
@@ -39,31 +39,11 @@ public class PresetEditorController {
   @FXML private TextField columnTextField;
   @FXML private Button    columnUpButton;
 
-  // 横幅
-  @FXML private Label     widthLabel;
-  @FXML private Button    widthDownButton;
-  @FXML private TextField widthTextField;
-  @FXML private Button    widthUpButton;
-
-  // 高さ
-  @FXML private Label     heightLabel;
-  @FXML private Button    heightDownButton;
-  @FXML private TextField heightTextField;
-  @FXML private Button    heightUpButton;
-
   // フレーム数
   @FXML private Label     frameCountLabel;
   @FXML private Button    frameCountDownButton;
   @FXML private TextField frameCountTextField;
   @FXML private Button    frameCountUpButton;
-
-  // 画像の横幅
-  @FXML private Label     imageWidthLabel;
-  @FXML private TextField imageWidthTextField;
-
-  // 画像の縦幅
-  @FXML private Label     imageHeightLabel;
-  @FXML private TextField imageHeightTextField;
 
   // プレビュー画像選択
   @FXML private Button    fileChooserButton;
@@ -91,35 +71,99 @@ public class PresetEditorController {
 
   //}}}
 
+  // initialize
+
   @FXML private void initialize() {//{{{
 
     // イベント登録//{{{
 
     rowUpButton        . setOnAction(e -> incrementValueOf(rowTextField        , 1));
     columnUpButton     . setOnAction(e -> incrementValueOf(columnTextField     , 1));
-    widthUpButton      . setOnAction(e -> incrementValueOf(widthTextField      , 1));
-    heightUpButton     . setOnAction(e -> incrementValueOf(heightTextField     , 1));
     frameCountUpButton . setOnAction(e -> incrementValueOf(frameCountTextField , 1));
 
     rowDownButton        . setOnAction(e -> incrementValueOf(rowTextField        , -1));
     columnDownButton     . setOnAction(e -> incrementValueOf(columnTextField     , -1));
-    widthDownButton      . setOnAction(e -> incrementValueOf(widthTextField      , -1));
-    heightDownButton     . setOnAction(e -> incrementValueOf(heightTextField     , -1));
     frameCountDownButton . setOnAction(e -> incrementValueOf(frameCountTextField , -1));
 
     customizeTextField(rowTextField);
     customizeTextField(columnTextField);
-    customizeTextField(widthTextField, 1, 1000);
-    customizeTextField(heightTextField, 1, 1000);
     customizeTextField(frameCountTextField);
 
     //}}}
 
     changeGridCells();
-    setImageWidth();
-    setImageHeight();
 
   }//}}}
+
+  // event methods
+
+  @FXML private void okButtonOnAction() {//{{{
+
+    closeRequest();
+    cancelButton.getScene().getWindow().hide();
+    storePreset();
+
+  }//}}}
+
+  @FXML private void cancelButtonOnAction() {//{{{
+
+    closeRequest();
+    cancelButton.getScene().getWindow().hide();
+
+  }//}}}
+
+  @FXML private void fileChooserButtonOnAction() {//{{{
+
+    mfc.openFile().ifPresent(file -> {
+
+      setPreviewImage(file);
+      changeGridCells();
+
+    });
+
+  }//}}}
+
+  // package methods
+
+  void closeRequest() {//{{{
+
+    MyProperties mp = new MyProperties(PROP_DIR + "/preset_editor.fxml");
+    mp.setProperty(okButton);
+    mp.store();
+
+  }//}}}
+
+  void setPresetFile(File file) {//{{{
+
+    presetFile = file;
+
+    MyProperties mp = new MyProperties(presetFile);
+    if (mp.load()) {
+
+      rowTextField        . setText ( mp . getProperty ( KEY_ROW         ) . orElse ( WALK_PREST_DEFAULT_VALUE_ROW          ) ) ;
+      columnTextField     . setText ( mp . getProperty ( KEY_COLUMN      ) . orElse ( WALK_PREST_DEFAULT_VALUE_COLUMN       ) ) ;
+      frameCountTextField . setText ( mp . getProperty ( KEY_FRAME_COUNT ) . orElse ( WALK_PREST_DEFAULT_VALUE_FRAME_COUNT  ) ) ;
+
+    }
+
+  }//}}}
+
+  void setPreviewImage(File file) {//{{{
+
+    Image image = new Image("file:" + file.getPath());
+    int width  = (int) image.getWidth();
+    int height = (int) image.getHeight();
+    imageView.setFitWidth(width);
+    imageView.setFitHeight(height);
+    imageView.setImage(image);
+
+    imageFileTextField.setText(file.getName());
+    previewImageWidthTextField  . setText("" + width);
+    previewImageHeightTextField . setText("" + height);
+
+  }//}}}
+
+  // private methods
 
   private void customizeTextField(TextField textField, int min, int max) {//{{{
 
@@ -129,20 +173,14 @@ public class PresetEditorController {
 
       String r = rowTextField    . getText();
       String c = columnTextField . getText();
-      String w = widthTextField  . getText();
-      String h = heightTextField . getText();
 
       if (
              !Objects.equals("", r)
           && !Objects.equals("", c)
-          && !Objects.equals("", w)
-          && !Objects.equals("", h)
          )
       {
 
         changeGridCells();
-        setImageWidth();
-        setImageHeight();
 
       }
 
@@ -166,10 +204,10 @@ public class PresetEditorController {
     AnchorPane.setTopAnchor(gridPane, 0.0);
     AnchorPane.setLeftAnchor(gridPane, 0.0);
 
-    int row    = Integer   . parseInt(rowTextField    . getText());
-    int column = Integer   . parseInt(columnTextField . getText());
-    int width   = Integer  . parseInt(widthTextField  . getText());
-    int height   = Integer . parseInt(heightTextField . getText());
+    int row    = Integer . parseInt(rowTextField    . getText());
+    int column = Integer . parseInt(columnTextField . getText());
+    int width  = (int) (imageView.getFitWidth() / column);
+    int height = (int) (imageView.getFitHeight() / row);
 
     IntStream.range(0, row).forEach(r -> {
 
@@ -195,24 +233,6 @@ public class PresetEditorController {
 
   }//}}}
 
-  private void setImageWidth() {//{{{
-
-    int column = Integer.parseInt(columnTextField.getText());
-    int size   = Integer.parseInt(widthTextField.getText());
-    int value = column * size;
-    imageWidthTextField.setText("" + value);
-
-  }//}}}
-
-  private void setImageHeight() {//{{{
-
-    int row  = Integer.parseInt(rowTextField.getText());
-    int size = Integer.parseInt(heightTextField.getText());
-    int value = row * size;
-    imageHeightTextField.setText("" +  value);
-
-  }//}}}
-
   private void incrementValueOf(TextField textField, int gain) {//{{{
     String text = textField.getText();
     int value = Integer.parseInt(text);
@@ -227,86 +247,20 @@ public class PresetEditorController {
     return pane;
   }//}}}
 
-  void closeRequest() {//{{{
-
-    MyProperties mp = new MyProperties(PROP_DIR + "/preset_editor.fxml");
-    mp.setProperty(okButton);
-    mp.store();
-
-  }//}}}
-
   private void storePreset() {//{{{
 
     MyProperties preset = new MyProperties(presetFile);
 
     preset . setProperty(KEY_ROW          , rowTextField        . getText());
     preset . setProperty(KEY_COLUMN       , columnTextField     . getText());
-    preset . setProperty(KEY_CHARA_WIDTH  , widthTextField      . getText());
-    preset . setProperty(KEY_CHARA_HEIGHT , heightTextField     . getText());
 
     int column     = Integer.parseInt(columnTextField.getText());
     int frameCount = Integer.parseInt(frameCountTextField.getText());
-    if (column < frameCount) frameCount = column;
+    if (column < frameCount)      frameCount = column;
+    if (column % frameCount != 0) frameCount = column / frameCount;
     preset . setProperty(KEY_FRAME_COUNT  , "" + frameCount);
 
     preset.store();
-
-  }//}}}
-
-  void setPresetFile(File file) {//{{{
-
-    presetFile = file;
-
-    MyProperties mp = new MyProperties(presetFile);
-    if (mp.load()) {
-
-      rowTextField        . setText ( mp . getProperty ( KEY_ROW         ) . orElse ( WALK_PREST_DEFAULT_VALUE_ROW          ) ) ;
-      columnTextField     . setText ( mp . getProperty ( KEY_COLUMN      ) . orElse ( WALK_PREST_DEFAULT_VALUE_COLUMN       ) ) ;
-      widthTextField      . setText ( mp . getProperty ( KEY_CHARA_WIDTH ) . orElse ( WALK_PREST_DEFAULT_VALUE_CHARA_WIDTH  ) ) ;
-      heightTextField     . setText ( mp . getProperty ( KEY_CHARA_HEIGHT) . orElse ( WALK_PREST_DEFAULT_VALUE_CHARA_HEIGHT ) ) ;
-      frameCountTextField . setText ( mp . getProperty ( KEY_FRAME_COUNT ) . orElse ( WALK_PREST_DEFAULT_VALUE_FRAME_COUNT  ) ) ;
-
-    }
-
-  }//}}}
-
-  @FXML private void fileChooserButtonOnAction() {//{{{
-
-    mfc.openFile().ifPresent(file -> {
-
-      setPreviewImage(file);
-
-    });
-
-  }//}}}
-
-  void setPreviewImage(File file) {//{{{
-
-    Image image = new Image("file:" + file.getPath());
-    int width  = (int) image.getWidth();
-    int height = (int) image.getHeight();
-    imageView.setFitWidth(width);
-    imageView.setFitHeight(height);
-    imageView.setImage(image);
-
-    imageFileTextField.setText(file.getName());
-    previewImageWidthTextField  . setText("" + width);
-    previewImageHeightTextField . setText("" + height);
-
-  }//}}}
-
-  @FXML private void okButtonOnAction() {//{{{
-
-    closeRequest();
-    cancelButton.getScene().getWindow().hide();
-    storePreset();
-
-  }//}}}
-
-  @FXML private void cancelButtonOnAction() {//{{{
-
-    closeRequest();
-    cancelButton.getScene().getWindow().hide();
 
   }//}}}
 

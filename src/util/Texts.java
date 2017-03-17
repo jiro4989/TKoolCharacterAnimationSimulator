@@ -22,14 +22,18 @@ public class Texts {
   public static final String PROP_DIR          = "./properties/" + JAR_NAME;
   public static final String PREFERENCES_FILE  = PROP_DIR + "/preferences.xml";
 
-  public static final String KEY_LANGS         = "languages";
-  public static final String KEY_ALWAYS_ON_TOP = "alwaysOnTop";
-  public static final String KEY_ZOOM_RATE     = "zoomRate";
-  public static final String KEY_DURATION      = "duration";
+  public static final String KEY_LANGS            = "languages";
+  public static final String KEY_ALWAYS_ON_TOP    = "alwaysOnTop";
+  public static final String KEY_ZOOM_RATE        = "zoomRate";
+  public static final String KEY_DURATION         = "duration";
+  public static final String KEY_FONT_SIZE        = "fontSize";
+  public static final String KEY_WALK_PRESET      = "walkPreset";
+  public static final String KEY_SIDE_VIEW_PRESET = "sideViewPreset";
 
   public static final String DEFAULT_VALUE_ALWAYS_ON_TOP = "false";
   public static final String DEFAULT_VALUE_ZOOM_RATE     = "100";
   public static final String DEFAULT_VALUE_DURATION      = "200";
+  public static final String DEFAULT_VALUE_FONT_SIZE     = "11";
 
   //}}}
 

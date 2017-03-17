@@ -73,6 +73,20 @@ public class Main extends Application {
 
       controller.setConfigStageInstance();
       controller.setInitAlwaysOnTop();
+
+      // フォントサイズの変更
+      final MyProperties preferences = new MyProperties(PREFERENCES_FILE);
+      preferences.load();
+      String fontSize = preferences.getProperty(KEY_FONT_SIZE).orElse(DEFAULT_VALUE_FONT_SIZE);
+      controller.setFontSize(fontSize);
+      controller.setFontSizeOfMenuBar(fontSize);
+
+      // プリセットの変更
+      String walk     = preferences.getProperty(KEY_WALK_PRESET).orElse(WALK_PREST);
+      String sideView = preferences.getProperty(KEY_SIDE_VIEW_PRESET).orElse(SIDE_VIEW_PREST);
+      controller.setWalkStandard(new File(walk));
+      controller.setSideViewStandard(new File(sideView));
+
       primaryStage.show();
 
     } catch (IOException e) {

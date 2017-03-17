@@ -57,6 +57,9 @@
 
 #rowTextField:hover,
 #columnTextField:hover,
+#widthTextField:hover,
+#heightTextField:hover,
+#frameCountTextField:hover,
 #sizeTextField:hover {
   -fx-background-color: -fx-cell-focus-inner-border, -fx-selection-bar  ;
   -fx-text-fill: white;

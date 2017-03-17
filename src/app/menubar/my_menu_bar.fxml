@@ -10,19 +10,23 @@
 
       <Menu fx:id="fileMenu" mnemonicParsing="false" text="%fileMenu">
         <items>
-          <MenuItem fx:id="openCharaChipMenuItem" mnemonicParsing="false" text="%openCharaChipMenuItem" onAction="#openCharaChipMenuItemOnAction" />
-          <MenuItem fx:id="openSideViewMenuItem" mnemonicParsing="false" text="%openSideViewMenuItem" onAction="#openSideViewMenuItemOnAction" />
-          <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="%openRecentMenu" onAction="#openRecentMenuItemOnAction"/>
-          <SeparatorMenuItem mnemonicParsing="false" />
-          <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" disable="true"/>
-          <SeparatorMenuItem mnemonicParsing="false" />
-          <MenuItem fx:id="walkPresetMenuItem" mnemonicParsing="false" text="%walkPresetMenuItem" onAction="#walkPresetMenuItemOnAction" />
-          <MenuItem fx:id="sideViewPresetMenuItem" mnemonicParsing="false" text="%sideViewPresetMenuItem" onAction="#sideViewPresetMenuItemOnAction" />
-          <SeparatorMenuItem mnemonicParsing="false" />
-          <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" text="%preferencesMenuItem" onAction="#preferencesMenuItemOnAction" />
-          <SeparatorMenuItem mnemonicParsing="false" />
-          <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="%quitMenuItem" onAction="#quitMenuItemOnAction" />
-          <MenuItem fx:id="forcedTerminateMenuItem" mnemonicParsing="false" text="%forcedTerminateMenuItem" onAction="#forcedTerminateMenuItemOnAction"/>
+
+          <MenuItem fx:id="openCharaChipMenuItem"          mnemonicParsing="false" text="%openCharaChipMenuItem" onAction="#openCharaChipMenuItemOnAction" />
+          <MenuItem fx:id="openSideViewMenuItem"           mnemonicParsing="false" text="%openSideViewMenuItem" onAction="#openSideViewMenuItemOnAction" />
+          <Menu     fx:id="openRecentMenu"                 mnemonicParsing="false" text="%openRecentMenu" onAction="#openRecentMenuItemOnAction"/>
+          <SeparatorMenuItem                               mnemonicParsing="false" />
+          <MenuItem fx:id="closeMenuItem"                  mnemonicParsing="false" text="%closeMenuItem" onAction="#closeMenuItemOnAction" disable="true"/>
+          <SeparatorMenuItem                               mnemonicParsing="false" />
+          <MenuItem fx:id="walkPresetMenuItem"             mnemonicParsing="false" text="%walkPresetMenuItem" onAction="#walkPresetMenuItemOnAction" />
+          <MenuItem fx:id="sideViewPresetMenuItem"         mnemonicParsing="false" text="%sideViewPresetMenuItem" onAction="#sideViewPresetMenuItemOnAction" />
+          <MenuItem fx:id="editWalkPresetMenuItem"         mnemonicParsing="false" text="%editWalkPresetMenuItem" onAction="#editWalkPresetMenuItemOnAction" />
+          <MenuItem fx:id="editSideViewPresetMenuItem"     mnemonicParsing="false" text="%editSideViewPresetMenuItem" onAction="#editSideViewPresetMenuItemOnAction" />
+          <SeparatorMenuItem                               mnemonicParsing="false" />
+          <MenuItem fx:id="preferencesMenuItem"            mnemonicParsing="false" text="%preferencesMenuItem" onAction="#preferencesMenuItemOnAction" />
+          <SeparatorMenuItem                               mnemonicParsing="false" />
+          <MenuItem fx:id="quitMenuItem"                   mnemonicParsing="false" text="%quitMenuItem" onAction="#quitMenuItemOnAction" />
+          <MenuItem fx:id="forcedTerminateMenuItem"        mnemonicParsing="false" text="%forcedTerminateMenuItem" onAction="#forcedTerminateMenuItemOnAction"/>
+
         </items>
       </Menu>
 

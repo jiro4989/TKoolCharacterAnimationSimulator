@@ -4,9 +4,12 @@ import jiro.javafx.stage.MyFileChooser;
 import jiro.javafx.stage.AboutStage;
 
 import app.MainController;
+import app.preset.PresetEditor;
+import app.preset.sideview.SideViewEditor;
 import app.standard.Standards;
-import util.ResourceBundleWithUtf8;
 import util.DialogUtils;
+import util.ResourceBundleWithUtf8;
+
 import static util.Texts.*;
 
 import java.io.IOException;
@@ -35,6 +38,8 @@ public class MyMenuBar extends VBox {
   @FXML private MenuItem closeMenuItem;
   @FXML private MenuItem walkPresetMenuItem;
   @FXML private MenuItem sideViewPresetMenuItem;
+  @FXML private MenuItem editWalkPresetMenuItem;
+  @FXML private MenuItem editSideViewPresetMenuItem;
   @FXML private MenuItem preferencesMenuItem;
   @FXML private MenuItem quitMenuItem;
   @FXML private MenuItem forcedTerminateMenuItem;
@@ -151,6 +156,20 @@ public class MyMenuBar extends VBox {
       mainController.setSideViewStandard(file);
     });
   }//}}}
+  @FXML private void editWalkPresetMenuItemOnAction() {//{{{
+    walkPresetFileChooser.saveFile().ifPresent(file -> {
+      PresetEditor editor = new PresetEditor(file);
+      editor.showAndWait();
+      mainController.setWalkStandard(file);
+    });
+  }//}}}
+  @FXML private void editSideViewPresetMenuItemOnAction() {//{{{
+    sideViewPresetFileChooser.saveFile().ifPresent(file -> {
+      SideViewEditor editor = new SideViewEditor(file);
+      editor.showAndWait();
+      mainController.setSideViewStandard(file);
+    });
+  }//}}}
   @FXML private void preferencesMenuItemOnAction() {//{{{
     mainController.showConfigStage();
   }//}}}
@@ -250,5 +269,13 @@ public class MyMenuBar extends VBox {
   }//}}}
   public void setAlwaysOnTop(boolean alwaysOnTop) {//{{{
     alwaysOnTopMenuItem.setSelected(alwaysOnTop);
+  }//}}}
+  public void setFontSizeOfMenuBar(String fontSize) {//{{{
+
+    fontGroup.getToggles().stream()
+      .map(t -> (RadioMenuItem) t)
+      .filter(t -> t.getText().equals(fontSize))
+      .forEach(t -> t.setSelected(true));
+
   }//}}}
 }

@@ -265,18 +265,6 @@ public class MyMenuBar extends VBox {
     String fontSize = rmi.getText();
     mainController.setFontSize(fontSize);
   }//}}}
-  private void setDisables(boolean disable) {//{{{
-
-    onlyMenuItem         . setDisable(disable);
-    previousMenuItem     . setDisable(disable);
-    nextMenuItem         . setDisable(disable);
-    zoomDownMenuItem     . setDisable(disable);
-    zoomUpMenuItem       . setDisable(disable);
-    durationDownMenuItem . setDisable(disable);
-    durationUpMenuItem   . setDisable(disable);
-    closeMenuItem        . setDisable(disable);
-
-  }//}}}
   private void setPresetText(MenuItem item, String text) {//{{{
 
     String current = item.getText();
@@ -382,4 +370,16 @@ public class MyMenuBar extends VBox {
   public void setCurrentWalkPreset(File file)         { setPresetText(currentWalkPresetMenuItem, file.getName());     }
   public void setCurrentSideViewPreset(String text)   { setPresetText(currentSideViewPresetMenuItem, text);           }
   public void setCurrentSideViewPreset(File file)     { setPresetText(currentSideViewPresetMenuItem, file.getName()); }
+  public void setDisables(boolean disable) {//{{{
+
+    onlyMenuItem         . setDisable(disable);
+    previousMenuItem     . setDisable(disable);
+    nextMenuItem         . setDisable(disable);
+    zoomDownMenuItem     . setDisable(disable);
+    zoomUpMenuItem       . setDisable(disable);
+    durationDownMenuItem . setDisable(disable);
+    durationUpMenuItem   . setDisable(disable);
+    closeMenuItem        . setDisable(disable);
+
+  }//}}}
 }

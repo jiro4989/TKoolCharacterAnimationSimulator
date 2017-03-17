@@ -5,6 +5,7 @@ import jiro.java.util.MyProperties;
 import app.config.ConfigStage;
 import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
+import app.menubar.TrimmingSelector;
 import app.standard.Standards;
 import util.DialogUtils;
 import util.OpenRecentFilesUtils;
@@ -90,10 +91,17 @@ public class MainController {
         .filter(f -> p.matcher(f.getName()).matches())
         .forEach(file -> {
 
+          myMenuBar.setDisables(false);
+
           String result = DialogUtils.showChoiseDialog();
           if (result.equals("w")) {
+
+            TrimmingSelector ts = new TrimmingSelector(file, walkStandard);
+            ts.showAndWait();
+
             drawWalkImage(file);
             return;
+
           }
           drawSideViewImage(file);
 

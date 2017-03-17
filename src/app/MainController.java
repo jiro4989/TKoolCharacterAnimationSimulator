@@ -181,6 +181,8 @@ public class MainController {
 
     });
 
+    boolean alwaysOnTop = getStage().isAlwaysOnTop();
+    preferences.setProperty(KEY_ALWAYS_ON_TOP, "" + alwaysOnTop);
     preferences.store();
 
     Main.mainMp.setProperty(myMenuBar);
@@ -200,6 +202,15 @@ public class MainController {
       .ifPresent(c -> {
         c.resize(positionsFlowPane);
       });
+
+  }//}}}
+
+  void setInitAlwaysOnTop() {//{{{
+
+    String a = preferences.getProperty(KEY_ALWAYS_ON_TOP).orElse("false");
+    boolean alwaysOnTop = Boolean.valueOf(a);
+    getStage().setAlwaysOnTop(alwaysOnTop);
+    myMenuBar.setAlwaysOnTop(alwaysOnTop);
 
   }//}}}
 
@@ -249,12 +260,18 @@ public class MainController {
     String path = file.getPath();
     walkStandard = WalkGraphicsStrategy.createStandard(path);
 
+    if (fileObserver != null) fileObserver.stop();
+    clearImages();
+
   }//}}}
 
   public void setSideViewStandard(File file) {//{{{
 
     String path = file.getPath();
     walkStandard = SideViewStrategy.createStandard(path);
+
+    if (fileObserver != null) fileObserver.stop();
+    clearImages();
 
   }//}}}
 

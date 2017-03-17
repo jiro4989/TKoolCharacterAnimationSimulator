@@ -248,4 +248,7 @@ public class MyMenuBar extends VBox {
   public void setMainController(MainController aMain) {//{{{
     mainController = aMain;
   }//}}}
+  public void setAlwaysOnTop(boolean alwaysOnTop) {//{{{
+    alwaysOnTopMenuItem.setSelected(alwaysOnTop);
+  }//}}}
 }

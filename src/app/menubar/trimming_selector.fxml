@@ -22,7 +22,7 @@
   <children>
     <AnchorPane>
       <children>
-        <TitledPane fx:id="titledPane" animated="false" collapsible="false" text="Trimming Range" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TitledPane fx:id="titledPane" animated="false" collapsible="false" text="%titledPane.title" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <content>
             <AnchorPane>
               <children>
@@ -76,8 +76,8 @@
     </AnchorPane>
     <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.rowIndex="1">
       <children>
-        <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="OK" onAction="#okButtonOnAction" />
-        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="CANCEL" onAction="#cancelButtonOnAction"/>
+        <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="%okButton" onAction="#okButtonOnAction" />
+        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="%cancelButton" onAction="#cancelButtonOnAction"/>
       </children>
     </HBox>
   </children>

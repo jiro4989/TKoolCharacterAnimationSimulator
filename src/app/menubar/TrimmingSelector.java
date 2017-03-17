@@ -1,9 +1,13 @@
 package app.menubar;
 
 import app.standard.Standards;
+import util.ResourceBundleWithUtf8;
 import static util.Texts.*;
 
 import java.io.*;
+import java.util.ResourceBundle;
+import java.util.Locale;
+import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
@@ -13,7 +17,13 @@ class TrimmingSelector extends Stage {
 
   TrimmingSelector(File file, Standards std) {//{{{
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("trimming_selector.fxml"));
+    URL location = getClass().getResource("trimming_selector.fxml");
+    ResourceBundle resources = ResourceBundle.getBundle(
+        "app.menubar.dict"
+        , Locale.getDefault()
+        , ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL
+        );
+    FXMLLoader loader = new FXMLLoader(location, resources);
 
     try {
 
@@ -25,6 +35,7 @@ class TrimmingSelector extends Stage {
 
       initStyle(StageStyle.UTILITY);
       initModality(Modality.APPLICATION_MODAL);
+      setTitle(resources.getString("selector.title"));
       sizeToScene();
 
       controller.setImage(file);

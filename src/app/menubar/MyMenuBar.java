@@ -348,6 +348,7 @@ public class MyMenuBar extends VBox {
 
     paths.stream()
       .distinct()
+      .filter(p -> new File(p).exists())
       .map(this::createMenuItemHasWalkAction)
       .forEach(item -> {
         openWalkRecentMenu.getItems().add(item);
@@ -358,6 +359,7 @@ public class MyMenuBar extends VBox {
 
     paths.stream()
       .distinct()
+      .filter(p -> new File(p).exists())
       .map(this::createMenuItemHasSideViewAction)
       .forEach(item -> {
         openSideViewRecentMenu.getItems().add(item);
@@ -381,5 +383,13 @@ public class MyMenuBar extends VBox {
     durationUpMenuItem   . setDisable(disable);
     closeMenuItem        . setDisable(disable);
 
+  }//}}}
+  public void addRecentWalkFile(File file) {//{{{
+    MenuItem item = createMenuItemHasWalkAction(file.getPath());
+    openWalkRecentMenu.getItems().add(item);
+  }//}}}
+  public void addRecentSideViewFile(File file) {//{{{
+    MenuItem item = createMenuItemHasSideViewAction(file.getPath());
+    openSideViewRecentMenu.getItems().add(item);
   }//}}}
 }

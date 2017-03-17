@@ -100,10 +100,12 @@ public class MainController {
             ts.showAndWait();
 
             drawWalkImage(file);
+            myMenuBar.addRecentWalkFile(file);
             return;
 
           }
           drawSideViewImage(file);
+          myMenuBar.addRecentSideViewFile(file);
 
         });
 

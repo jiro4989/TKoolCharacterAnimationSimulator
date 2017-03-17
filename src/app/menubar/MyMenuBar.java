@@ -6,7 +6,7 @@ import jiro.javafx.stage.AboutStage;
 import app.MainController;
 import app.standard.Standards;
 import util.ResourceBundleWithUtf8;
-import util.AlertUtils;
+import util.DialogUtils;
 import static util.Texts.*;
 
 import java.io.IOException;
@@ -159,7 +159,7 @@ public class MyMenuBar extends VBox {
     Platform.exit();
   }//}}}
   @FXML private void forcedTerminateMenuItemOnAction() {//{{{
-    AlertUtils.showForcedTerminationAlert();
+    DialogUtils.showForcedTerminationDialog();
   }//}}}
   // 表示メニュー
   @FXML private void alwaysOnTopMenuItemOnAction() {//{{{
@@ -195,14 +195,14 @@ public class MyMenuBar extends VBox {
   // 言語メニュー
   @FXML private void jpRadioMenuItemOnAction() {//{{{
 
-    AlertUtils.showLanguageAlert();
+    DialogUtils.showLanguageDialog();
     String langs = Locale.JAPAN.getLanguage();
     mainController.setLanguages(langs);
 
   }//}}}
   @FXML private void usRadioMenuItemOnAction() {//{{{
 
-    AlertUtils.showLanguageAlert();
+    DialogUtils.showLanguageDialog();
     String langs = Locale.ENGLISH.getLanguage();
     mainController.setLanguages(langs);
 

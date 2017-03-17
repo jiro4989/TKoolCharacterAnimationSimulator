@@ -6,12 +6,13 @@ import app.config.ConfigStage;
 import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
 import app.standard.Standards;
-import util.AlertUtils;
+import util.DialogUtils;
 
 import static util.Texts.*;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 import javafx.fxml.FXML;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
@@ -56,6 +57,42 @@ public class MainController {
 
     walkStandard     = WalkGraphicsStrategy.createStandard(walk);
     sideViewStandard = SideViewStrategy.createStandard(sideView);
+
+  }//}}}
+
+  // イベントメソッド
+
+  @FXML private void rootOnDragOver(DragEvent e) {//{{{
+
+    Dragboard board = e.getDragboard();
+    if (board.hasFiles()) {
+
+      e.acceptTransferModes(TransferMode.COPY);
+
+    }
+
+  }//}}}
+
+  @FXML private void rootOnDragDropped(DragEvent e) {//{{{
+
+    Dragboard board = e.getDragboard();
+    if (board.hasFiles()) {
+
+      Pattern p = Pattern.compile("^.*\\.((?i)png)");
+      board.getFiles().stream()
+        .filter(f -> p.matcher(f.getName()).matches())
+        .forEach(file -> {
+
+          String result = DialogUtils.showChoiseDialog();
+          if (result.equals("w")) {
+            drawWalkImage(file);
+            return;
+          }
+          drawSideViewImage(file);
+
+        });
+
+    }
 
   }//}}}
 

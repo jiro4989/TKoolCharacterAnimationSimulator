@@ -46,6 +46,7 @@ public class MainController {
 
   @FXML private void initialize() {//{{{
 
+    preferences.load();
     mkInitDirs();
     myMenuBar.setMainController(this);
     walkStandard = WalkGraphicsStrategy.createStandard(WALK_PREST);
@@ -181,6 +182,15 @@ public class MainController {
 
   public void closeRequest() {//{{{
 
+    configStageOpt.ifPresent(cs -> {
+
+      double rate     = cs.getZoomRate();
+      double duration = cs.getDuration();
+      preferences.setProperty(KEY_ZOOM_RATE, "" + rate);
+      preferences.setProperty(KEY_DURATION, "" + duration);
+
+    });
+
     preferences.store();
 
     Main.mainMp.setProperty(myMenuBar);
@@ -209,12 +219,12 @@ public class MainController {
 
   private void setConfigs() {//{{{
 
-    String r = preferences.getProperty(KEY_ZOOM_RATE).orElse("100");
-    String d = preferences.getProperty(KEY_DURATION).orElse("200");
-    double rate     = Double.parseDouble(r);
-    double duration = Double.parseDouble(d);
-
     configStageOpt.ifPresent(cs -> {
+
+      String r = preferences.getProperty(KEY_ZOOM_RATE).orElse("100");
+      String d = preferences.getProperty(KEY_DURATION).orElse("200");
+      double rate     = Double.parseDouble(r);
+      double duration = Double.parseDouble(d);
 
       cs.setZoomRate(rate);
       cs.setDuration(duration);

@@ -125,6 +125,11 @@ public class ConfigStageController {
     s.setValue(value);
 
   }//}}}
+  
+  // Getter
+
+  public double getZoomRate() { return zoomRateSlider.getValue(); }
+  public double getDuration() { return animationSpeedSlider.getValue(); }
 
   // Setter
 

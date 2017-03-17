@@ -46,7 +46,7 @@ public class ConfigStage extends Stage {
       resize(stage);
 
       setScene(scene);
-      setTitle("表示設定");
+      setTitle(resources.getString("title"));
 
       initStyle(StageStyle.UTILITY);
       initOwner(stage);
@@ -84,6 +84,11 @@ public class ConfigStage extends Stage {
   public void durationUp()                  { controller.durationUp()          ; }
   public void zoomDown()                    { controller.zoomDown()            ; }
   public void zoomUp()                      { controller.zoomUp()              ; }
+
+  // Getter
+
+  public double getZoomRate() { return controller.getZoomRate(); }
+  public double getDuration() { return controller.getDuration(); }
 
   // Setter
 

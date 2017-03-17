@@ -12,10 +12,12 @@ import util.ResourceBundleWithUtf8;
 
 import static util.Texts.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 import javafx.application.Platform;
+import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -127,13 +129,21 @@ public class MyMenuBar extends VBox {
       setDisables(false);
       mainController.drawWalkImage(file);
 
+      String path = file.getPath();
+      openRecentMenu.getItems().add(new MenuItem(path));
+
     });
 
   }//}}}
   @FXML private void openSideViewMenuItemOnAction() {//{{{
     imagefileChooser.openFile().ifPresent(file -> {
+
       setDisables(false);
       mainController.drawSideViewImage(file);
+
+      String path = file.getPath();
+      openRecentMenu.getItems().add(new MenuItem(path));
+
     });
   }//}}}
   @FXML private void openRecentMenuItemOnAction() {//{{{
@@ -263,6 +273,14 @@ public class MyMenuBar extends VBox {
     else
       usRadioMenuItem.setSelected(true);
   }//}}}
+  // Getter
+  public List<String> getRecentOpenedFiles() {//{{{
+
+    return openRecentMenu.getItems().stream()
+      .map(item -> item.getText())
+      .collect(Collectors.toList());
+
+  }//}}}
   // Setter
   public void setMainController(MainController aMain) {//{{{
     mainController = aMain;
@@ -276,6 +294,16 @@ public class MyMenuBar extends VBox {
       .map(t -> (RadioMenuItem) t)
       .filter(t -> t.getText().equals(fontSize))
       .forEach(t -> t.setSelected(true));
+
+  }//}}}
+  public void setRecentFilePaths(List<String> paths) {//{{{
+
+    paths.stream()
+      .distinct()
+      .map(MenuItem::new)
+      .forEach(item -> {
+        openRecentMenu.getItems().add(item);
+      });
 
   }//}}}
 }

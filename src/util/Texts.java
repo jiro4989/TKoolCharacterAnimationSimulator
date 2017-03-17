@@ -37,7 +37,7 @@ public class Texts {
 
   //}}}
 
-  // presets
+  // presets//{{{
 
   public static final String KEY_ROW          = "row";
   public static final String KEY_COLUMN       = "column";
@@ -68,5 +68,13 @@ public class Texts {
   public static final String VXACE_WALK_PREST_DEFAULT_VALUE_FRAME_COUNT  = "3";
 
   //}}}
+
+  //}}}
+
+  // log
+
+  public static final String LOG_DIR  = "./logs/" + JAR_NAME;
+  public static final String LOG_FILE = LOG_DIR + "/recent.xml";
+  public static final String KEY_LOG  = "log";
 
 }

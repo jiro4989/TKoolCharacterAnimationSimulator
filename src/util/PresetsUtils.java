@@ -18,6 +18,9 @@ public class PresetsUtils {
     File sideViewPresetDir = new File(SIDE_VIEW_PREST_DIR);
     sideViewPresetDir.mkdirs();
 
+    File logDir = new File(LOG_DIR);
+    logDir.mkdirs();
+
   }//}}}
 
   public static void mkInitPresets() {//{{{

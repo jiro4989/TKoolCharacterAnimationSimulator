@@ -7,6 +7,7 @@ import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
 import app.standard.Standards;
 import util.DialogUtils;
+import util.OpenRecentFilesUtils;
 
 import static util.Texts.*;
 
@@ -18,6 +19,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import static java.util.stream.IntStream.range;
 
 public class MainController {
 
@@ -36,6 +39,9 @@ public class MainController {
 
   // 設定ファイル
   private final MyProperties preferences = new MyProperties(PREFERENCES_FILE);
+
+  // 最近開いたファイル
+  private final MyProperties log = new MyProperties(LOG_FILE);
 
   // FXMLコンポーネント//{{{
 
@@ -209,6 +215,20 @@ public class MainController {
 
   public void closeRequest() {//{{{
 
+    // 最近開いた画像を保存
+    List<String> openedFiles = myMenuBar.getRecentOpenedFiles();
+    List<String> newList = OpenRecentFilesUtils.createContainsNullList(openedFiles);
+
+    range(0, OpenRecentFilesUtils.MAX).forEach(i -> {
+
+      String key = KEY_LOG + i;
+      String value = newList.get(i);
+      log.setProperty(key, value);
+
+    });
+
+    log.store();
+
     configStageOpt.ifPresent(cs -> {
 
       double rate     = cs.getZoomRate();
@@ -227,33 +247,12 @@ public class MainController {
 
   }//}}}
 
-  void setConfigStageInstance() {//{{{
-    ConfigStage cs = new ConfigStage(positionsFlowPane, this);
-    configStageOpt = Optional.ofNullable(cs);
-    setConfigs();
-  }//}}}
-
   void resizeConfigStage() {//{{{
 
     configStageOpt
       .ifPresent(c -> {
         c.resize(positionsFlowPane);
       });
-
-  }//}}}
-
-  void setInitAlwaysOnTop() {//{{{
-
-    String a = preferences.getProperty(KEY_ALWAYS_ON_TOP).orElse("false");
-    boolean alwaysOnTop = Boolean.valueOf(a);
-    getStage().setAlwaysOnTop(alwaysOnTop);
-    myMenuBar.setAlwaysOnTop(alwaysOnTop);
-
-  }//}}}
-
-  void setFontSizeOfMenuBar(String fontSize) {//{{{
-
-    myMenuBar.setFontSizeOfMenuBar(fontSize);
 
   }//}}}
 
@@ -320,6 +319,46 @@ public class MainController {
 
     if (fileObserver != null) fileObserver.stop();
     clearImages();
+
+  }//}}}
+
+  void setConfigStageInstance() {//{{{
+    ConfigStage cs = new ConfigStage(positionsFlowPane, this);
+    configStageOpt = Optional.ofNullable(cs);
+    setConfigs();
+  }//}}}
+
+  void setInitAlwaysOnTop() {//{{{
+
+    String a = preferences.getProperty(KEY_ALWAYS_ON_TOP).orElse("false");
+    boolean alwaysOnTop = Boolean.valueOf(a);
+    getStage().setAlwaysOnTop(alwaysOnTop);
+    myMenuBar.setAlwaysOnTop(alwaysOnTop);
+
+  }//}}}
+
+  void setFontSizeOfMenuBar(String fontSize) {//{{{
+
+    myMenuBar.setFontSizeOfMenuBar(fontSize);
+
+  }//}}}
+
+  void setRecentFile() {//{{{
+
+    log.load();
+    String empty = OpenRecentFilesUtils.EMPTY;
+    int max      = OpenRecentFilesUtils.MAX;
+    List<String> list = new ArrayList<>(max);
+
+    for (int i=0; i<max; i++) {
+
+      String path = log.getProperty(KEY_LOG + i).orElse(empty);
+      if (path.equals(empty)) break;;
+      list.add(path);
+
+    }
+
+    myMenuBar.setRecentFilePaths(list);
 
   }//}}}
 

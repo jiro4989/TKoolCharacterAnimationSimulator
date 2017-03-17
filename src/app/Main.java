@@ -87,6 +87,9 @@ public class Main extends Application {
       controller.setWalkStandard(new File(walk));
       controller.setSideViewStandard(new File(sideView));
 
+      // 最近開いたファイルを更新
+      controller.setRecentFile();
+
       primaryStage.show();
 
     } catch (IOException e) {

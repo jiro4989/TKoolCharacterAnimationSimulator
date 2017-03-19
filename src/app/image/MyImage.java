@@ -169,7 +169,7 @@ public class MyImage {
       int[] pixels       = new int[bldWidth * bldHeight];
       reader.getPixels(x, y, bldWidth, bldHeight, FORMAT, pixels, 0, bldWidth);
 
-      WritableImage wImage = new WritableImage(bldWidth, bldWidth);
+      WritableImage wImage = new WritableImage(bldWidth, bldHeight);
       PixelWriter writer = wImage.getPixelWriter();
       writer.setPixels(0, 0, bldWidth, bldHeight, FORMAT, pixels, 0, bldWidth);
 

@@ -5,7 +5,7 @@ public class Texts {
   private static final String JAR_NAME = "tkcas";
 
   public static final String TITLE               = "TKool Character Animation Simulator";
-  public static final String VERSION             = "ver 1.0.0";
+  public static final String VERSION             = "ver 1.0.1";
   public static final String TITLE_VERSION       = TITLE + " - " + VERSION;
 
   public static final String BASIC_CSS           = "/app/res/css/basic.css";

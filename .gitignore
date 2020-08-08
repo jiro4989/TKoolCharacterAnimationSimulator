@@ -15,3 +15,5 @@ build
 /lib/
 /jmods/
 /jre/
+/logs/
+/properties/

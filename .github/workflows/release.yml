@@ -36,7 +36,7 @@ jobs:
       - name: Test
         run: xvfb-run ./gradlew test
 
-  build:
+  build-artifact:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

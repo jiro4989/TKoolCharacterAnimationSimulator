@@ -1,5 +1,5 @@
 # ビルド、テスト、リリースを行う
-name: build
+name: test
 
 on:
   push:

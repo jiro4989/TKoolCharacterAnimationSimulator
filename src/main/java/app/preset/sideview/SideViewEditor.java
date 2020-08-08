@@ -1,33 +1,31 @@
 package app.preset.sideview;
 
-import jiro.java.util.MyProperties;
-
-import util.ResourceBundleWithUtf8;
 import static util.Texts.*;
 
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.*;
+import jiro.java.util.MyProperties;
+import util.ResourceBundleWithUtf8;
 
 public class SideViewEditor extends Stage {
 
   private SideViewEditorController controller;
 
-  public SideViewEditor(File presetFile, File previewFile) {//{{{
+  public SideViewEditor(File presetFile, File previewFile) { // {{{
 
     URL location = getClass().getResource("sideview_editor.fxml");
-    ResourceBundle resources = ResourceBundle.getBundle(
-        "app.preset.sideview.dict"
-        , Locale.getDefault()
-        , ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL
-        );
+    ResourceBundle resources =
+        ResourceBundle.getBundle(
+            "app.preset.sideview.dict",
+            Locale.getDefault(),
+            ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
     FXMLLoader loader = new FXMLLoader(location, resources);
 
     try {
@@ -46,7 +44,10 @@ public class SideViewEditor extends Stage {
       setTitle(resources.getString("title"));
       initStyle(StageStyle.UTILITY);
       initModality(Modality.APPLICATION_MODAL);
-      setOnCloseRequest(e -> { controller.closeRequest(); });
+      setOnCloseRequest(
+          e -> {
+            controller.closeRequest();
+          });
 
       MyProperties mp = new MyProperties(PROP_DIR + "/preset_editor.xml");
       if (mp.load()) mp.customStage(this);
@@ -57,13 +58,10 @@ public class SideViewEditor extends Stage {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  } // }}}
 
-  }//}}}
-
-  public SideViewEditor(File presetFile) {//{{{
+  public SideViewEditor(File presetFile) { // {{{
 
     this(presetFile, null);
-
-  }//}}}
-
+  } // }}}
 }

@@ -1,7 +1,6 @@
 package app.menubar;
 
 import app.standard.Standards;
-
 import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -28,128 +27,116 @@ public class TrimmingSelectorController {
   @FXML private Button okButton;
   @FXML private Button cancelButton;
 
-  //}}}
+  // }}}
 
   // 初期化
 
-  @FXML private void initialize() {//{{{
-  }//}}}
+  @FXML
+  private void initialize() { // {{{
+  } // }}}
 
   // イベントメソッド
 
-  @FXML private void imageViewOnMouseMoved(MouseEvent e) {//{{{
+  @FXML
+  private void imageViewOnMouseMoved(MouseEvent e) { // {{{
 
     int x = (int) e.getX();
     int y = (int) e.getY();
     int gridX = x / blockWidth * blockWidth;
     int gridY = y / blockHeight * blockHeight;
 
-    int imgWidth  = (int) imageView.getFitWidth();
+    int imgWidth = (int) imageView.getFitWidth();
     int imgHeight = (int) imageView.getFitHeight();
 
-    if (   (gridX + blockWidth)  <= imgWidth
-        && (gridY + blockHeight) <= imgHeight
-       )
-    {
+    if ((gridX + blockWidth) <= imgWidth && (gridY + blockHeight) <= imgHeight) {
 
       focusGridPane.setLayoutX(gridX);
       focusGridPane.setLayoutY(gridY);
-
     }
+  } // }}}
 
-  }//}}}
-
-  @FXML private void selectedGridPaneOnMouseMoved(MouseEvent e) {//{{{
+  @FXML
+  private void selectedGridPaneOnMouseMoved(MouseEvent e) { // {{{
 
     int x = (int) (e.getX() + selectedGridPane.getLayoutX());
     int y = (int) (e.getY() + selectedGridPane.getLayoutY());
     int gridX = x / blockWidth * blockWidth;
     int gridY = y / blockHeight * blockHeight;
 
-    int imgWidth  = (int) imageView.getFitWidth();
+    int imgWidth = (int) imageView.getFitWidth();
     int imgHeight = (int) imageView.getFitHeight();
 
-    if (   (gridX + blockWidth)  <= imgWidth
-        && (gridY + blockHeight) <= imgHeight
-       )
-    {
+    if ((gridX + blockWidth) <= imgWidth && (gridY + blockHeight) <= imgHeight) {
 
       focusGridPane.setLayoutX(gridX);
       focusGridPane.setLayoutY(gridY);
-
     }
+  } // }}}
 
-  }//}}}
-
-  @FXML private void selectedGridPaneOnMouseClicked(MouseEvent e) {//{{{
+  @FXML
+  private void selectedGridPaneOnMouseClicked(MouseEvent e) { // {{{
 
     if (2 <= e.getClickCount()) {
 
       okButtonOnAction();
-
     }
+  } // }}}
 
-  }//}}}
-
-  @FXML private void focusGridPaneOnMouseClicked(MouseEvent e) {//{{{
+  @FXML
+  private void focusGridPaneOnMouseClicked(MouseEvent e) { // {{{
 
     int x = (int) focusGridPane.getLayoutX();
     int y = (int) focusGridPane.getLayoutY();
 
     selectedGridPane.setLayoutX(x);
     selectedGridPane.setLayoutY(y);
+  } // }}}
 
-  }//}}}
-
-  @FXML private void okButtonOnAction() {//{{{
+  @FXML
+  private void okButtonOnAction() { // {{{
 
     baseX = (int) selectedGridPane.getLayoutX();
     baseY = (int) selectedGridPane.getLayoutY();
     getStage().hide();
+  } // }}}
 
-  }//}}}
-
-  @FXML private void cancelButtonOnAction() {//{{{
+  @FXML
+  private void cancelButtonOnAction() { // {{{
 
     getStage().hide();
+  } // }}}
 
-  }//}}}
-
-  private Stage getStage() {//{{{
+  private Stage getStage() { // {{{
 
     return (Stage) okButton.getScene().getWindow();
-
-  }//}}}
+  } // }}}
 
   // Setter
 
-  void setImage(File file) {//{{{
+  void setImage(File file) { // {{{
 
-    Image image   = new Image("file:" + file.getPath());
-    double width  = image.getWidth();
+    Image image = new Image("file:" + file.getPath());
+    double width = image.getWidth();
     double height = image.getHeight();
 
     imageView.setImage(image);
     imageView.setFitWidth(width);
     imageView.setFitHeight(height);
+  } // }}}
 
-  }//}}}
+  void setStandards(Standards std) { // {{{
 
-  void setStandards(Standards std) {//{{{
-
-    int width  = std.width;
+    int width = std.width;
     int height = std.height;
-    int row    = std.row;
+    int row = std.row;
     int column = std.column;
 
-    blockWidth  = width * column;
+    blockWidth = width * column;
     blockHeight = height * row;
 
     selectedGridPane.setPrefWidth(width * column);
     selectedGridPane.setPrefHeight(height * row);
     focusGridPane.setPrefWidth(width * column);
     focusGridPane.setPrefHeight(height * row);
-
-  }//}}}
-
+  } // }}}
 }

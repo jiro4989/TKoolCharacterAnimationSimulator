@@ -10,27 +10,30 @@ class FileObserver {
   private Timeline timeline;
   private ModifiedTime mt;
 
-  FileObserver(int duration, File file, MainController controller) {//{{{
+  FileObserver(int duration, File file, MainController controller) { // {{{
 
     mt = new ModifiedTime(file);
 
-    timeline = new Timeline(new KeyFrame(Duration.millis(duration), e -> {
-      long time = file.lastModified();
-      if (mt.isChanged(time)) {
-        controller.updateImages(file);
-      }
-    }));
+    timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(duration),
+                e -> {
+                  long time = file.lastModified();
+                  if (mt.isChanged(time)) {
+                    controller.updateImages(file);
+                  }
+                }));
 
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
+  } // }}}
 
-  }//}}}
-
-  void stop() {//{{{
+  void stop() { // {{{
     timeline.stop();
-  }//}}}
+  } // }}}
 
-  class ModifiedTime {//{{{
+  class ModifiedTime { // {{{
 
     private long time;
 
@@ -43,7 +46,5 @@ class FileObserver {
       if (changed) time = t;
       return changed;
     }
-
-  }//}}}
-
+  } // }}}
 }

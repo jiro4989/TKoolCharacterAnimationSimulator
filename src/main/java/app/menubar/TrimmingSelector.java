@@ -1,28 +1,26 @@
 package app.menubar;
 
-import app.standard.Standards;
-import util.ResourceBundleWithUtf8;
 import static util.Texts.*;
 
+import app.standard.Standards;
 import java.io.*;
-import java.util.ResourceBundle;
-import java.util.Locale;
 import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.*;
+import util.ResourceBundleWithUtf8;
 
 public class TrimmingSelector extends Stage {
 
-  public TrimmingSelector(File file, Standards std) {//{{{
+  public TrimmingSelector(File file, Standards std) { // {{{
 
     URL location = getClass().getResource("trimming_selector.fxml");
-    ResourceBundle resources = ResourceBundle.getBundle(
-        "app.menubar.dict"
-        , Locale.getDefault()
-        , ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL
-        );
+    ResourceBundle resources =
+        ResourceBundle.getBundle(
+            "app.menubar.dict", Locale.getDefault(), ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
     FXMLLoader loader = new FXMLLoader(location, resources);
 
     try {
@@ -44,7 +42,5 @@ public class TrimmingSelector extends Stage {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-  }//}}}
-
+  } // }}}
 }

@@ -1,17 +1,13 @@
 package app;
 
-import jiro.java.util.MyProperties;
+import static java.util.stream.IntStream.range;
+import static util.Texts.*;
 
 import app.config.ConfigStage;
 import app.layout.PositionsFlowPane;
 import app.menubar.MyMenuBar;
 import app.menubar.TrimmingSelector;
 import app.standard.Standards;
-import util.DialogUtils;
-import util.OpenRecentFilesUtils;
-
-import static util.Texts.*;
-
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -19,9 +15,9 @@ import javafx.fxml.FXML;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import static java.util.stream.IntStream.range;
+import jiro.java.util.MyProperties;
+import util.DialogUtils;
+import util.OpenRecentFilesUtils;
 
 public class MainController {
 
@@ -50,196 +46,188 @@ public class MainController {
   @FXML private MyMenuBar myMenuBar;
   @FXML private PositionsFlowPane positionsFlowPane;
 
-  //}}}
+  // }}}
 
   // 初期化
 
-  @FXML private void initialize() {//{{{
+  @FXML
+  private void initialize() { // {{{
 
     preferences.load();
     myMenuBar.setMainController(this);
 
     // TODO 一時的な設定
-    String walk     = WALK_PREST;
+    String walk = WALK_PREST;
     String sideView = SIDE_VIEW_PREST;
 
-    walkStandard     = WalkGraphicsStrategy.createStandard(walk);
+    walkStandard = WalkGraphicsStrategy.createStandard(walk);
     sideViewStandard = SideViewStrategy.createStandard(sideView);
-
-  }//}}}
+  } // }}}
 
   // イベントメソッド
 
-  @FXML private void rootOnDragOver(DragEvent e) {//{{{
+  @FXML
+  private void rootOnDragOver(DragEvent e) { // {{{
 
     Dragboard board = e.getDragboard();
     if (board.hasFiles()) {
 
       e.acceptTransferModes(TransferMode.COPY);
-
     }
+  } // }}}
 
-  }//}}}
-
-  @FXML private void rootOnDragDropped(DragEvent e) {//{{{
+  @FXML
+  private void rootOnDragDropped(DragEvent e) { // {{{
 
     Dragboard board = e.getDragboard();
     if (board.hasFiles()) {
 
       Pattern p = Pattern.compile("^.*\\.((?i)png)");
-      board.getFiles().stream()
-        .filter(f -> p.matcher(f.getName()).matches())
-        .forEach(file -> {
+      board
+          .getFiles()
+          .stream()
+          .filter(f -> p.matcher(f.getName()).matches())
+          .forEach(
+              file -> {
+                myMenuBar.setDisables(false);
 
-          myMenuBar.setDisables(false);
+                String result = DialogUtils.showChoiseDialog();
+                if (result.equals("w")) {
 
-          String result = DialogUtils.showChoiseDialog();
-          if (result.equals("w")) {
+                  TrimmingSelector ts = new TrimmingSelector(file, walkStandard);
+                  ts.showAndWait();
 
-            TrimmingSelector ts = new TrimmingSelector(file, walkStandard);
-            ts.showAndWait();
-
-            drawWalkImage(file);
-            myMenuBar.addRecentWalkFile(file);
-            return;
-
-          }
-          drawSideViewImage(file);
-          myMenuBar.addRecentSideViewFile(file);
-
-        });
-
+                  drawWalkImage(file);
+                  myMenuBar.addRecentWalkFile(file);
+                  return;
+                }
+                drawSideViewImage(file);
+                myMenuBar.addRecentSideViewFile(file);
+              });
     }
-
-  }//}}}
+  } // }}}
 
   // メソッド
 
-  public void updateImages(File file) {//{{{
+  public void updateImages(File file) { // {{{
     strategy.drawImage(file);
-  }//}}}
+  } // }}}
 
-  public void drawWalkImage(File file) {//{{{
+  public void drawWalkImage(File file) { // {{{
 
     if (fileObserver != null) fileObserver.stop();
 
     fileObserver = new FileObserver(200, file, this);
-    strategy     = new WalkGraphicsStrategy(this);
+    strategy = new WalkGraphicsStrategy(this);
 
     positionsFlowPane.drawWalkImage(file.getPath(), walkStandard);
 
-    configStageOpt.ifPresent(cs -> {
-      cs.applyZoomRate();
-      cs.applyAnimationSpeed();
-    });
+    configStageOpt.ifPresent(
+        cs -> {
+          cs.applyZoomRate();
+          cs.applyAnimationSpeed();
+        });
+  } // }}}
 
-  }//}}}
-
-  public void drawSideViewImage(File file) {//{{{
+  public void drawSideViewImage(File file) { // {{{
 
     if (fileObserver != null) fileObserver.stop();
 
     fileObserver = new FileObserver(200, file, this);
-    strategy     = new SideViewStrategy(this);
+    strategy = new SideViewStrategy(this);
 
     positionsFlowPane.drawSideViewImage(file.getPath(), sideViewStandard);
 
-    configStageOpt.ifPresent(cs -> {
-      cs.applyZoomRate();
-      cs.applyAnimationSpeed();
-    });
+    configStageOpt.ifPresent(
+        cs -> {
+          cs.applyZoomRate();
+          cs.applyAnimationSpeed();
+        });
+  } // }}}
 
-  }//}}}
-
-  public void clearImages() {//{{{
+  public void clearImages() { // {{{
     positionsFlowPane.clearImages();
-  }//}}}
+  } // }}}
 
-  public void showConfigStage() {//{{{
+  public void showConfigStage() { // {{{
 
-    configStageOpt.ifPresent(c -> {
-      if (c.isShowing())
-        c.hide();
-      else
-        c.show();
-      getStage().requestFocus();
-    });
+    configStageOpt.ifPresent(
+        c -> {
+          if (c.isShowing()) c.hide();
+          else c.show();
+          getStage().requestFocus();
+        });
+  } // }}}
 
-  }//}}}
-
-  public void updateZoomRate(double zoom) {//{{{
+  public void updateZoomRate(double zoom) { // {{{
 
     positionsFlowPane.updateZoomRate(zoom);
+  } // }}}
 
-  }//}}}
+  public void updateZoomRate(ScrollEvent e) { // {{{
 
-  public void updateZoomRate(ScrollEvent e) {//{{{
+    configStageOpt.ifPresent(
+        cs -> {
+          cs.changeZoomRate(e);
+        });
+  } // }}}
 
-    configStageOpt.ifPresent(cs -> {
-      cs.changeZoomRate(e);
-    });
-
-  }//}}}
-
-  public void updateAnimationSpeed(int duration) {//{{{
+  public void updateAnimationSpeed(int duration) { // {{{
 
     positionsFlowPane.updateAnimationSpeed(duration);
+  } // }}}
 
-  }//}}}
-
-  public void changeAlwaysOnTop() {//{{{
+  public void changeAlwaysOnTop() { // {{{
 
     Stage stage = getStage();
     boolean alwaysOnTop = getStage().isAlwaysOnTop();
     stage.setAlwaysOnTop(!alwaysOnTop);
     preferences.setProperty(KEY_ALWAYS_ON_TOP, "" + alwaysOnTop);
+  } // }}}
 
-  }//}}}
-
-  public void showPreviousImage() {//{{{
+  public void showPreviousImage() { // {{{
     positionsFlowPane.showPreviousImage();
-  }//}}}
+  } // }}}
 
-  public void showNextImage() {//{{{
+  public void showNextImage() { // {{{
     positionsFlowPane.showNextImage();
-  }//}}}
+  } // }}}
 
-  public void zoomDownImages() {//{{{
+  public void zoomDownImages() { // {{{
     configStageOpt.ifPresent(cs -> cs.zoomDown());
-  }//}}}
+  } // }}}
 
-  public void zoomUpImages() {//{{{
+  public void zoomUpImages() { // {{{
     configStageOpt.ifPresent(cs -> cs.zoomUp());
-  }//}}}
+  } // }}}
 
-  public void durationDown() {//{{{
+  public void durationDown() { // {{{
     configStageOpt.ifPresent(cs -> cs.durationDown());
-  }//}}}
+  } // }}}
 
-  public void durationUp() {//{{{
+  public void durationUp() { // {{{
     configStageOpt.ifPresent(cs -> cs.durationUp());
-  }//}}}
+  } // }}}
 
-  public void showOneImage() {//{{{
+  public void showOneImage() { // {{{
     positionsFlowPane.switchViewerMode();
-  }//}}}
+  } // }}}
 
-  public void closeRequest() {//{{{
+  public void closeRequest() { // {{{
 
     // 最近開いた画像を保存
-    List<String> openedWalkFiles     = myMenuBar.getRecentOpenedWalkFiles();
+    List<String> openedWalkFiles = myMenuBar.getRecentOpenedWalkFiles();
     List<String> openedSideViewFiles = myMenuBar.getRecentOpenedSideViewFiles();
-    storeRecentFile(walkLog     , openedWalkFiles);
-    storeRecentFile(sideViewLog , openedSideViewFiles);
+    storeRecentFile(walkLog, openedWalkFiles);
+    storeRecentFile(sideViewLog, openedSideViewFiles);
 
-    configStageOpt.ifPresent(cs -> {
-
-      double rate     = cs.getZoomRate();
-      double duration = cs.getDuration();
-      preferences.setProperty(KEY_ZOOM_RATE, "" + rate);
-      preferences.setProperty(KEY_DURATION, "" + duration);
-
-    });
+    configStageOpt.ifPresent(
+        cs -> {
+          double rate = cs.getZoomRate();
+          double duration = cs.getDuration();
+          preferences.setProperty(KEY_ZOOM_RATE, "" + rate);
+          preferences.setProperty(KEY_DURATION, "" + duration);
+        });
 
     boolean alwaysOnTop = getStage().isAlwaysOnTop();
     preferences.setProperty(KEY_ALWAYS_ON_TOP, "" + alwaysOnTop);
@@ -247,100 +235,92 @@ public class MainController {
 
     Main.mainMp.setProperty(myMenuBar);
     Main.mainMp.store();
-
-  }//}}}
+  } // }}}
 
   // package methods
 
-  void resizeConfigStage() {//{{{
+  void resizeConfigStage() { // {{{
 
-    configStageOpt
-      .ifPresent(c -> {
-        c.resize(positionsFlowPane);
-      });
-
-  }//}}}
+    configStageOpt.ifPresent(
+        c -> {
+          c.resize(positionsFlowPane);
+        });
+  } // }}}
 
   // private methods
 
-  private void storeRecentFile(MyProperties log, List<String> openedList) {//{{{
+  private void storeRecentFile(MyProperties log, List<String> openedList) { // {{{
 
     List<String> newList = OpenRecentFilesUtils.createContainsNullList(openedList);
-    range(0, OpenRecentFilesUtils.MAX).forEach(i -> {
-
-      String key = KEY_LOG + i;
-      String value = newList.get(i);
-      log.setProperty(key, value);
-
-    });
+    range(0, OpenRecentFilesUtils.MAX)
+        .forEach(
+            i -> {
+              String key = KEY_LOG + i;
+              String value = newList.get(i);
+              log.setProperty(key, value);
+            });
 
     log.store();
+  } // }}}
 
-  }//}}}
-
-  private Stage getStage() {//{{{
+  private Stage getStage() { // {{{
 
     return (Stage) positionsFlowPane.getScene().getWindow();
+  } // }}}
 
-  }//}}}
+  private void setConfigs() { // {{{
 
-  private void setConfigs() {//{{{
+    configStageOpt.ifPresent(
+        cs -> {
+          String r = preferences.getProperty(KEY_ZOOM_RATE).orElse(DEFAULT_VALUE_ZOOM_RATE);
+          String d = preferences.getProperty(KEY_DURATION).orElse(DEFAULT_VALUE_DURATION);
+          double rate = Double.parseDouble(r);
+          double duration = Double.parseDouble(d);
 
-    configStageOpt.ifPresent(cs -> {
+          cs.setZoomRate(rate);
+          cs.setDuration(duration);
+        });
+  } // }}}
 
-      String r = preferences.getProperty(KEY_ZOOM_RATE).orElse(DEFAULT_VALUE_ZOOM_RATE);
-      String d = preferences.getProperty(KEY_DURATION).orElse(DEFAULT_VALUE_DURATION);
-      double rate     = Double.parseDouble(r);
-      double duration = Double.parseDouble(d);
-
-      cs.setZoomRate(rate);
-      cs.setDuration(duration);
-
-    });
-
-  }//}}}
-
-  private List<String> createRecentListWith(MyProperties log) {//{{{
+  private List<String> createRecentListWith(MyProperties log) { // {{{
 
     log.load();
 
     String empty = OpenRecentFilesUtils.EMPTY;
-    int max      = OpenRecentFilesUtils.MAX;
+    int max = OpenRecentFilesUtils.MAX;
 
     List<String> list = new ArrayList<>(max);
-    for (int i=0; i<max; i++) {
+    for (int i = 0; i < max; i++) {
 
       String path = log.getProperty(KEY_LOG + i).orElse(empty);
       if (path.equals(empty)) break;
       list.add(path);
-
     }
 
     return list;
-
-  }//}}}
+  } // }}}
 
   // Getter
 
-  public Standards getWalkStandards() { return walkStandard; }
+  public Standards getWalkStandards() {
+    return walkStandard;
+  }
 
   // Setter
 
-  public void setFontSize(String fontSize) {//{{{
+  public void setFontSize(String fontSize) { // {{{
 
     VBox root = (VBox) positionsFlowPane.getScene().lookup("#root");
     root.setStyle("-fx-font-size:" + fontSize + "pt;");
     preferences.setProperty(KEY_FONT_SIZE, fontSize);
+  } // }}}
 
-  }//}}}
-
-  public void setLanguages(String languages) {//{{{
+  public void setLanguages(String languages) { // {{{
 
     preferences.setProperty(KEY_LANGS, languages);
+  } // }}}
 
-  }//}}}
-
-  public void setWalkStandard(File file) {//{{{
+  public void setWalkStandard(File file) { // {{{
 
     myMenuBar.setCurrentWalkPreset(file);
 
@@ -351,10 +331,9 @@ public class MainController {
 
     if (fileObserver != null) fileObserver.stop();
     clearImages();
+  } // }}}
 
-  }//}}}
-
-  public void setSideViewStandard(File file) {//{{{
+  public void setSideViewStandard(File file) { // {{{
 
     myMenuBar.setCurrentSideViewPreset(file);
 
@@ -365,38 +344,33 @@ public class MainController {
 
     if (fileObserver != null) fileObserver.stop();
     clearImages();
+  } // }}}
 
-  }//}}}
-
-  void setConfigStageInstance() {//{{{
+  void setConfigStageInstance() { // {{{
     ConfigStage cs = new ConfigStage(positionsFlowPane, this);
     configStageOpt = Optional.ofNullable(cs);
     setConfigs();
-  }//}}}
+  } // }}}
 
-  void setInitAlwaysOnTop() {//{{{
+  void setInitAlwaysOnTop() { // {{{
 
     String a = preferences.getProperty(KEY_ALWAYS_ON_TOP).orElse("false");
     boolean alwaysOnTop = Boolean.valueOf(a);
     getStage().setAlwaysOnTop(alwaysOnTop);
     myMenuBar.setAlwaysOnTop(alwaysOnTop);
+  } // }}}
 
-  }//}}}
-
-  void setFontSizeOfMenuBar(String fontSize) {//{{{
+  void setFontSizeOfMenuBar(String fontSize) { // {{{
 
     myMenuBar.setFontSizeOfMenuBar(fontSize);
+  } // }}}
 
-  }//}}}
-
-  void setRecentFiles() {//{{{
+  void setRecentFiles() { // {{{
 
     List<String> walkList = createRecentListWith(walkLog);
     myMenuBar.setRecentWalkFilePaths(walkList);
 
     List<String> sideViewList = createRecentListWith(sideViewLog);
     myMenuBar.setRecentSideViewFilePaths(sideViewList);
-
-  }//}}}
-
+  } // }}}
 }

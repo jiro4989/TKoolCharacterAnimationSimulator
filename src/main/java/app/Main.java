@@ -1,9 +1,5 @@
 package app;
 
-import jiro.java.util.MyProperties;
-
-import util.PresetsUtils;
-
 import static util.Texts.*;
 
 import java.io.*;
@@ -14,7 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import jiro.java.util.MyProperties;
+import util.PresetsUtils;
 
 public class Main extends Application {
 
@@ -22,7 +19,7 @@ public class Main extends Application {
   private MainController controller;
 
   @Override
-  public void start(Stage primaryStage) {//{{{
+  public void start(Stage primaryStage) { // {{{
 
     changeLanguages();
     PresetsUtils.mkInitDirs();
@@ -46,10 +43,10 @@ public class Main extends Application {
       if (mainMp.load()) mainMp.customStage(primaryStage);
 
       // 設定ウィンドウの追従リスナー
-      primaryStage.xProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
-      primaryStage.yProperty      ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
-      primaryStage.widthProperty  ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
-      primaryStage.heightProperty ( ).addListener ( ( obs, o, n) -> controller.resizeConfigStage ( ) ) ;
+      primaryStage.xProperty().addListener((obs, o, n) -> controller.resizeConfigStage());
+      primaryStage.yProperty().addListener((obs, o, n) -> controller.resizeConfigStage());
+      primaryStage.widthProperty().addListener((obs, o, n) -> controller.resizeConfigStage());
+      primaryStage.heightProperty().addListener((obs, o, n) -> controller.resizeConfigStage());
 
       primaryStage.setOnCloseRequest(e -> controller.closeRequest());
 
@@ -57,17 +54,19 @@ public class Main extends Application {
 
       final Delta delta = new Delta();
 
-      root.setOnMousePressed(e -> {
-        delta.x = primaryStage.getX() - e.getScreenX();
-        delta.y = primaryStage.getY() - e.getScreenY();
-      });
+      root.setOnMousePressed(
+          e -> {
+            delta.x = primaryStage.getX() - e.getScreenX();
+            delta.y = primaryStage.getY() - e.getScreenY();
+          });
 
-      root.setOnMouseDragged(e -> {
-        primaryStage.setX(e.getScreenX() + delta.x);
-        primaryStage.setY(e.getScreenY() + delta.y);
-      });
+      root.setOnMouseDragged(
+          e -> {
+            primaryStage.setX(e.getScreenX() + delta.x);
+            primaryStage.setY(e.getScreenY() + delta.y);
+          });
 
-      //}}}
+      // }}}
 
       root.setOnScroll(e -> controller.updateZoomRate(e));
 
@@ -82,7 +81,7 @@ public class Main extends Application {
       controller.setFontSizeOfMenuBar(fontSize);
 
       // プリセットの変更
-      String walk     = preferences.getProperty(KEY_WALK_PRESET).orElse(WALK_PREST);
+      String walk = preferences.getProperty(KEY_WALK_PRESET).orElse(WALK_PREST);
       String sideView = preferences.getProperty(KEY_SIDE_VIEW_PRESET).orElse(SIDE_VIEW_PREST);
       controller.setWalkStandard(new File(walk));
       controller.setSideViewStandard(new File(sideView));
@@ -95,14 +94,13 @@ public class Main extends Application {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  } // }}}
 
-  }//}}}
-
-  public static void main(String... args) {//{{{
+  public static void main(String... args) { // {{{
     launch(args);
-  }//}}}
+  } // }}}
 
-  private void changeLanguages() {//{{{
+  private void changeLanguages() { // {{{
 
     MyProperties preferences = new MyProperties(PREFERENCES_FILE);
     if (preferences.load()) {
@@ -112,16 +110,12 @@ public class Main extends Application {
       if (!langs.equals(ja)) {
 
         Locale.setDefault(Locale.ENGLISH);
-
       }
-
     }
+  } // }}}
 
-  }//}}}
-
-  private class Delta {//{{{
+  private class Delta { // {{{
     double x;
     double y;
-  }//}}}
-
+  } // }}}
 }

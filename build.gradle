@@ -68,7 +68,7 @@ targetCompatibility = 14
 
 application {
     // Define the main class for the application.
-    mainClassName = 'app.Main'
+    mainClassName = 'com.jiro4989.tkcas.Main'
 }
 
 compileJava {
@@ -81,7 +81,7 @@ javafx {
 
 jar {
   manifest {
-    attributes 'Main-Class': 'app.Main'
+    attributes 'Main-Class': 'com.jiro4989.tkcas.Main'
   }
 
   archiveBaseName = 'tkcas'

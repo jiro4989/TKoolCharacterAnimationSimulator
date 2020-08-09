@@ -8,8 +8,8 @@ public class Texts {
   public static final String VERSION = "ver 1.0.1";
   public static final String TITLE_VERSION = TITLE + " - " + VERSION;
 
-  public static final String BASIC_CSS = "/app/res/css/basic.css";
-  public static final String APP_ICON = "/app/res/img/app_icon.png";
+  public static final String BASIC_CSS = "/com/jiro4989/tkcas/res/css/basic.css";
+  public static final String APP_ICON = "/com/jiro4989/tkcas/res/img/app_icon.png";
 
   public static final String WALK_PREST_DIR = "./presets/" + JAR_NAME + "/walk";
   public static final String SIDE_VIEW_PREST_DIR = "./presets/" + JAR_NAME + "/side_view";

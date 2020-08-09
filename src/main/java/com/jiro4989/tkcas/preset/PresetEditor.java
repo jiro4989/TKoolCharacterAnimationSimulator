@@ -2,6 +2,8 @@ package com.jiro4989.tkcas.preset;
 
 import static com.jiro4989.tkcas.util.Texts.*;
 
+import com.jiro4989.tkcas.util.MyProperties;
+import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -11,8 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.*;
-import com.jiro4989.tkcas.util.MyProperties;
-import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 
 public class PresetEditor extends Stage {
 
@@ -23,7 +23,9 @@ public class PresetEditor extends Stage {
     URL location = getClass().getResource("preset_editor.fxml");
     ResourceBundle resources =
         ResourceBundle.getBundle(
-            "com.jiro4989.tkcas.preset.dict", Locale.getDefault(), ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
+            "com.jiro4989.tkcas.preset.dict",
+            Locale.getDefault(),
+            ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
     FXMLLoader loader = new FXMLLoader(location, resources);
 
     try {

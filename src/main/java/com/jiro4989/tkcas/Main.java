@@ -2,6 +2,8 @@ package com.jiro4989.tkcas;
 
 import static com.jiro4989.tkcas.util.Texts.*;
 
+import com.jiro4989.tkcas.util.MyProperties;
+import com.jiro4989.tkcas.util.PresetsUtils;
 import java.io.*;
 import java.util.*;
 import javafx.application.Application;
@@ -10,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import com.jiro4989.tkcas.util.MyProperties;
-import com.jiro4989.tkcas.util.PresetsUtils;
 
 public class Main extends Application {
 

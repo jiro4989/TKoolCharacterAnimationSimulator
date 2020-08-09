@@ -1,13 +1,16 @@
 package com.jiro4989.tkcas;
 
-import static java.util.stream.IntStream.range;
 import static com.jiro4989.tkcas.util.Texts.*;
+import static java.util.stream.IntStream.range;
 
 import com.jiro4989.tkcas.config.ConfigStage;
 import com.jiro4989.tkcas.layout.PositionsFlowPane;
 import com.jiro4989.tkcas.menubar.MyMenuBar;
 import com.jiro4989.tkcas.menubar.TrimmingSelector;
 import com.jiro4989.tkcas.standard.Standards;
+import com.jiro4989.tkcas.util.DialogUtils;
+import com.jiro4989.tkcas.util.MyProperties;
+import com.jiro4989.tkcas.util.OpenRecentFilesUtils;
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -15,9 +18,6 @@ import javafx.fxml.FXML;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import com.jiro4989.tkcas.util.MyProperties;
-import com.jiro4989.tkcas.util.DialogUtils;
-import com.jiro4989.tkcas.util.OpenRecentFilesUtils;
 
 public class MainController {
 

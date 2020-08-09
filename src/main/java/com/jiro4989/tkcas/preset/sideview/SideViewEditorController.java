@@ -2,6 +2,9 @@ package com.jiro4989.tkcas.preset.sideview;
 
 import static com.jiro4989.tkcas.util.Texts.*;
 
+import com.jiro4989.tkcas.stage.MyFileChooser;
+import com.jiro4989.tkcas.util.JavaFXCustomizeUtils;
+import com.jiro4989.tkcas.util.MyProperties;
 import java.io.File;
 import java.util.Objects;
 import java.util.stream.*;
@@ -9,9 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
-import com.jiro4989.tkcas.util.MyProperties;
-import com.jiro4989.tkcas.stage.MyFileChooser;
-import com.jiro4989.tkcas.util.JavaFXCustomizeUtils;
 
 public class SideViewEditorController {
 

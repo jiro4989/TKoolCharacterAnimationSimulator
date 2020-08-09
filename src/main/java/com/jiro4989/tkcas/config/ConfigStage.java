@@ -3,6 +3,7 @@ package com.jiro4989.tkcas.config;
 import static com.jiro4989.tkcas.util.Texts.*;
 
 import com.jiro4989.tkcas.MainController;
+import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -12,7 +13,6 @@ import javafx.scene.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
-import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 
 public class ConfigStage extends Stage {
 
@@ -28,7 +28,9 @@ public class ConfigStage extends Stage {
     URL location = getClass().getResource("config.fxml");
     ResourceBundle resources =
         ResourceBundle.getBundle(
-            "com.jiro4989.tkcas.config.dict", Locale.getDefault(), ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
+            "com.jiro4989.tkcas.config.dict",
+            Locale.getDefault(),
+            ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
     FXMLLoader loader = new FXMLLoader(location, resources);
 
     try {

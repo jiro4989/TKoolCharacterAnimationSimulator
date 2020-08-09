@@ -3,8 +3,8 @@ package com.jiro4989.tkcas;
 import static com.jiro4989.tkcas.util.Texts.*;
 
 import com.jiro4989.tkcas.standard.Standards;
-import java.io.File;
 import com.jiro4989.tkcas.util.MyProperties;
+import java.io.File;
 
 class WalkGraphicsStrategy implements DrawImageStrategy {
 

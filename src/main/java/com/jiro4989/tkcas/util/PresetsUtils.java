@@ -3,7 +3,6 @@ package com.jiro4989.tkcas.util;
 import static com.jiro4989.tkcas.util.Texts.*;
 
 import java.io.File;
-import com.jiro4989.tkcas.util.MyProperties;
 
 public class PresetsUtils {
 

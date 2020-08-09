@@ -5,7 +5,11 @@ import static com.jiro4989.tkcas.util.Texts.*;
 import com.jiro4989.tkcas.MainController;
 import com.jiro4989.tkcas.preset.PresetEditor;
 import com.jiro4989.tkcas.preset.sideview.SideViewEditor;
+import com.jiro4989.tkcas.stage.AboutStage;
+import com.jiro4989.tkcas.stage.MyFileChooser;
 import com.jiro4989.tkcas.standard.Standards;
+import com.jiro4989.tkcas.util.DialogUtils;
+import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -16,10 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import com.jiro4989.tkcas.stage.AboutStage;
-import com.jiro4989.tkcas.stage.MyFileChooser;
-import com.jiro4989.tkcas.util.DialogUtils;
-import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 
 public class MyMenuBar extends VBox {
 
@@ -92,7 +92,9 @@ public class MyMenuBar extends VBox {
     URL location = getClass().getResource("my_menu_bar.fxml");
     ResourceBundle resources =
         ResourceBundle.getBundle(
-            "com.jiro4989.tkcas.menubar.dict", Locale.getDefault(), ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
+            "com.jiro4989.tkcas.menubar.dict",
+            Locale.getDefault(),
+            ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
     FXMLLoader loader = new FXMLLoader(location, resources);
 
     loader.setRoot(this);

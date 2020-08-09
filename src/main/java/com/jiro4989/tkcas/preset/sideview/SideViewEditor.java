@@ -2,6 +2,8 @@ package com.jiro4989.tkcas.preset.sideview;
 
 import static com.jiro4989.tkcas.util.Texts.*;
 
+import com.jiro4989.tkcas.util.MyProperties;
+import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -11,8 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.*;
-import com.jiro4989.tkcas.util.MyProperties;
-import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 
 public class SideViewEditor extends Stage {
 

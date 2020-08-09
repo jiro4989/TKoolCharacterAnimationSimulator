@@ -43,12 +43,15 @@ jobs:
         include:
           - os: windows-latest
             os_name: windows
+            os_dlname: windows
             script_ext: .bat
           - os: macOS-latest
             os_name: macos
+            os_dlname: osx
             script_ext: ''
           - os: ubuntu-latest
             os_name: linux
+            os_dlname: linux
             script_ext: ''
     needs: test
     steps:
@@ -65,7 +68,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           mkdir -p jmods/${{ matrix.os_name }}
-          curl -o jmods/${{ matrix.os_name }}/jmods.zip -sSL https://download2.gluonhq.com/openjfx/${{ env.JAVAFX_VERSION }}/openjfx-${{ env.JAVAFX_VERSION }}_${{ matrix.os_name }}-x64_bin-jmods.zip
+          curl -o jmods/${{ matrix.os_name }}/jmods.zip -sSL https://download2.gluonhq.com/openjfx/${{ env.JAVAFX_VERSION }}/openjfx-${{ env.JAVAFX_VERSION }}_${{ matrix.os_dlname }}-x64_bin-jmods.zip
           pushd jmods/${{ matrix.os_name }}
           unzip jmods.zip
           popd

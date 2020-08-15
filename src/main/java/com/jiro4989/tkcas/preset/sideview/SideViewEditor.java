@@ -18,7 +18,7 @@ public class SideViewEditor extends Stage {
 
   private SideViewEditorController controller;
 
-  public SideViewEditor(File presetFile, File previewFile) { // {{{
+  public SideViewEditor(File presetFile, File previewFile) { 
 
     URL location = getClass().getResource("sideview_editor.fxml");
     ResourceBundle resources =
@@ -58,10 +58,10 @@ public class SideViewEditor extends Stage {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } // }}}
+  } 
 
-  public SideViewEditor(File presetFile) { // {{{
+  public SideViewEditor(File presetFile) { 
 
     this(presetFile, null);
-  } // }}}
+  } 
 }

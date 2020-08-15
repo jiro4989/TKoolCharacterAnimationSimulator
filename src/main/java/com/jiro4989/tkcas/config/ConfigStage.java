@@ -18,12 +18,12 @@ public class ConfigStage extends Stage {
 
   private ConfigStageController controller = null;
 
-  public ConfigStage(Node node, MainController aMain) { // {{{
+  public ConfigStage(Node node, MainController aMain) { 
 
     this((Stage) node.getScene().getWindow(), aMain);
-  } // }}}
+  } 
 
-  public ConfigStage(Stage stage, MainController aMain) { // {{{
+  public ConfigStage(Stage stage, MainController aMain) { 
 
     URL location = getClass().getResource("config.fxml");
     ResourceBundle resources =
@@ -52,15 +52,15 @@ public class ConfigStage extends Stage {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } // }}}
+  } 
 
-  public void resize(Node node) { // {{{
+  public void resize(Node node) { 
 
     Stage stage = (Stage) node.getScene().getWindow();
     resize(stage);
-  } // }}}
+  } 
 
-  public void resize(Stage stage) { // {{{
+  public void resize(Stage stage) { 
 
     double x = stage.getX();
     double y = stage.getY();
@@ -70,7 +70,7 @@ public class ConfigStage extends Stage {
     setX(x);
     setY(y + height + 20.0);
     setWidth(width);
-  } // }}}
+  } 
 
   public void applyAnimationSpeed() {
     controller.applyAnimationSpeed();

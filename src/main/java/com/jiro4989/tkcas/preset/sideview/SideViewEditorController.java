@@ -18,9 +18,9 @@ public class SideViewEditorController {
   private File presetFile;
   private MyFileChooser mfc = new MyFileChooser.Builder("Image Files", "*.png").build();
 
-  // FXMLコンポーネント{{{
+  
 
-  // 設定入力//{{{
+  
 
   @FXML private TitledPane customizeTitledPane;
 
@@ -54,7 +54,7 @@ public class SideViewEditorController {
   @FXML private Label previewImageHeightLabel;
   @FXML private TextField previewImageHeightTextField;
 
-  // }}}
+  
 
   @FXML private TitledPane previewTitledPane;
 
@@ -66,14 +66,14 @@ public class SideViewEditorController {
   @FXML private Button okButton;
   @FXML private Button cancelButton;
 
-  // }}}
+  
 
   // initialize
 
   @FXML
-  private void initialize() { // {{{
+  private void initialize() { 
 
-    // イベント登録//{{{
+    
 
     rowUpButton.setOnAction(e -> incrementValueOf(rowTextField, 1));
     columnUpButton.setOnAction(e -> incrementValueOf(columnTextField, 1));
@@ -87,30 +87,30 @@ public class SideViewEditorController {
     customizeTextField(columnTextField);
     customizeTextField(frameCountTextField);
 
-    // }}}
+    
 
     changeGridCells();
-  } // }}}
+  } 
 
   // event methods
 
   @FXML
-  private void okButtonOnAction() { // {{{
+  private void okButtonOnAction() { 
 
     closeRequest();
     cancelButton.getScene().getWindow().hide();
     storePreset();
-  } // }}}
+  } 
 
   @FXML
-  private void cancelButtonOnAction() { // {{{
+  private void cancelButtonOnAction() { 
 
     closeRequest();
     cancelButton.getScene().getWindow().hide();
-  } // }}}
+  } 
 
   @FXML
-  private void fileChooserButtonOnAction() { // {{{
+  private void fileChooserButtonOnAction() { 
 
     mfc.openFile()
         .ifPresent(
@@ -118,18 +118,18 @@ public class SideViewEditorController {
               setPreviewImage(file);
               changeGridCells();
             });
-  } // }}}
+  } 
 
   // package methods
 
-  void closeRequest() { // {{{
+  void closeRequest() { 
 
     MyProperties mp = new MyProperties(PROP_DIR + "/preset_editor.fxml");
     mp.setProperty(okButton);
     mp.store();
-  } // }}}
+  } 
 
-  void setPresetFile(File file) { // {{{
+  void setPresetFile(File file) { 
 
     presetFile = file;
 
@@ -141,9 +141,9 @@ public class SideViewEditorController {
       frameCountTextField.setText(
           mp.getProperty(KEY_FRAME_COUNT).orElse(WALK_PREST_DEFAULT_VALUE_FRAME_COUNT));
     }
-  } // }}}
+  } 
 
-  void setPreviewImage(File file) { // {{{
+  void setPreviewImage(File file) { 
 
     Image image = new Image("file:" + file.getPath());
     int width = (int) image.getWidth();
@@ -155,11 +155,11 @@ public class SideViewEditorController {
     imageFileTextField.setText(file.getName());
     previewImageWidthTextField.setText("" + width);
     previewImageHeightTextField.setText("" + height);
-  } // }}}
+  } 
 
   // private methods
 
-  private void customizeTextField(TextField textField, int min, int max) { // {{{
+  private void customizeTextField(TextField textField, int min, int max) { 
 
     textField
         .textProperty()
@@ -178,13 +178,13 @@ public class SideViewEditorController {
 
     JavaFXCustomizeUtils.setMaxDigitOption(textField, min, max);
     JavaFXCustomizeUtils.setScrollValueOption(textField, 5, 10);
-  } // }}}
+  } 
 
-  private void customizeTextField(TextField textField) { // {{{
+  private void customizeTextField(TextField textField) { 
     customizeTextField(textField, 1, 100);
-  } // }}}
+  } 
 
-  private void changeGridCells() { // {{{
+  private void changeGridCells() { 
 
     clearGridPane();
 
@@ -210,31 +210,31 @@ public class SideViewEditorController {
             });
 
     anchorPane.getChildren().add(gridPane);
-  } // }}}
+  } 
 
-  private void clearGridPane() { // {{{
+  private void clearGridPane() { 
 
     int size = anchorPane.getChildren().size();
     if (2 <= size) {
       anchorPane.getChildren().remove(1, 2);
     }
-  } // }}}
+  } 
 
-  private void incrementValueOf(TextField textField, int gain) { // {{{
+  private void incrementValueOf(TextField textField, int gain) { 
     String text = textField.getText();
     int value = Integer.parseInt(text);
     value += gain;
     textField.setText("" + value);
-  } // }}}
+  } 
 
-  private Pane createEmptyPane(int width, int height) { // {{{
+  private Pane createEmptyPane(int width, int height) { 
     Pane pane = new Pane();
     pane.setPrefWidth(width);
     pane.setPrefHeight(height);
     return pane;
-  } // }}}
+  } 
 
-  private void storePreset() { // {{{
+  private void storePreset() { 
 
     MyProperties preset = new MyProperties(presetFile);
 
@@ -248,5 +248,5 @@ public class SideViewEditorController {
     preset.setProperty(KEY_FRAME_COUNT, "" + frameCount);
 
     preset.store();
-  } // }}}
+  } 
 }

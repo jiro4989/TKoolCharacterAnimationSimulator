@@ -80,9 +80,6 @@ public class Main extends Application {
       // フォントサイズの変更
       final MyProperties preferences = new MyProperties(PREFERENCES_FILE);
       preferences.load();
-      String fontSize = preferences.getProperty(KEY_FONT_SIZE).orElse(DEFAULT_VALUE_FONT_SIZE);
-      controller.setFontSize(fontSize);
-      controller.setFontSizeOfMenuBar(fontSize);
 
       // プリセットの変更
       String walk = preferences.getProperty(KEY_WALK_PRESET).orElse(WALK_PREST);

@@ -396,15 +396,6 @@ public class MainController {
   @FXML private MenuItem onlyMenuItem;
   @FXML private CheckMenuItem alwaysOnTopMenuItem;
 
-  // フォントサイズ変更メニュー
-  @FXML private Menu fontMenu;
-  @FXML private ToggleGroup fontGroup;
-  @FXML private RadioMenuItem fontSize8RadioMenuItem;
-  @FXML private RadioMenuItem fontSize9RadioMenuItem;
-  @FXML private RadioMenuItem fontSize10RadioMenuItem;
-  @FXML private RadioMenuItem fontSize11RadioMenuItem;
-  @FXML private RadioMenuItem fontSize12RadioMenuItem;
-
   // 言語変更メニュー
   @FXML private Menu langsMenu;
   @FXML private ToggleGroup langGroup;
@@ -709,17 +700,7 @@ public class MainController {
         .collect(Collectors.toList());
   }
   // Setter
-  public void setFontSizeOfMenuBar(String fontSize) {
-    fontGroup
-        .getToggles()
-        .stream()
-        .map(t -> (RadioMenuItem) t)
-        .filter(t -> t.getText().equals(fontSize))
-        .forEach(t -> t.setSelected(true));
-  }
-
   public void setRecentWalkFilePaths(List<String> paths) {
-
     paths
         .stream()
         .distinct()
@@ -732,7 +713,6 @@ public class MainController {
   }
 
   public void setRecentSideViewFilePaths(List<String> paths) {
-
     paths
         .stream()
         .distinct()

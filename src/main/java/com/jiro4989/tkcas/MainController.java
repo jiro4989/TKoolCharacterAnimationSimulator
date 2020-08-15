@@ -2,7 +2,9 @@ package com.jiro4989.tkcas;
 
 import static com.jiro4989.tkcas.util.Texts.*;
 
+import com.jiro4989.tkcas.charachip.CharaChipGridPane;
 import com.jiro4989.tkcas.config.ConfigStage;
+import com.jiro4989.tkcas.image.MyImage;
 import com.jiro4989.tkcas.menubar.TrimmingSelector;
 import com.jiro4989.tkcas.stage.MyFileChooser;
 import com.jiro4989.tkcas.standard.Standards;
@@ -138,10 +140,6 @@ public class MainController {
         });
   }
 
-  public void clearImages() {
-    // positionsFlowPane.clearImages();
-  }
-
   public void showConfigStage() {
 
     configStageOpt.ifPresent(
@@ -152,11 +150,6 @@ public class MainController {
         });
   }
 
-  public void updateZoomRate(double zoom) {
-
-    // positionsFlowPane.updateZoomRate(zoom);
-  }
-
   public void updateZoomRate(ScrollEvent e) {
 
     configStageOpt.ifPresent(
@@ -165,25 +158,12 @@ public class MainController {
         });
   }
 
-  public void updateAnimationSpeed(int duration) {
-
-    // positionsFlowPane.updateAnimationSpeed(duration);
-  }
-
   public void changeAlwaysOnTop() {
 
     Stage stage = getStage();
     boolean alwaysOnTop = getStage().isAlwaysOnTop();
     stage.setAlwaysOnTop(!alwaysOnTop);
     preferences.setProperty(KEY_ALWAYS_ON_TOP, "" + alwaysOnTop);
-  }
-
-  public void showPreviousImage() {
-    // positionsFlowPane.showPreviousImage();
-  }
-
-  public void showNextImage() {
-    // positionsFlowPane.showNextImage();
   }
 
   public void zoomDownImages() {
@@ -681,5 +661,165 @@ public class MainController {
   public void addRecentSideViewFile(File file) {
     MenuItem item = createMenuItemHasSideViewAction(file.getPath());
     openSideViewRecentMenu.getItems().add(item);
+  }
+
+  private Optional<List<CharaChipGridPane>> charaChipOpt = Optional.empty();
+  private boolean viewerMode = false;
+
+  public void drawWalkImage(String filePath, Standards standards) {
+
+    clearImages();
+    MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
+    // charaChipOpt = Optional.ofNullable(originalImage.createWalkChips(standards, this));
+    // drawImages(charaChipOpt);
+  }
+
+  public void drawSideViewImage(String filePath, Standards standards) {
+
+    clearImages();
+    MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
+    // charaChipOpt = Optional.ofNullable(originalImage.createSideViewChips(standards, this));
+    // drawImages(charaChipOpt);
+  }
+
+  public void updateAnimationSpeed(int duration) {
+
+    charaChipOpt.ifPresent(
+        chips -> {
+          chips.stream().forEach(c -> c.animate(duration));
+        });
+  }
+
+  public void updateZoomRate(double rate) {
+
+    charaChipOpt.ifPresent(
+        chips -> {
+          chips.stream().forEach(c -> c.setScale(rate));
+        });
+  }
+
+  public void showPreviousImage() {
+
+    // CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
+    // charaChipOpt.ifPresent(
+    //     ccgpList -> {
+    //       viewerMode = true;
+    //       int i = 0;
+    //       for (CharaChipGridPane ccgp : ccgpList) {
+    //         if (first == ccgp) {
+
+    //           disableAllCharaChips();
+
+    //           int lastIndex = ccgpList.size() - 1;
+    //           int previousIndex = 0 < i ? i - 1 : lastIndex;
+    //           getChildren().add(ccgpList.get(previousIndex));
+
+    //           return;
+    //         }
+
+    //         i++;
+    //       }
+    //     });
+  }
+
+  public void showNextImage() {
+
+    // CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
+    // charaChipOpt.ifPresent(
+    //     ccgpList -> {
+    //       viewerMode = true;
+    //       int i = 0;
+    //       for (CharaChipGridPane ccgp : ccgpList) {
+    //         if (first == ccgp) {
+
+    //           disableAllCharaChips();
+    //           int nextIndex = i < ccgpList.size() - 1 ? i + 1 : 0;
+    //           getChildren().add(ccgpList.get(nextIndex));
+    //           return;
+    //         }
+
+    //         i++;
+    //       }
+    //     });
+  }
+
+  /** トリミングした画像インスタンスから何から全部クリアする。 */
+  public void clearImages() {
+    // getChildren().clear();
+    // charaChipOpt = Optional.empty();
+    // viewerMode = false;
+  }
+
+  /** {@link MainController}から呼び出されるメソッド。 表示しているパネルの先頭の要素を表示する。 */
+  public void switchViewerMode() {
+
+    charaChipOpt.ifPresent(
+        ccgpList -> {
+          if (!viewerMode) {
+            viewerMode = true;
+            CharaChipGridPane first = ccgpList.get(0);
+            disableAllCharaChips();
+            // getChildren().add(first);
+            return;
+          }
+          showAllPane();
+        });
+  }
+
+  /** {@link CharaChipGridPane}から呼ばれるメソッド。 渡されたインスタンスのパネル以外を表示しなくする。 */
+  public void switchViewerMode(CharaChipGridPane selectedPane) {
+    if (!viewerMode) {
+      viewerMode = true;
+      showSelectedPane(selectedPane);
+      return;
+    }
+    showAllPane();
+  }
+
+  private void drawImages(Optional<List<CharaChipGridPane>> ccgpo) {
+
+    ccgpo.ifPresent(
+        chips -> {
+          // chips.stream().forEach(i -> getChildren().add(i));
+        });
+  }
+
+  /** トリミングした画像インスタンスは保持し、Stage上に表示しないだけ。 */
+  private void disableAllCharaChips() {
+
+    charaChipOpt.ifPresent(
+        ccgpList -> {
+          // getChildren().removeAll(ccgpList);
+        });
+  }
+
+  private void showSelectedPane(CharaChipGridPane selectedPane) {
+
+    disableAllCharaChips();
+    charaChipOpt.ifPresent(
+        ccgpList -> {
+          ccgpList
+              .stream()
+              .filter(ccgp -> ccgp == selectedPane)
+              .forEach(
+                  ccgp -> {
+                    // getChildren().add(ccgp);
+                  });
+        });
+  }
+
+  private void showAllPane() {
+
+    disableAllCharaChips();
+    charaChipOpt.ifPresent(
+        ccgpList -> {
+          viewerMode = false;
+          ccgpList
+              .stream()
+              .forEach(
+                  ccgp -> {
+                    // getChildren().add(ccgp);
+                  });
+        });
   }
 }

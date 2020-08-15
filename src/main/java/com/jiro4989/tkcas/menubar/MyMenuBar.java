@@ -5,7 +5,6 @@ import static com.jiro4989.tkcas.util.Texts.*;
 import com.jiro4989.tkcas.MainController;
 import com.jiro4989.tkcas.preset.PresetEditor;
 import com.jiro4989.tkcas.preset.sideview.SideViewEditor;
-import com.jiro4989.tkcas.stage.AboutStage;
 import com.jiro4989.tkcas.stage.MyFileChooser;
 import com.jiro4989.tkcas.standard.Standards;
 import com.jiro4989.tkcas.util.DialogUtils;
@@ -72,10 +71,6 @@ public class MyMenuBar extends VBox {
   @FXML private ToggleGroup langGroup;
   @FXML private RadioMenuItem jpRadioMenuItem;
   @FXML private RadioMenuItem usRadioMenuItem;
-
-  // ヘルプメニュー
-  @FXML private Menu helpMenu;
-  @FXML private MenuItem aboutMenuItem;
 
   // }}}
 
@@ -300,19 +295,7 @@ public class MyMenuBar extends VBox {
     String langs = Locale.ENGLISH.getLanguage();
     mainController.setLanguages(langs);
   } // }}}
-  // ヘルプ
-  @FXML
-  private void aboutMenuItemOnAction() { // {{{
-    AboutStage about =
-        new AboutStage.Builder(TITLE, VERSION)
-            .author("次郎 (Jiro)")
-            .blog("次ログ")
-            .blogUrl("http://jiroron666.hatenablog.com/")
-            .css(BASIC_CSS)
-            .appIcon(APP_ICON)
-            .build();
-    about.showAndWait();
-  } // }}}
+
   // private メソッド
   private void setFontSize(RadioMenuItem rmi) { // {{{
     String fontSize = rmi.getText();

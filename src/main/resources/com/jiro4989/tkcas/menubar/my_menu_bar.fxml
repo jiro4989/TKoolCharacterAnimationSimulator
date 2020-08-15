@@ -141,17 +141,6 @@
           <RadioMenuItem fx:id="usRadioMenuItem" mnemonicParsing="false" onAction="#usRadioMenuItemOnAction" text="%enRadioMenuItem" toggleGroup="$langsGroup" />
         </items>
       </Menu>
-
-      <Menu fx:id="helpMenu" mnemonicParsing="false" text="%helpMenu">
-        <items>
-          <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" text="%aboutMenuItem" onAction="#aboutMenuItemOnAction">
-          <accelerator>
-            <KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
-          </accelerator>
-        </MenuItem>
-      </items>
-    </Menu>
-
   </menus>
 </MenuBar>
 </fx:root>

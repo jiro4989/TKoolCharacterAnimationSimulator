@@ -349,9 +349,9 @@ public class MainController {
 
   void setInitAlwaysOnTop() {
 
-    String a = preferences.getProperty(KEY_ALWAYS_ON_TOP).orElse("false");
-    boolean alwaysOnTop = Boolean.valueOf(a);
-    getStage().setAlwaysOnTop(alwaysOnTop);
+    // String a = preferences.getProperty(KEY_ALWAYS_ON_TOP).orElse("false");
+    // boolean alwaysOnTop = Boolean.valueOf(a);
+    // getStage().setAlwaysOnTop(alwaysOnTop);
     // myMenuBar.setAlwaysOnTop(alwaysOnTop);
   }
 

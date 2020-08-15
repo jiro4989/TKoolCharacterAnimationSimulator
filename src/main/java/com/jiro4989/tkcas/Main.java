@@ -4,7 +4,9 @@ import static com.jiro4989.tkcas.util.Texts.*;
 
 import com.jiro4989.tkcas.util.MyProperties;
 import com.jiro4989.tkcas.util.PresetsUtils;
+import com.jiro4989.tkcas.util.ResourceBundleWithUtf8;
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +27,13 @@ public class Main extends Application {
     PresetsUtils.mkInitDirs();
     PresetsUtils.mkInitPresets();
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+    URL location = getClass().getResource("main.fxml");
+    ResourceBundle resources =
+        ResourceBundle.getBundle(
+            "com.jiro4989.tkcas.dict",
+            Locale.getDefault(),
+            ResourceBundleWithUtf8.UTF8_ENCODING_CONTROL);
+    FXMLLoader loader = new FXMLLoader(location, resources);
 
     try {
 

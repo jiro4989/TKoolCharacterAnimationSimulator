@@ -336,8 +336,6 @@ public class MainController {
   @FXML private MenuItem currentSideViewPresetMenuItem;
   @FXML private MenuItem walkPresetMenuItem;
   @FXML private MenuItem sideViewPresetMenuItem;
-  @FXML private MenuItem editWalkPresetMenuItem;
-  @FXML private MenuItem editSideViewPresetMenuItem;
   @FXML private MenuItem preferencesMenuItem;
   @FXML private MenuItem quitMenuItem;
   @FXML private MenuItem forcedTerminateMenuItem;
@@ -477,32 +475,6 @@ public class MainController {
         .openFile()
         .ifPresent(
             file -> {
-              // mainController.setSideViewStandard(file);
-              // setCurrentSideViewPreset(file);
-            });
-  }
-
-  @FXML
-  private void editWalkPresetMenuItemOnAction() {
-    walkPresetFileChooser
-        .saveFile()
-        .ifPresent(
-            file -> {
-              // PresetEditor editor = new PresetEditor(file);
-              // editor.showAndWait();
-              // mainController.setWalkStandard(file);
-              // setCurrentWalkPreset(file);
-            });
-  }
-
-  @FXML
-  private void editSideViewPresetMenuItemOnAction() {
-    sideViewPresetFileChooser
-        .saveFile()
-        .ifPresent(
-            file -> {
-              // SideViewEditor editor = new SideViewEditor(file);
-              // editor.showAndWait();
               // mainController.setSideViewStandard(file);
               // setCurrentSideViewPreset(file);
             });

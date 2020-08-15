@@ -52,18 +52,6 @@
               </accelerator>
             </MenuItem>
 
-            <MenuItem fx:id="editWalkPresetMenuItem" mnemonicParsing="false" onAction="#editWalkPresetMenuItemOnAction" text="%editWalkPresetMenuItem">
-              <accelerator>
-                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-              </accelerator>
-            </MenuItem>
-
-            <MenuItem fx:id="editSideViewPresetMenuItem" mnemonicParsing="false" onAction="#editSideViewPresetMenuItemOnAction" text="%editSideViewPresetMenuItem">
-              <accelerator>
-                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-              </accelerator>
-            </MenuItem>
-
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#preferencesMenuItemOnAction" text="%preferencesMenuItem" />
             <SeparatorMenuItem mnemonicParsing="false" />

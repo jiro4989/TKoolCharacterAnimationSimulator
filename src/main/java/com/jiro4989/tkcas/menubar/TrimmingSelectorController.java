@@ -17,8 +17,6 @@ public class TrimmingSelectorController {
   private int blockWidth = 0;
   private int blockHeight = 0;
 
-  // FXML コンポーネント{{{
-
   @FXML private TitledPane titledPane;
   @FXML private ImageView imageView;
   @FXML private GridPane focusGridPane;
@@ -27,18 +25,15 @@ public class TrimmingSelectorController {
   @FXML private Button okButton;
   @FXML private Button cancelButton;
 
-  // }}}
-
   // 初期化
 
   @FXML
-  private void initialize() { // {{{
-  } // }}}
+  private void initialize() {}
 
   // イベントメソッド
 
   @FXML
-  private void imageViewOnMouseMoved(MouseEvent e) { // {{{
+  private void imageViewOnMouseMoved(MouseEvent e) {
 
     int x = (int) e.getX();
     int y = (int) e.getY();
@@ -53,10 +48,10 @@ public class TrimmingSelectorController {
       focusGridPane.setLayoutX(gridX);
       focusGridPane.setLayoutY(gridY);
     }
-  } // }}}
+  }
 
   @FXML
-  private void selectedGridPaneOnMouseMoved(MouseEvent e) { // {{{
+  private void selectedGridPaneOnMouseMoved(MouseEvent e) {
 
     int x = (int) (e.getX() + selectedGridPane.getLayoutX());
     int y = (int) (e.getY() + selectedGridPane.getLayoutY());
@@ -71,49 +66,49 @@ public class TrimmingSelectorController {
       focusGridPane.setLayoutX(gridX);
       focusGridPane.setLayoutY(gridY);
     }
-  } // }}}
+  }
 
   @FXML
-  private void selectedGridPaneOnMouseClicked(MouseEvent e) { // {{{
+  private void selectedGridPaneOnMouseClicked(MouseEvent e) {
 
     if (2 <= e.getClickCount()) {
 
       okButtonOnAction();
     }
-  } // }}}
+  }
 
   @FXML
-  private void focusGridPaneOnMouseClicked(MouseEvent e) { // {{{
+  private void focusGridPaneOnMouseClicked(MouseEvent e) {
 
     int x = (int) focusGridPane.getLayoutX();
     int y = (int) focusGridPane.getLayoutY();
 
     selectedGridPane.setLayoutX(x);
     selectedGridPane.setLayoutY(y);
-  } // }}}
+  }
 
   @FXML
-  private void okButtonOnAction() { // {{{
+  private void okButtonOnAction() {
 
     baseX = (int) selectedGridPane.getLayoutX();
     baseY = (int) selectedGridPane.getLayoutY();
     getStage().hide();
-  } // }}}
+  }
 
   @FXML
-  private void cancelButtonOnAction() { // {{{
+  private void cancelButtonOnAction() {
 
     getStage().hide();
-  } // }}}
+  }
 
-  private Stage getStage() { // {{{
+  private Stage getStage() {
 
     return (Stage) okButton.getScene().getWindow();
-  } // }}}
+  }
 
   // Setter
 
-  void setImage(File file) { // {{{
+  void setImage(File file) {
 
     Image image = new Image("file:" + file.getPath());
     double width = image.getWidth();
@@ -122,9 +117,9 @@ public class TrimmingSelectorController {
     imageView.setImage(image);
     imageView.setFitWidth(width);
     imageView.setFitHeight(height);
-  } // }}}
+  }
 
-  void setStandards(Standards std) { // {{{
+  void setStandards(Standards std) {
 
     int width = std.width;
     int height = std.height;
@@ -138,5 +133,5 @@ public class TrimmingSelectorController {
     selectedGridPane.setPrefHeight(height * row);
     focusGridPane.setPrefWidth(width * column);
     focusGridPane.setPrefHeight(height * row);
-  } // }}}
+  }
 }

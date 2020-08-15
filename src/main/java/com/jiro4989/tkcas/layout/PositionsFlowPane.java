@@ -18,7 +18,7 @@ public class PositionsFlowPane extends FlowPane {
 
   // コンストラクタ
 
-  public PositionsFlowPane() { // {{{
+  public PositionsFlowPane() {
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("positions_flow_pane.fxml"));
     loader.setRoot(this);
@@ -31,41 +31,41 @@ public class PositionsFlowPane extends FlowPane {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } // }}}
+  }
 
-  public void drawWalkImage(String filePath, Standards standards) { // {{{
+  public void drawWalkImage(String filePath, Standards standards) {
 
     clearImages();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createWalkChips(standards, this));
     drawImages(charaChipOpt);
-  } // }}}
+  }
 
-  public void drawSideViewImage(String filePath, Standards standards) { // {{{
+  public void drawSideViewImage(String filePath, Standards standards) {
 
     clearImages();
     MyImage originalImage = new MyImage.Builder("file:" + filePath).build();
     charaChipOpt = Optional.ofNullable(originalImage.createSideViewChips(standards, this));
     drawImages(charaChipOpt);
-  } // }}}
+  }
 
-  public void updateAnimationSpeed(int duration) { // {{{
+  public void updateAnimationSpeed(int duration) {
 
     charaChipOpt.ifPresent(
         chips -> {
           chips.stream().forEach(c -> c.animate(duration));
         });
-  } // }}}
+  }
 
-  public void updateZoomRate(double rate) { // {{{
+  public void updateZoomRate(double rate) {
 
     charaChipOpt.ifPresent(
         chips -> {
           chips.stream().forEach(c -> c.setScale(rate));
         });
-  } // }}}
+  }
 
-  public void showPreviousImage() { // {{{
+  public void showPreviousImage() {
 
     CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
     charaChipOpt.ifPresent(
@@ -87,9 +87,9 @@ public class PositionsFlowPane extends FlowPane {
             i++;
           }
         });
-  } // }}}
+  }
 
-  public void showNextImage() { // {{{
+  public void showNextImage() {
 
     CharaChipGridPane first = (CharaChipGridPane) getChildren().get(0);
     charaChipOpt.ifPresent(
@@ -108,17 +108,17 @@ public class PositionsFlowPane extends FlowPane {
             i++;
           }
         });
-  } // }}}
+  }
 
   /** トリミングした画像インスタンスから何から全部クリアする。 */
-  public void clearImages() { // {{{
+  public void clearImages() {
     getChildren().clear();
     charaChipOpt = Optional.empty();
     viewerMode = false;
-  } // }}}
+  }
 
   /** {@link MainController}から呼び出されるメソッド。 表示しているパネルの先頭の要素を表示する。 */
-  public void switchViewerMode() { // {{{
+  public void switchViewerMode() {
 
     charaChipOpt.ifPresent(
         ccgpList -> {
@@ -131,36 +131,36 @@ public class PositionsFlowPane extends FlowPane {
           }
           showAllPane();
         });
-  } // }}}
+  }
 
   /** {@link CharaChipGridPane}から呼ばれるメソッド。 渡されたインスタンスのパネル以外を表示しなくする。 */
-  public void switchViewerMode(CharaChipGridPane selectedPane) { // {{{
+  public void switchViewerMode(CharaChipGridPane selectedPane) {
     if (!viewerMode) {
       viewerMode = true;
       showSelectedPane(selectedPane);
       return;
     }
     showAllPane();
-  } // }}}
+  }
 
-  private void drawImages(Optional<List<CharaChipGridPane>> ccgpo) { // {{{
+  private void drawImages(Optional<List<CharaChipGridPane>> ccgpo) {
 
     ccgpo.ifPresent(
         chips -> {
           chips.stream().forEach(i -> getChildren().add(i));
         });
-  } // }}}
+  }
 
   /** トリミングした画像インスタンスは保持し、Stage上に表示しないだけ。 */
-  private void disableAllCharaChips() { // {{{
+  private void disableAllCharaChips() {
 
     charaChipOpt.ifPresent(
         ccgpList -> {
           getChildren().removeAll(ccgpList);
         });
-  } // }}}
+  }
 
-  private void showSelectedPane(CharaChipGridPane selectedPane) { // {{{
+  private void showSelectedPane(CharaChipGridPane selectedPane) {
 
     disableAllCharaChips();
     charaChipOpt.ifPresent(
@@ -173,9 +173,9 @@ public class PositionsFlowPane extends FlowPane {
                     getChildren().add(ccgp);
                   });
         });
-  } // }}}
+  }
 
-  private void showAllPane() { // {{{
+  private void showAllPane() {
 
     disableAllCharaChips();
     charaChipOpt.ifPresent(
@@ -188,5 +188,5 @@ public class PositionsFlowPane extends FlowPane {
                     getChildren().add(ccgp);
                   });
         });
-  } // }}}
+  }
 }

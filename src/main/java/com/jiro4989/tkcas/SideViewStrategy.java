@@ -10,18 +10,18 @@ class SideViewStrategy implements DrawImageStrategy {
 
   private final MainController controller;
 
-  SideViewStrategy(MainController controller) { // {{{
+  SideViewStrategy(MainController controller) {
 
     this.controller = controller;
-  } // }}}
+  }
 
   @Override
-  public void drawImage(File file) { // {{{
+  public void drawImage(File file) {
 
     controller.drawSideViewImage(file);
-  } // }}}
+  }
 
-  static Standards createStandard(String path) { // {{{
+  static Standards createStandard(String path) {
 
     MyProperties mp = new MyProperties(path);
     mp.load();
@@ -37,5 +37,5 @@ class SideViewStrategy implements DrawImageStrategy {
         new Standards.Builder(1, 1).row(row).column(column).frameCount(frameCount).build();
 
     return std;
-  } // }}}
+  }
 }

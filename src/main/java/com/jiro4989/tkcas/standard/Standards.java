@@ -13,7 +13,7 @@ public class Standards {
 
   // Builder クラス
 
-  public static class Builder { // {{{
+  public static class Builder {
 
     private final int width;
     private final int height;
@@ -22,11 +22,11 @@ public class Standards {
     private int column = 1;
     private int frameCount = 0;
 
-    public Builder(int width, int height) { // {{{
+    public Builder(int width, int height) {
 
       this.width = width;
       this.height = height;
-    } // }}}
+    }
 
     public Builder row(int row) {
       this.row = row;
@@ -43,7 +43,7 @@ public class Standards {
       return this;
     }
 
-    public Standards build() { // {{{
+    public Standards build() {
 
       if (frameCount == 0) frameCount = column;
 
@@ -61,17 +61,17 @@ public class Standards {
             format("frameCountに0以下の値を設定できません。 - frameCount: %d.", frameCount));
 
       return new Standards(this);
-    } // }}}
-  } // }}}
+    }
+  }
 
-  private Standards(Builder builder) { // {{{
+  private Standards(Builder builder) {
 
     width = builder.width;
     height = builder.height;
     row = builder.row;
     column = builder.column;
     frameCount = builder.frameCount;
-  } // }}}
+  }
 
   @Override
   public String toString() {

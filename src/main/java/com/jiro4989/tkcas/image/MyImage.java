@@ -24,7 +24,7 @@ public class MyImage {
   private static final WritablePixelFormat<IntBuffer> FORMAT =
       WritablePixelFormat.getIntArgbInstance();
 
-  public static class Builder { // {{{
+  public static class Builder {
 
     private final Image image;
     private int x = 0;
@@ -49,12 +49,12 @@ public class MyImage {
      *
      * @param img 画像
      */
-    public Builder(Image img) { // {{{
+    public Builder(Image img) {
 
       image = img;
       width = (int) image.getWidth();
       height = (int) image.getHeight();
-    } // }}}
+    }
 
     // ************************************************************
     // Setter
@@ -66,13 +66,13 @@ public class MyImage {
      * @param x 座標
      * @return Builderインスタンス
      */
-    public Builder x(int x) { // {{{
+    public Builder x(int x) {
 
       if (x < 0) throw new IllegalArgumentException("座標xに0未満の値をセットできません。" + this);
 
       this.x = x;
       return this;
-    } // }}}
+    }
 
     /**
      * 元になった画像をトリミングする座標を指定する。
@@ -80,13 +80,13 @@ public class MyImage {
      * @param y 座標
      * @return Builderインスタンス
      */
-    public Builder y(int y) { // {{{
+    public Builder y(int y) {
 
       if (y < 0) throw new IllegalArgumentException("座標yに0未満の値をセットできません。" + this);
 
       this.y = y;
       return this;
-    } // }}}
+    }
 
     /**
      * 元になった画像をトリミングする幅を指定する。
@@ -94,14 +94,14 @@ public class MyImage {
      * @param width 横幅
      * @return Builderインスタンス
      */
-    public Builder width(int width) { // {{{
+    public Builder width(int width) {
 
       if (this.width < width)
         throw new IllegalArgumentException("オプションのwidthに読み込む画像のwidthより大きな値をセットできません。" + this);
 
       this.width = width;
       return this;
-    } // }}}
+    }
 
     /**
      * 元になった画像をトリミングする高さを指定する。
@@ -109,16 +109,16 @@ public class MyImage {
      * @param height 高さ
      * @return Builderインスタンス
      */
-    public Builder height(int height) { // {{{
+    public Builder height(int height) {
 
       if (this.height < height)
         throw new IllegalArgumentException("オプションのheightに読み込む画像のheightより大きな値をセットできません。" + this);
 
       this.height = height;
       return this;
-    } // }}}
+    }
 
-    public MyImage build() { // {{{
+    public MyImage build() {
 
       int w = (int) image.getWidth();
       int h = (int) image.getHeight();
@@ -128,18 +128,18 @@ public class MyImage {
       if (h < y) throw new IllegalArgumentException("座標yは画像幅heightの値以下でなければいけません。" + this);
 
       return new MyImage(this);
-    } // }}}
+    }
 
     @Override
     public String toString() {
       return String.format(
           "MyImage.Builder: { x: %04d, y: %04d, width: %04d, height:%04d }", x, y, width, height);
     }
-  } // }}}
+  }
 
   // private コンストラクタ
 
-  private MyImage(Builder builder) { // {{{
+  private MyImage(Builder builder) {
 
     Image img = builder.image;
     int imgWidth = (int) img.getWidth();
@@ -168,12 +168,12 @@ public class MyImage {
     image = img;
     this.width = (int) image.getWidth();
     this.height = (int) image.getHeight();
-  } // }}}
+  }
 
   // メソッド
 
   /** 画像を左右反転させた新しいインスタンスを返す。 */
-  public MyImage newFlipHorizontalInstance() { // {{{
+  public MyImage newFlipHorizontalInstance() {
 
     int[] pixels = getPixels();
 
@@ -192,11 +192,10 @@ public class MyImage {
     writer.setPixels(0, 0, width, height, FORMAT, newPixels, 0, width);
 
     return new MyImage.Builder(wImage).build();
-  } // }}}
+  }
 
   /** 歩行グラフィックのキャラチップを作成する。 */
-  public List<CharaChipGridPane> createWalkChips(
-      Standards standards, PositionsFlowPane pos) { // {{{
+  public List<CharaChipGridPane> createWalkChips(Standards standards, PositionsFlowPane pos) {
 
     int row = standards.row;
     int column = standards.column;
@@ -221,10 +220,9 @@ public class MyImage {
             });
 
     return ccgpList;
-  } // }}}
+  }
 
-  public List<CharaChipGridPane> createSideViewChips(
-      Standards standards, PositionsFlowPane pos) { // {{{
+  public List<CharaChipGridPane> createSideViewChips(Standards standards, PositionsFlowPane pos) {
 
     int row = standards.row;
     int column = standards.column;
@@ -256,16 +254,16 @@ public class MyImage {
             });
 
     return ccgpList;
-  } // }}}
+  }
 
-  private int[] getPixels() { // {{{
+  private int[] getPixels() {
 
     PixelReader reader = image.getPixelReader();
     int[] pixels = new int[width * height];
     reader.getPixels(0, 0, width, height, FORMAT, pixels, 0, width);
 
     return pixels;
-  } // }}}
+  }
 
   // Getter
   public Image getImage() {

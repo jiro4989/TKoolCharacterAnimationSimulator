@@ -1,15 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.CheckMenuItem ?>
+<?import javafx.scene.control.Menu ?>
+<?import javafx.scene.control.MenuBar ?>
+<?import javafx.scene.control.MenuItem ?>
+<?import javafx.scene.control.RadioMenuItem ?>
+<?import javafx.scene.control.SeparatorMenuItem ?>
+<?import javafx.scene.control.ToggleGroup ?>
+<?import javafx.scene.input.KeyCodeCombination ?>
+<?import javafx.scene.layout.FlowPane ?>
+<?import javafx.scene.layout.VBox ?>
 
-<?import com.jiro4989.tkcas.menubar.MyMenuBar?>
-<?import com.jiro4989.tkcas.layout.PositionsFlowPane?>
-
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jiro4989.tkcas.MainController" onDragOver="#rootOnDragOver" onDragDropped="#rootOnDragDropped" >
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDropped="#rootOnDragDropped" onDragOver="#rootOnDragOver" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jiro4989.tkcas.MainController">
   <children>
-    <MyMenuBar fx:id="myMenuBar"/>
-    <PositionsFlowPane fx:id="positionsFlowPane"/>
+    <MenuBar>
+      <menus>
+
+        <Menu fx:id="fileMenu" mnemonicParsing="false" text="%fileMenu">
+          <items>
+
+            <MenuItem fx:id="openCharaChipMenuItem" mnemonicParsing="false" onAction="#openCharaChipMenuItemOnAction" text="%openCharaChipMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="openSideViewMenuItem" mnemonicParsing="false" onAction="#openSideViewMenuItemOnAction" text="%openSideViewMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <SeparatorMenuItem mnemonicParsing="false" />
+
+            <MenuItem fx:id="closeMenuItem" disable="true" mnemonicParsing="false" onAction="#closeMenuItemOnAction" text="%closeMenuItem" />
+
+            <SeparatorMenuItem mnemonicParsing="false" />
+
+            <MenuItem fx:id="currentWalkPresetMenuItem" mnemonicParsing="false" text="%currentWalkPresetMenuItem" />
+            <MenuItem fx:id="currentSideViewPresetMenuItem" mnemonicParsing="false" text="%currentSideViewPresetMenuItem" />
+
+            <MenuItem fx:id="walkPresetMenuItem" mnemonicParsing="false" onAction="#walkPresetMenuItemOnAction" text="%walkPresetMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="sideViewPresetMenuItem" mnemonicParsing="false" onAction="#sideViewPresetMenuItemOnAction" text="%sideViewPresetMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#preferencesMenuItemOnAction" text="%preferencesMenuItem" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#quitMenuItemOnAction" text="%quitMenuItem" />
+            <MenuItem fx:id="forcedTerminateMenuItem" mnemonicParsing="false" onAction="#forcedTerminateMenuItemOnAction" text="%forcedTerminateMenuItem" />
+
+          </items>
+        </Menu>
+
+        <Menu fx:id="displayMenu" mnemonicParsing="false" text="%displayMenu">
+          <items>
+
+            <MenuItem fx:id="previousMenuItem" disable="true" mnemonicParsing="false" onAction="#previousMenuItemOnAction" text="%previousMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="nextMenuItem" disable="true" mnemonicParsing="false" onAction="#nextMenuItemOnAction" text="%nextMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="D" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="zoomDownMenuItem" disable="true" mnemonicParsing="false" onAction="#zoomDownMenuItemOnAction" text="%zoomDownMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="zoomUpMenuItem" disable="true" mnemonicParsing="false" onAction="#zoomUpMenuItemOnAction" text="%zoomUpMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="durationDownMenuItem" disable="true" mnemonicParsing="false" onAction="#durationDownMenuItemOnAction" text="%durationDownMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="durationUpMenuItem" disable="true" mnemonicParsing="false" onAction="#durationUpMenuItemOnAction" text="%durationUpMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="W" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+
+            <MenuItem fx:id="onlyMenuItem" disable="true" mnemonicParsing="false" onAction="#onlyMenuItemOnAction" text="%onlyMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <CheckMenuItem fx:id="alwaysOnTopMenuItem" mnemonicParsing="false" onAction="#alwaysOnTopMenuItemOnAction" text="%alwaysOnTopMenuItem" />
+          </items>
+        </Menu>
+
+        <Menu fx:id="langsMenu" mnemonicParsing="false" text="%langsMenu">
+          <items>
+            <RadioMenuItem fx:id="jpRadioMenuItem" mnemonicParsing="false" onAction="#jpRadioMenuItemOnAction" selected="true" text="%jpRadioMenuItem">
+              <toggleGroup>
+                <ToggleGroup fx:id="langsGroup" />
+              </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem fx:id="usRadioMenuItem" mnemonicParsing="false" onAction="#usRadioMenuItemOnAction" text="%enRadioMenuItem" toggleGroup="$langsGroup" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <FlowPane prefHeight="200.0" prefWidth="200.0" />
   </children>
 </VBox>

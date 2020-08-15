@@ -12,7 +12,7 @@ public class JavaFXCustomizeUtils {
    * @param textField カスタム対象
    * @return カスタム後
    */
-  public static void setIntegerOnlyOption(TextField textField) { // {{{
+  public static void setIntegerOnlyOption(TextField textField) {
 
     textField
         .textProperty()
@@ -20,7 +20,7 @@ public class JavaFXCustomizeUtils {
             (obs, oldVal, newVal) -> {
               setNumberOnly(textField, oldVal, newVal);
             });
-  } // }}}
+  }
 
   /**
    * newValに数値が渡された場合のみ、セットする。
@@ -29,11 +29,11 @@ public class JavaFXCustomizeUtils {
    * @param oldVal 編集前のテキスト
    * @param newVal 編集後のテキスト
    */
-  public static void setNumberOnly(TextField textField, String oldVal, String newVal) { // {{{
+  public static void setNumberOnly(TextField textField, String oldVal, String newVal) {
     if (!newVal.matches("[-]?[0-9]*")) {
       textField.setText(oldVal);
     }
-  } // }}}
+  }
 
   /**
    * テキストフィールドの入力可能数値桁数上限をセットする。
@@ -43,7 +43,7 @@ public class JavaFXCustomizeUtils {
    * @param max 最大値
    * @return カスタム後
    */
-  public static void setMaxDigitOption(TextField textField, int min, int max) { // {{{
+  public static void setMaxDigitOption(TextField textField, int min, int max) {
 
     textField
         .lengthProperty()
@@ -68,7 +68,7 @@ public class JavaFXCustomizeUtils {
                 textField.setText("" + number);
               }
             });
-  } // }}}
+  }
 
   /**
    * マウススクロールとCtrl, Shiftを入力しながらでの数値の変動量を設定する。
@@ -77,7 +77,7 @@ public class JavaFXCustomizeUtils {
    * @param shiftVal Shiftキーを押しながらでの数値の変動量
    * @return カスタム後
    */
-  public static void setScrollValueOption(TextField textField, int ctrlVal, int shiftVal) { // {{{
+  public static void setScrollValueOption(TextField textField, int ctrlVal, int shiftVal) {
 
     textField.setOnScroll(
         e -> {
@@ -86,7 +86,7 @@ public class JavaFXCustomizeUtils {
           value = getValueWithScroll(e, value, ctrlVal, shiftVal);
           textField.setText("" + value);
         });
-  } // }}}
+  }
 
   /**
    * マウススクロールで保持する数値をインクリメント・デクリメントする。 Ctrlキーを押しながらとShiftキーを押しながらの操作で数値の上昇量を操作できる 。
@@ -97,8 +97,7 @@ public class JavaFXCustomizeUtils {
    * @param lVal Shiftを押しながらで変動する量
    * @return スクロールで変動した新たな数値
    */
-  private static final int getValueWithScroll(
-      ScrollEvent e, int oldVal, int sVal, int lVal) { // {{{
+  private static final int getValueWithScroll(ScrollEvent e, int oldVal, int sVal, int lVal) {
 
     int newVal =
         e.isControlDown()
@@ -108,7 +107,7 @@ public class JavaFXCustomizeUtils {
                 : 0 < e.getDeltaY() ? oldVal + 1 : oldVal - 1;
 
     return newVal;
-  } // }}}
+  }
 
   /**
    * 渡したテキストが空かnullだった場合に、デフォルト値に修正した数値として返す 。
@@ -116,12 +115,12 @@ public class JavaFXCustomizeUtils {
    * @param text 検査対象のテキスト
    * @param defaultVal テキストが不正だった場合に返却される数値
    */
-  private static int getDefaultValueIfEmpty(String text, int defaultVal) { // {{{
+  private static int getDefaultValueIfEmpty(String text, int defaultVal) {
 
     if (text.equals("") || text == null) {
       return defaultVal;
     }
 
     return Integer.parseInt(text);
-  } // }}}
+  }
 }

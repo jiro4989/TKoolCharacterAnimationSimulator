@@ -38,7 +38,7 @@ public class MyFileChooser {
   private static final Stage STAGE_UTIL = new Stage(StageStyle.UTILITY);
 
   /** MyFileChooserのインスタンスを生成するためのBuilderクラス。 */
-  public static class Builder { // {{{
+  public static class Builder {
 
     private final ExtensionFilter extensionFilter;
     private File initDir = new File(".");
@@ -55,26 +55,26 @@ public class MyFileChooser {
      * @param desc 説明文
      * @param extension フィルタリングするファイル拡張子
      */
-    public Builder(String desc, String extension) { // {{{
+    public Builder(String desc, String extension) {
 
       this(new ExtensionFilter(desc, extension));
 
       if (desc == null) throw new NullPointerException("descパラメータ(説明文)にnullをセットできません。");
 
       if (extension == null) throw new NullPointerException("extensionパラメータ(拡張子)にnullをセットできません。");
-    } // }}}
+    }
 
     /**
      * MyFileChooserインスタンスを生成するためのBuilderパターン
      *
      * @param ef ExtensionFilter
      */
-    public Builder(ExtensionFilter ef) { // {{{
+    public Builder(ExtensionFilter ef) {
 
       if (ef == null) throw new NullPointerException("ExtensionFilterにnullをセットできません。");
 
       extensionFilter = ef;
-    } // }}}
+    }
 
     /**
      * FileChooserを開いたときの初期ディレクトリをセットする。
@@ -82,11 +82,11 @@ public class MyFileChooser {
      * @param dirName 初期ディレクトリのパス文字列
      * @return Builderインスタンス
      */
-    public Builder initDir(String dirName) { // {{{
+    public Builder initDir(String dirName) {
 
       initDir(new File(dirName));
       return this;
-    } // }}}
+    }
 
     /**
      * FileChooserを開いたときの初期ディレクトリをセットする。
@@ -94,11 +94,11 @@ public class MyFileChooser {
      * @param dir 初期ディレクトリを指すFile
      * @return Builderインスタンス
      */
-    public Builder initDir(File dir) { // {{{
+    public Builder initDir(File dir) {
 
       if (dir.exists()) initDir = dir;
       return this;
-    } // }}}
+    }
 
     /**
      * FileChooserを開いたときの初期ファイル名をセットする。
@@ -106,11 +106,11 @@ public class MyFileChooser {
      * @param fileName 初期ファイル名文字列
      * @return Builderインスタンス
      */
-    public Builder initFileName(String fileName) { // {{{
+    public Builder initFileName(String fileName) {
 
       initFileName = fileName;
       return this;
-    } // }}}
+    }
 
     /**
      * 開いたファイルから次回起動時のフォルダを変更するオプションをセットする。
@@ -118,11 +118,11 @@ public class MyFileChooser {
      * @param bool ON or OFF
      * @return Builderインスタンス
      */
-    public Builder autoSetDir(boolean bool) { // {{{
+    public Builder autoSetDir(boolean bool) {
 
       autoSetDir = bool;
       return this;
-    } // }}}
+    }
 
     /**
      * 開いたファイルから次回起動時のファイル名を変更するオプションをセットする 。
@@ -130,11 +130,11 @@ public class MyFileChooser {
      * @param bool ON or OFF
      * @return Builderインスタンス
      */
-    public Builder autoSetFileName(boolean bool) { // {{{
+    public Builder autoSetFileName(boolean bool) {
 
       autoSetFileName = bool;
       return this;
-    } // }}}
+    }
 
     /**
      * 開いたファイルのパスを自動でPropertiesにセットするための保存対象 Properteisをセットする。 このオプションはinitDirKey(),
@@ -143,11 +143,11 @@ public class MyFileChooser {
      * @param prop 開いたファイルのパスをセットするProperties
      * @return Builderインスタンス
      */
-    public Builder properties(Properties prop) { // {{{
+    public Builder properties(Properties prop) {
 
       properties = prop;
       return this;
-    } // }}}
+    }
 
     /**
      * 初期ディレクトリのパスを保存するときの、Propertiesで使用するキーをセット する。
@@ -155,11 +155,11 @@ public class MyFileChooser {
      * @param key 初期ディレクトリパスをPropertiesに保存するときのキー
      * @return Builderインスタンス
      */
-    public Builder initDirKey(String key) { // {{{
+    public Builder initDirKey(String key) {
 
       initDirKey = key;
       return this;
-    } // }}}
+    }
 
     /**
      * 初期ファイル名を保存するときの、Propertiesで使用するキーをセットする。
@@ -167,11 +167,11 @@ public class MyFileChooser {
      * @param key 初期ファイル名をPropertiesに保存するときのキー
      * @return Builderインスタンス
      */
-    public Builder initFileNameKey(String key) { // {{{
+    public Builder initFileNameKey(String key) {
 
       initFileNameKey = key;
       return this;
-    } // }}}
+    }
 
     /**
      * MyFileChooserのインスタンスを生成する。 initDirKeyとinitFileNameKeyをオプションにセットした時に、同時にproperties
@@ -179,14 +179,14 @@ public class MyFileChooser {
      *
      * @return MyFileChooserインスタンス
      */
-    public MyFileChooser build() { // {{{
+    public MyFileChooser build() {
 
       return new MyFileChooser(this);
-    } // }}}
-  } // }}}
+    }
+  }
 
   /** privateコンストラクタ. */
-  private MyFileChooser(Builder builder) { // {{{
+  private MyFileChooser(Builder builder) {
 
     fc = new FileChooser();
 
@@ -207,7 +207,7 @@ public class MyFileChooser {
       throw new NullPointerException(
           "propertiesが未定義の状態でinitDirKeyまたはinitFileNameKeyを設定することはできません。");
     }
-  } // }}}
+  }
 
   // ************************************************************
   //
@@ -225,13 +225,13 @@ public class MyFileChooser {
    *
    * @return 開いたファイル
    */
-  public Optional<File> openFile() { // {{{
+  public Optional<File> openFile() {
 
     checkCanShowDialog();
     File file = fc.showOpenDialog(STAGE_UTIL);
     setInitDir(file);
     return Optional.ofNullable(file);
-  } // }}}
+  }
 
   /**
    * 複数ファイル選択ダイアログを開く。
@@ -245,13 +245,13 @@ public class MyFileChooser {
    *
    * @return 開いたファイルのリスト
    */
-  public Optional<List<File>> openFiles() { // {{{
+  public Optional<List<File>> openFiles() {
 
     checkCanShowDialog();
     List<File> files = fc.showOpenMultipleDialog(STAGE_UTIL);
     setInitDir(files);
     return Optional.ofNullable(files);
-  } // }}}
+  }
 
   /**
    * ファイル保存ダイアログを開く。
@@ -263,14 +263,14 @@ public class MyFileChooser {
    *
    * @return 保存したファイル
    */
-  public Optional<File> saveFile() { // {{{
+  public Optional<File> saveFile() {
 
     checkCanShowDialog();
     File file = fc.showSaveDialog(STAGE_UTIL);
     setInitDir(file);
     setInitFileName(file);
     return Optional.ofNullable(file);
-  } // }}}
+  }
 
   // ************************************************************
   //
@@ -278,12 +278,12 @@ public class MyFileChooser {
   //
   // ************************************************************
 
-  private void setInitDir(List<File> files) { // {{{
+  private void setInitDir(List<File> files) {
 
     if (files != null) setInitDir(files.get(0));
-  } // }}}
+  }
 
-  private void setInitDir(File file) { // {{{
+  private void setInitDir(File file) {
 
     if (file != null) {
       openedFile = file;
@@ -295,9 +295,9 @@ public class MyFileChooser {
         if (initDirKey != null) properties.setProperty(initDirKey, parent.toString());
       }
     }
-  } // }}}
+  }
 
-  private void setInitFileName(File file) { // {{{
+  private void setInitFileName(File file) {
 
     if (file != null) {
 
@@ -308,13 +308,13 @@ public class MyFileChooser {
         if (initFileNameKey != null) properties.setProperty(initFileNameKey, fileName);
       }
     }
-  } // }}}
+  }
 
-  private void checkCanShowDialog() { // {{{
+  private void checkCanShowDialog() {
 
     File file = fc.getInitialDirectory();
     if (!file.exists()) fc.setInitialDirectory(new File("."));
-  } // }}}
+  }
 
   // ************************************************************
   //
@@ -327,10 +327,10 @@ public class MyFileChooser {
    *
    * @return 初期ディレクトリ
    */
-  public File getInitialDirectory() { // {{{
+  public File getInitialDirectory() {
 
     return fc.getInitialDirectory();
-  } // }}}
+  }
 
   public Optional<File> getOpenedFile() {
     return Optional.ofNullable(openedFile);
@@ -347,8 +347,8 @@ public class MyFileChooser {
    *
    * @param fileName 初期ファイル名
    */
-  public void setInitialFileName(String fileName) { // {{{
+  public void setInitialFileName(String fileName) {
 
     fc.setInitialFileName(fileName);
-  } // }}}
+  }
 }

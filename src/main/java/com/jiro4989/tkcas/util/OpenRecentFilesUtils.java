@@ -17,7 +17,7 @@ public class OpenRecentFilesUtils {
    * @param list 最近開いたファイル
    * @return NULLを含む最近開いたファイル
    */
-  public static List<String> createContainsNullList(List<String> list) { 
+  public static List<String> createContainsNullList(List<String> list) {
 
     List<String> containsNullList = new ArrayList<>();
     containsNullList.addAll(list);
@@ -28,5 +28,5 @@ public class OpenRecentFilesUtils {
     }
 
     return containsNullList;
-  } 
+  }
 }

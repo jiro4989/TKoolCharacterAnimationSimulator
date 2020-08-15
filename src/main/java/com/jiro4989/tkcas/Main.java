@@ -19,7 +19,7 @@ public class Main extends Application {
   private MainController controller;
 
   @Override
-  public void start(Stage primaryStage) { 
+  public void start(Stage primaryStage) {
 
     changeLanguages();
     PresetsUtils.mkInitDirs();
@@ -50,8 +50,6 @@ public class Main extends Application {
 
       primaryStage.setOnCloseRequest(e -> controller.closeRequest());
 
-      
-
       final Delta delta = new Delta();
 
       root.setOnMousePressed(
@@ -65,8 +63,6 @@ public class Main extends Application {
             primaryStage.setX(e.getScreenX() + delta.x);
             primaryStage.setY(e.getScreenY() + delta.y);
           });
-
-      
 
       root.setOnScroll(e -> controller.updateZoomRate(e));
 
@@ -94,9 +90,9 @@ public class Main extends Application {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } 
+  }
 
-  public static void main(String... args) { 
+  public static void main(String... args) {
     System.out.println("--------------------------------------------");
     System.out.println("application_name: " + TITLE);
     System.out.println("version: " + Version.version);
@@ -106,9 +102,9 @@ public class Main extends Application {
     System.out.println("contact: https://twitter.com/jiro_saburomaru");
     System.out.println("--------------------------------------------");
     launch(args);
-  } 
+  }
 
-  private void changeLanguages() { 
+  private void changeLanguages() {
 
     MyProperties preferences = new MyProperties(PREFERENCES_FILE);
     if (preferences.load()) {
@@ -120,10 +116,10 @@ public class Main extends Application {
         Locale.setDefault(Locale.ENGLISH);
       }
     }
-  } 
+  }
 
-  private class Delta { 
+  private class Delta {
     double x;
     double y;
-  } 
+  }
 }

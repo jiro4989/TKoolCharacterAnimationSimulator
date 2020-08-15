@@ -15,7 +15,7 @@ import javafx.stage.*;
 
 public class TrimmingSelector extends Stage {
 
-  public TrimmingSelector(File file, Standards std) { 
+  public TrimmingSelector(File file, Standards std) {
 
     URL location = getClass().getResource("trimming_selector.fxml");
     ResourceBundle resources =
@@ -44,5 +44,5 @@ public class TrimmingSelector extends Stage {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } 
+  }
 }

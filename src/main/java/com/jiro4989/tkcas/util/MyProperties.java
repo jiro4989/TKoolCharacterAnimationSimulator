@@ -42,17 +42,17 @@ public final class MyProperties {
    *
    * @param aFile 生成するプロパティファイル
    */
-  public MyProperties(File aFile) { 
+  public MyProperties(File aFile) {
     properties = new Properties();
     file = aFile;
-  } 
+  }
 
   /**
    * プロパティファイルをロードし、成功失敗を返す。
    *
    * @return 成功の可否
    */
-  public boolean load() { 
+  public boolean load() {
     if (file.exists()) {
       try (InputStream in = new FileInputStream(file)) {
         properties.loadFromXML(in);
@@ -63,14 +63,14 @@ public final class MyProperties {
     }
 
     return false;
-  } 
+  }
 
   /**
    * Stsgrの座標と幅の設定を行う。 <b>事前に{@link MyProperties#load()}を成功({@code true})させていないといけ ない。</b>
    *
    * @param stage 座標、幅データを変更したいStageインスタンス
    */
-  public void customStage(Stage stage) { 
+  public void customStage(Stage stage) {
     String strX = properties.getProperty("x");
     String strY = properties.getProperty("y");
     String strW = properties.getProperty("width");
@@ -83,7 +83,7 @@ public final class MyProperties {
 
     String strM = properties.getProperty("isMaximized");
     if (strM != null) stage.setMaximized(Boolean.valueOf(strM));
-  } 
+  }
 
   /**
    * XML形式でプロパティファイルを出力する。
@@ -91,7 +91,7 @@ public final class MyProperties {
    * @param comment コメント
    * @return 成功の可否
    */
-  public boolean store(String comment) { 
+  public boolean store(String comment) {
     try (FileOutputStream out = new FileOutputStream(file)) {
       properties.storeToXML(out, comment);
       return true;
@@ -100,7 +100,7 @@ public final class MyProperties {
     }
 
     return false;
-  } 
+  }
 
   /**
    * XML形式でプロパティファイルを出力する。
@@ -127,9 +127,9 @@ public final class MyProperties {
    * @param key キー
    * @return 値
    */
-  public Optional<String> getProperty(String key) { 
+  public Optional<String> getProperty(String key) {
     return Optional.ofNullable(properties.getProperty(key));
-  } 
+  }
 
   /**
    * 整数型でプロパティを取得する。
@@ -138,11 +138,11 @@ public final class MyProperties {
    * @param defVal デフォルト値
    * @return 整数
    */
-  public int getIntegerValue(String key, String defVal) { 
+  public int getIntegerValue(String key, String defVal) {
     String valStr = properties.getProperty(key);
     if (valStr == null) valStr = defVal;
     return Integer.parseInt(valStr);
-  } 
+  }
 
   /**
    * 小数型でプロパティを取得する。
@@ -151,11 +151,11 @@ public final class MyProperties {
    * @param defVal デフォルト値
    * @return 小数
    */
-  public double getDoubleValue(String key, String defVal) { 
+  public double getDoubleValue(String key, String defVal) {
     String valStr = properties.getProperty(key);
     if (valStr == null) valStr = defVal;
     return Double.parseDouble(valStr);
-  } 
+  }
 
   /**
    * 真偽値型でプロパティを取得する。
@@ -164,11 +164,11 @@ public final class MyProperties {
    * @param defVal デフォルト値
    * @return 真偽値
    */
-  public boolean getBooleanValue(String key, String defVal) { 
+  public boolean getBooleanValue(String key, String defVal) {
     String valStr = properties.getProperty(key);
     if (valStr == null) valStr = defVal;
     return Boolean.valueOf(valStr);
-  } 
+  }
 
   /**
    * キーと値をセットする。<br>
@@ -177,26 +177,26 @@ public final class MyProperties {
    * @param key キー
    * @param value 値
    */
-  public void setProperty(String key, String value) { 
+  public void setProperty(String key, String value) {
     properties.setProperty(key, value);
-  } 
+  }
 
   /**
    * Stageの座標、幅、最大化状態を対象Stage内に配置されているNodeからセットする 。<br>
    *
    * @param node 取得したいウィンドウに配置されているNode
    */
-  public void setProperty(Node node) { 
+  public void setProperty(Node node) {
     Stage stage = (Stage) node.getScene().getWindow();
     setProperty(stage);
-  } 
+  }
 
   /**
    * Stageの座標、幅、最大化状態をセットする。<br>
    *
    * @param stage Stage
    */
-  public void setProperty(Stage stage) { 
+  public void setProperty(Stage stage) {
     boolean isMaximized = stage.isMaximized();
     if (isMaximized) stage.setMaximized(false);
 
@@ -205,7 +205,7 @@ public final class MyProperties {
     properties.setProperty("width", "" + stage.getWidth());
     properties.setProperty("height", "" + stage.getHeight());
     properties.setProperty("isMaximized", "" + isMaximized);
-  } 
+  }
 
   /**
    * デフォルト言語を変更する。
@@ -214,9 +214,9 @@ public final class MyProperties {
    *
    * <p>言語の判定は単純で、日本語の言語コードがセットされていれば日本語に変更し、 日本語でない言語コードの場合はすべて英語にセットされる。
    */
-  public void changeLanguages() { 
+  public void changeLanguages() {
     String ja = Locale.JAPAN.getLanguage();
     String langs = getProperty("langs").orElse(ja);
     if (!langs.equals(ja)) Locale.setDefault(Locale.ENGLISH);
-  } 
+  }
 }

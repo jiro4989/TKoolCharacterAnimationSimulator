@@ -10,18 +10,18 @@ class WalkGraphicsStrategy implements DrawImageStrategy {
 
   private final MainController controller;
 
-  WalkGraphicsStrategy(MainController controller) { 
+  WalkGraphicsStrategy(MainController controller) {
 
     this.controller = controller;
-  } 
+  }
 
   @Override
-  public void drawImage(File file) { 
+  public void drawImage(File file) {
 
     controller.drawWalkImage(file);
-  } 
+  }
 
-  static Standards createStandard(String path) { 
+  static Standards createStandard(String path) {
 
     MyProperties myProperties = new MyProperties(path);
     myProperties.load();
@@ -42,5 +42,5 @@ class WalkGraphicsStrategy implements DrawImageStrategy {
     Standards std = new Standards.Builder(width, height).row(row).column(column).build();
 
     return std;
-  } 
+  }
 }

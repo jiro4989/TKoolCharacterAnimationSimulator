@@ -6,7 +6,7 @@ import java.io.File;
 
 public class PresetsUtils {
 
-  public static void mkInitDirs() { 
+  public static void mkInitDirs() {
 
     File propDir = new File(PROP_DIR);
     propDir.mkdirs();
@@ -19,16 +19,16 @@ public class PresetsUtils {
 
     File logDir = new File(LOG_DIR);
     logDir.mkdirs();
-  } 
+  }
 
-  public static void mkInitPresets() { 
+  public static void mkInitPresets() {
 
     mkMVWalkPreset();
     mkVXACEWalkPreset();
     mkMVSideViewPreset();
-  } 
+  }
 
-  private static void mkMVWalkPreset() { 
+  private static void mkMVWalkPreset() {
 
     File walk = new File(WALK_PREST);
     if (!walk.exists()) {
@@ -43,9 +43,9 @@ public class PresetsUtils {
 
       walkMp.store();
     }
-  } 
+  }
 
-  private static void mkVXACEWalkPreset() { 
+  private static void mkVXACEWalkPreset() {
 
     File walk = new File(VXACE_WALK_PREST);
     if (!walk.exists()) {
@@ -60,9 +60,9 @@ public class PresetsUtils {
 
       walkMp.store();
     }
-  } 
+  }
 
-  private static void mkMVSideViewPreset() { 
+  private static void mkMVSideViewPreset() {
 
     File walk = new File(SIDE_VIEW_PREST);
     if (!walk.exists()) {
@@ -75,5 +75,5 @@ public class PresetsUtils {
 
       walkMp.store();
     }
-  } 
+  }
 }

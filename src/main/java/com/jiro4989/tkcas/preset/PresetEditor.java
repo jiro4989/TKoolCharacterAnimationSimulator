@@ -18,7 +18,7 @@ public class PresetEditor extends Stage {
 
   private PresetEditorController controller;
 
-  public PresetEditor(File presetFile, File previewFile) { 
+  public PresetEditor(File presetFile, File previewFile) {
 
     URL location = getClass().getResource("preset_editor.fxml");
     ResourceBundle resources =
@@ -58,10 +58,10 @@ public class PresetEditor extends Stage {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } 
+  }
 
-  public PresetEditor(File presetFile) { 
+  public PresetEditor(File presetFile) {
 
     this(presetFile, null);
-  } 
+  }
 }

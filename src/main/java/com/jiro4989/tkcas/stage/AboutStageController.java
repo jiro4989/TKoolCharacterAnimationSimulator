@@ -15,8 +15,6 @@ import javafx.scene.layout.*;
 /** {@link AboutStage}のコントローラクラス。 */
 public class AboutStageController {
 
-  
-
   @FXML private ImageView appIconImageView;
 
   // 各種ラベルなどを保持するペイン
@@ -40,21 +38,19 @@ public class AboutStageController {
 
   @FXML private Button closeButton;
 
-  
-
   // ************************************************************
   // 初期化 メソッド
   // ************************************************************
 
   /** FXML初期化 */
   @FXML
-  private void initialize() { 
+  private void initialize() {
 
     changeLanguages();
-  } 
+  }
 
   /** 言語を変更する。 */
-  private void changeLanguages() { 
+  private void changeLanguages() {
 
     Locale locale = Locale.getDefault();
     if (locale == Locale.JAPAN) {
@@ -69,7 +65,7 @@ public class AboutStageController {
       authorDescLabel.setText(Langs.EN.AUTHOR);
       blogDescLabel.setText(Langs.EN.BLOG);
     }
-  } 
+  }
 
   // ************************************************************
   // FXMLイベントメソッド
@@ -77,17 +73,17 @@ public class AboutStageController {
 
   /** ウィンドウを閉じる。 */
   @FXML
-  private void closeButtonOnAction() { 
+  private void closeButtonOnAction() {
 
     closeButton.getScene().getWindow().hide();
-  } 
+  }
 
   /**
    * ハイパーリンククリックで関連付けブラウザでURLを開く。<br>
    * 関連付けブラウザが存在しなかった場合は警告を表示する。
    */
   @FXML
-  private void blogHyperlinkOnAction() { 
+  private void blogHyperlinkOnAction() {
 
     Desktop desktop = Desktop.getDesktop();
     try {
@@ -106,31 +102,31 @@ public class AboutStageController {
       alert.setContentText("お手数ですが、リンクをコピーして手動で移動してください。");
       alert.showAndWait();
     }
-  } 
+  }
 
   // ************************************************************
   // package メソッド
   // ************************************************************
 
   /** 作者情報レイアウトを削除する。 */
-  void removeAuthorPane() { 
+  void removeAuthorPane() {
 
     gridPane.getChildren().remove(authorDescLabel);
     gridPane.getChildren().remove(authorHBox);
-  } 
+  }
 
   /** ブログ情報レイアウトを削除する。 */
-  void removeBlogPane() { 
+  void removeBlogPane() {
 
     gridPane.getChildren().remove(blogDescLabel);
     gridPane.getChildren().remove(blogHBox);
-  } 
+  }
 
   /** アプリアイコン画像を削除する。 */
-  void removeAppIcon() { 
+  void removeAppIcon() {
 
     gridPane.getChildren().remove(appIconImageView);
-  } 
+  }
 
   // ************************************************************
   // Setter
@@ -141,58 +137,58 @@ public class AboutStageController {
    *
    * @param author 作者名
    */
-  void setAuthor(String author) { 
+  void setAuthor(String author) {
 
     authorLabel.setText(author);
-  } 
+  }
 
   /**
    * ブログ名をセットする。
    *
    * @param blog ブログ名
    */
-  void setBlog(String blog) { 
+  void setBlog(String blog) {
 
     blogLabel.setText(blog);
-  } 
+  }
 
   /**
    * ブログURLをセットする。
    *
    * @param link ブログリンクｖ
    */
-  void setBlogUrl(String url) { 
+  void setBlogUrl(String url) {
 
     blogHyperlink.setText(url);
-  } 
+  }
 
   /**
    * アプリ名をセットする。
    *
    * @param appName アプリ名
    */
-  void setAppName(String appName) { 
+  void setAppName(String appName) {
 
     appLabel.setText(appName);
-  } 
+  }
 
   /**
    * アプリアイコン画像をセットする。
    *
    * @param imgUrl アプリアイコン画像のURL
    */
-  void setAppIcon(String imgUrl) { 
+  void setAppIcon(String imgUrl) {
 
     appIconImageView.setImage(new Image(getClass().getResource(imgUrl).toExternalForm()));
-  } 
+  }
 
   /**
    * 作者アイコン画像をセットする。
    *
    * @param imgUrl 作者アイコン画像
    */
-  void setAuthorIcon(String imgUrl) { 
+  void setAuthorIcon(String imgUrl) {
 
     authorIconImageView.setImage(new Image(getClass().getResource(imgUrl).toExternalForm()));
-  } 
+  }
 }

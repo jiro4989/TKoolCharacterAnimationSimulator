@@ -27,8 +27,6 @@ public class MyMenuBar extends VBox {
   private final MyFileChooser walkPresetFileChooser;
   private final MyFileChooser sideViewPresetFileChooser;
 
-  
-
   // ファイル
   @FXML private Menu fileMenu;
   @FXML private MenuItem openCharaChipMenuItem;
@@ -72,11 +70,9 @@ public class MyMenuBar extends VBox {
   @FXML private RadioMenuItem jpRadioMenuItem;
   @FXML private RadioMenuItem usRadioMenuItem;
 
-  
-
   // コンストラクタ
 
-  public MyMenuBar() { 
+  public MyMenuBar() {
 
     imagefileChooser = new MyFileChooser.Builder("Image Files", "*.png").build();
     walkPresetFileChooser =
@@ -109,11 +105,11 @@ public class MyMenuBar extends VBox {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } 
+  }
   // FXMLイベント
   // ファイルメニュー
   @FXML
-  private void openCharaChipMenuItemOnAction() { 
+  private void openCharaChipMenuItemOnAction() {
 
     imagefileChooser
         .openFile()
@@ -129,10 +125,10 @@ public class MyMenuBar extends VBox {
               String path = file.getPath();
               openWalkRecentMenu.getItems().add(createMenuItemHasWalkAction(path));
             });
-  } 
+  }
 
   @FXML
-  private void openSideViewMenuItemOnAction() { 
+  private void openSideViewMenuItemOnAction() {
     imagefileChooser
         .openFile()
         .ifPresent(
@@ -143,10 +139,10 @@ public class MyMenuBar extends VBox {
               String path = file.getPath();
               openSideViewRecentMenu.getItems().add(createMenuItemHasSideViewAction(path));
             });
-  } 
+  }
 
   @FXML
-  private void openWalkRecentMenuItemOnAction() { 
+  private void openWalkRecentMenuItemOnAction() {
     imagefileChooser
         .openFile()
         .ifPresent(
@@ -154,10 +150,10 @@ public class MyMenuBar extends VBox {
               // FIXME NullPointerexception
               mainController.drawWalkImage(file);
             });
-  } 
+  }
 
   @FXML
-  private void openSideViewRecentMenuItemOnAction() { 
+  private void openSideViewRecentMenuItemOnAction() {
     imagefileChooser
         .openFile()
         .ifPresent(
@@ -165,16 +161,16 @@ public class MyMenuBar extends VBox {
               // FIXME NullPointerexception
               mainController.drawWalkImage(file);
             });
-  } 
+  }
 
   @FXML
-  private void closeMenuItemOnAction() { 
+  private void closeMenuItemOnAction() {
     mainController.clearImages();
     setDisables(true);
-  } 
+  }
 
   @FXML
-  private void walkPresetMenuItemOnAction() { 
+  private void walkPresetMenuItemOnAction() {
     walkPresetFileChooser
         .openFile()
         .ifPresent(
@@ -182,10 +178,10 @@ public class MyMenuBar extends VBox {
               mainController.setWalkStandard(file);
               setCurrentWalkPreset(file);
             });
-  } 
+  }
 
   @FXML
-  private void sideViewPresetMenuItemOnAction() { 
+  private void sideViewPresetMenuItemOnAction() {
     sideViewPresetFileChooser
         .openFile()
         .ifPresent(
@@ -193,10 +189,10 @@ public class MyMenuBar extends VBox {
               mainController.setSideViewStandard(file);
               setCurrentSideViewPreset(file);
             });
-  } 
+  }
 
   @FXML
-  private void editWalkPresetMenuItemOnAction() { 
+  private void editWalkPresetMenuItemOnAction() {
     walkPresetFileChooser
         .saveFile()
         .ifPresent(
@@ -206,10 +202,10 @@ public class MyMenuBar extends VBox {
               mainController.setWalkStandard(file);
               setCurrentWalkPreset(file);
             });
-  } 
+  }
 
   @FXML
-  private void editSideViewPresetMenuItemOnAction() { 
+  private void editSideViewPresetMenuItemOnAction() {
     sideViewPresetFileChooser
         .saveFile()
         .ifPresent(
@@ -219,106 +215,106 @@ public class MyMenuBar extends VBox {
               mainController.setSideViewStandard(file);
               setCurrentSideViewPreset(file);
             });
-  } 
+  }
 
   @FXML
-  private void preferencesMenuItemOnAction() { 
+  private void preferencesMenuItemOnAction() {
     mainController.showConfigStage();
-  } 
+  }
 
   @FXML
-  private void quitMenuItemOnAction() { 
+  private void quitMenuItemOnAction() {
     mainController.closeRequest();
     Platform.exit();
-  } 
+  }
 
   @FXML
-  private void forcedTerminateMenuItemOnAction() { 
+  private void forcedTerminateMenuItemOnAction() {
     DialogUtils.showForcedTerminationDialog();
-  } 
+  }
   // 表示メニュー
   @FXML
-  private void alwaysOnTopMenuItemOnAction() { 
+  private void alwaysOnTopMenuItemOnAction() {
     mainController.changeAlwaysOnTop();
-  } 
+  }
 
   @FXML
-  private void previousMenuItemOnAction() { 
+  private void previousMenuItemOnAction() {
     mainController.showPreviousImage();
-  } 
+  }
 
   @FXML
-  private void nextMenuItemOnAction() { 
+  private void nextMenuItemOnAction() {
     mainController.showNextImage();
-  } 
+  }
 
   @FXML
-  private void zoomDownMenuItemOnAction() { 
+  private void zoomDownMenuItemOnAction() {
 
     mainController.zoomDownImages();
-  } 
+  }
 
   @FXML
-  private void zoomUpMenuItemOnAction() { 
+  private void zoomUpMenuItemOnAction() {
 
     mainController.zoomUpImages();
-  } 
+  }
 
   @FXML
-  private void durationDownMenuItemOnAction() { 
+  private void durationDownMenuItemOnAction() {
     mainController.durationDown();
-  } 
+  }
 
   @FXML
-  private void durationUpMenuItemOnAction() { 
+  private void durationUpMenuItemOnAction() {
     mainController.durationUp();
-  } 
+  }
 
   @FXML
-  private void onlyMenuItemOnAction() { 
+  private void onlyMenuItemOnAction() {
 
     mainController.showOneImage();
-  } 
+  }
   // 言語メニュー
   @FXML
-  private void jpRadioMenuItemOnAction() { 
+  private void jpRadioMenuItemOnAction() {
 
     DialogUtils.showLanguageDialog();
     String langs = Locale.JAPAN.getLanguage();
     mainController.setLanguages(langs);
-  } 
+  }
 
   @FXML
-  private void usRadioMenuItemOnAction() { 
+  private void usRadioMenuItemOnAction() {
 
     DialogUtils.showLanguageDialog();
     String langs = Locale.ENGLISH.getLanguage();
     mainController.setLanguages(langs);
-  } 
+  }
 
   // private メソッド
-  private void setFontSize(RadioMenuItem rmi) { 
+  private void setFontSize(RadioMenuItem rmi) {
     String fontSize = rmi.getText();
     mainController.setFontSize(fontSize);
-  } 
+  }
 
-  private void setPresetText(MenuItem item, String text) { 
+  private void setPresetText(MenuItem item, String text) {
 
     String current = item.getText();
     String top = current.split(":")[0];
     String newText = top + ": " + text;
     item.setText(newText);
-  } 
+  }
 
-  private void changeSelectedFontMenuItem() { 
+  private void changeSelectedFontMenuItem() {
     String defaultLanguage = Locale.getDefault().getLanguage();
     String ja = Locale.JAPAN.getLanguage();
 
     if (defaultLanguage.equals(ja)) jpRadioMenuItem.setSelected(true);
     else usRadioMenuItem.setSelected(true);
-  } 
+  }
 
-  private MenuItem createMenuItemHasWalkAction(String path) { 
+  private MenuItem createMenuItemHasWalkAction(String path) {
 
     MenuItem item = new MenuItem(path);
     item.setOnAction(
@@ -337,9 +333,9 @@ public class MyMenuBar extends VBox {
         });
 
     return item;
-  } 
+  }
 
-  private MenuItem createMenuItemHasSideViewAction(String path) { 
+  private MenuItem createMenuItemHasSideViewAction(String path) {
 
     MenuItem item = new MenuItem(path);
     item.setOnAction(
@@ -350,27 +346,27 @@ public class MyMenuBar extends VBox {
         });
 
     return item;
-  } 
+  }
   // Getter
-  public List<String> getRecentOpenedWalkFiles() { 
+  public List<String> getRecentOpenedWalkFiles() {
 
     return openWalkRecentMenu
         .getItems()
         .stream()
         .map(item -> item.getText())
         .collect(Collectors.toList());
-  } 
+  }
 
-  public List<String> getRecentOpenedSideViewFiles() { 
+  public List<String> getRecentOpenedSideViewFiles() {
 
     return openSideViewRecentMenu
         .getItems()
         .stream()
         .map(item -> item.getText())
         .collect(Collectors.toList());
-  } 
+  }
   // Setter
-  public void setFontSizeOfMenuBar(String fontSize) { 
+  public void setFontSizeOfMenuBar(String fontSize) {
 
     fontGroup
         .getToggles()
@@ -378,9 +374,9 @@ public class MyMenuBar extends VBox {
         .map(t -> (RadioMenuItem) t)
         .filter(t -> t.getText().equals(fontSize))
         .forEach(t -> t.setSelected(true));
-  } 
+  }
 
-  public void setRecentWalkFilePaths(List<String> paths) { 
+  public void setRecentWalkFilePaths(List<String> paths) {
 
     paths
         .stream()
@@ -391,9 +387,9 @@ public class MyMenuBar extends VBox {
             item -> {
               openWalkRecentMenu.getItems().add(item);
             });
-  } 
+  }
 
-  public void setRecentSideViewFilePaths(List<String> paths) { 
+  public void setRecentSideViewFilePaths(List<String> paths) {
 
     paths
         .stream()
@@ -404,7 +400,7 @@ public class MyMenuBar extends VBox {
             item -> {
               openSideViewRecentMenu.getItems().add(item);
             });
-  } 
+  }
 
   public void setMainController(MainController aMain) {
     mainController = aMain;
@@ -430,7 +426,7 @@ public class MyMenuBar extends VBox {
     setPresetText(currentSideViewPresetMenuItem, file.getName());
   }
 
-  public void setDisables(boolean disable) { 
+  public void setDisables(boolean disable) {
 
     onlyMenuItem.setDisable(disable);
     previousMenuItem.setDisable(disable);
@@ -440,15 +436,15 @@ public class MyMenuBar extends VBox {
     durationDownMenuItem.setDisable(disable);
     durationUpMenuItem.setDisable(disable);
     closeMenuItem.setDisable(disable);
-  } 
+  }
 
-  public void addRecentWalkFile(File file) { 
+  public void addRecentWalkFile(File file) {
     MenuItem item = createMenuItemHasWalkAction(file.getPath());
     openWalkRecentMenu.getItems().add(item);
-  } 
+  }
 
-  public void addRecentSideViewFile(File file) { 
+  public void addRecentSideViewFile(File file) {
     MenuItem item = createMenuItemHasSideViewAction(file.getPath());
     openSideViewRecentMenu.getItems().add(item);
-  } 
+  }
 }

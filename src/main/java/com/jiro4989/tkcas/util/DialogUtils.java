@@ -7,7 +7,7 @@ import javafx.scene.control.Alert.AlertType;
 
 public class DialogUtils {
 
-  public static final void showLanguageDialog() { 
+  public static final void showLanguageDialog() {
 
     Locale locale = Locale.getDefault();
 
@@ -19,9 +19,9 @@ public class DialogUtils {
     alert.setHeaderText(header);
 
     alert.showAndWait();
-  } 
+  }
 
-  public static final void showForcedTerminationDialog() { 
+  public static final void showForcedTerminationDialog() {
 
     Locale locale = Locale.getDefault();
 
@@ -37,10 +37,10 @@ public class DialogUtils {
     alert.setContentText(content);
 
     alert.showAndWait().filter(r -> r == ButtonType.OK).ifPresent(r -> Platform.exit());
-  } 
+  }
 
   // 汎用性のない実装
-  public static final String showChoiseDialog() { 
+  public static final String showChoiseDialog() {
 
     Locale locale = Locale.getDefault();
 
@@ -59,5 +59,5 @@ public class DialogUtils {
 
     String result = dialog.showAndWait().orElse(walk);
     return result.equals(walk) ? "w" : "sv";
-  } 
+  }
 }

@@ -34,7 +34,7 @@ import javafx.stage.*;
 public class AboutStage extends Stage {
 
   /** AboutStageのインスタンス生成を行うためのBuilderクラス */
-  public static class Builder { 
+  public static class Builder {
 
     private final String title;
     private String author = null;
@@ -53,7 +53,7 @@ public class AboutStage extends Stage {
      * @param aTitle アプリ名 ( null, 空文字列不可 )
      * @param aVersion アプリバージョン ( null, 空文字列不可 )
      */
-    public Builder(String aTitle, String aVersion) { 
+    public Builder(String aTitle, String aVersion) {
 
       if (aTitle == null || aVersion == null)
         throw new NullPointerException("aTitle, aVersionにnullを使用することはできません。");
@@ -62,7 +62,7 @@ public class AboutStage extends Stage {
         throw new IllegalArgumentException("aTitle, aVersionに空文字列を使用することはできません。");
 
       title = aTitle + " - " + aVersion;
-    } 
+    }
 
     /**
      * 作者情報のセット
@@ -70,10 +70,10 @@ public class AboutStage extends Stage {
      * @param anAuthor 作者名
      * @return Builderインスタンス
      */
-    public Builder author(String anAuthor) { 
+    public Builder author(String anAuthor) {
       author = anAuthor;
       return this;
-    } 
+    }
 
     /**
      * 作者ブログ名のセット
@@ -81,10 +81,10 @@ public class AboutStage extends Stage {
      * @param aBlog 作者ブログ名
      * @return Builderインスタンス
      */
-    public Builder blog(String aBlog) { 
+    public Builder blog(String aBlog) {
       blog = aBlog;
       return this;
-    } 
+    }
 
     /**
      * 作者ブログURLのセット
@@ -92,10 +92,10 @@ public class AboutStage extends Stage {
      * @param aBlogUrl 作者ブログ名
      * @return Builderインスタンス
      */
-    public Builder blogUrl(String aBlogUrl) { 
+    public Builder blogUrl(String aBlogUrl) {
       blogUrl = aBlogUrl;
       return this;
-    } 
+    }
 
     /**
      * レイアウト定義用CSSのURL.<br>
@@ -104,10 +104,10 @@ public class AboutStage extends Stage {
      * @param aCss レイアウト定義用CSSのURL
      * @return Builderインスタンス
      */
-    public Builder css(String aCss) { 
+    public Builder css(String aCss) {
       css = aCss;
       return this;
-    } 
+    }
 
     /**
      * アプリアイコン画像のURL.<br>
@@ -116,10 +116,10 @@ public class AboutStage extends Stage {
      * @param anAppIcon アプリアイコン画像(75x75 px)
      * @return Builderインスタンス
      */
-    public Builder appIcon(String anAppIcon) { 
+    public Builder appIcon(String anAppIcon) {
       appIcon = anAppIcon;
       return this;
-    } 
+    }
 
     /**
      * 作者アイコン画像のURL.<br>
@@ -128,20 +128,20 @@ public class AboutStage extends Stage {
      * @param anAuthorIcon 作者アイコン画像(17x17 px)
      * @return Builderインスタンス
      */
-    public Builder authorIcon(String anAuthorIcon) { 
+    public Builder authorIcon(String anAuthorIcon) {
       authorIcon = anAuthorIcon;
       return this;
-    } 
+    }
 
     /**
      * AboutStageインスタンスの生成
      *
      * @return AboutStageインスタンス
      */
-    public AboutStage build() { 
+    public AboutStage build() {
       return new AboutStage(this);
-    } 
-  } 
+    }
+  }
 
   /**
    * private コンストラクタ.<br>
@@ -149,7 +149,7 @@ public class AboutStage extends Stage {
    *
    * @param Builderインスタンス
    */
-  private AboutStage(Builder builder) { 
+  private AboutStage(Builder builder) {
 
     String title = builder.title;
     String author = builder.author;
@@ -191,13 +191,13 @@ public class AboutStage extends Stage {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } 
+  }
 
   /** タイトルを言語環境に合わせたテキストに変更する */
-  private void changeTitle() { 
+  private void changeTitle() {
 
     Locale locale = Locale.getDefault();
     Langs lang = locale == Locale.JAPAN ? Langs.JP : Langs.EN;
     setTitle(lang.STAGE_TITLE);
-  } 
+  }
 }

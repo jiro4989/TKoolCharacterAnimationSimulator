@@ -18,10 +18,6 @@ public class PresetEditorController {
   private File presetFile;
   private MyFileChooser mfc = new MyFileChooser.Builder("Image Files", "*.png").build();
 
-  
-
-  
-
   @FXML private TitledPane customizeTitledPane;
 
   // 行
@@ -74,8 +70,6 @@ public class PresetEditorController {
   @FXML private Label previewImageHeightLabel;
   @FXML private TextField previewImageHeightTextField;
 
-  
-
   @FXML private TitledPane previewTitledPane;
 
   // 画像描画
@@ -86,12 +80,8 @@ public class PresetEditorController {
   @FXML private Button okButton;
   @FXML private Button cancelButton;
 
-  
-
   @FXML
-  private void initialize() { 
-
-    
+  private void initialize() {
 
     rowUpButton.setOnAction(e -> incrementValueOf(rowTextField, 1));
     columnUpButton.setOnAction(e -> incrementValueOf(columnTextField, 1));
@@ -111,14 +101,12 @@ public class PresetEditorController {
     customizeTextField(heightTextField, 1, 1000);
     customizeTextField(frameCountTextField);
 
-    
-
     changeGridCells();
     setImageWidth();
     setImageHeight();
-  } 
+  }
 
-  private void customizeTextField(TextField textField, int min, int max) { 
+  private void customizeTextField(TextField textField, int min, int max) {
 
     textField
         .textProperty()
@@ -144,13 +132,13 @@ public class PresetEditorController {
 
     JavaFXCustomizeUtils.setMaxDigitOption(textField, min, max);
     JavaFXCustomizeUtils.setScrollValueOption(textField, 5, 10);
-  } 
+  }
 
-  private void customizeTextField(TextField textField) { 
+  private void customizeTextField(TextField textField) {
     customizeTextField(textField, 1, 100);
-  } 
+  }
 
-  private void changeGridCells() { 
+  private void changeGridCells() {
 
     clearGridPane();
 
@@ -176,54 +164,54 @@ public class PresetEditorController {
             });
 
     anchorPane.getChildren().add(gridPane);
-  } 
+  }
 
-  private void clearGridPane() { 
+  private void clearGridPane() {
 
     int size = anchorPane.getChildren().size();
     if (2 <= size) {
       anchorPane.getChildren().remove(1, 2);
     }
-  } 
+  }
 
-  private void setImageWidth() { 
+  private void setImageWidth() {
 
     int column = Integer.parseInt(columnTextField.getText());
     int size = Integer.parseInt(widthTextField.getText());
     int value = column * size;
     imageWidthTextField.setText("" + value);
-  } 
+  }
 
-  private void setImageHeight() { 
+  private void setImageHeight() {
 
     int row = Integer.parseInt(rowTextField.getText());
     int size = Integer.parseInt(heightTextField.getText());
     int value = row * size;
     imageHeightTextField.setText("" + value);
-  } 
+  }
 
-  private void incrementValueOf(TextField textField, int gain) { 
+  private void incrementValueOf(TextField textField, int gain) {
     String text = textField.getText();
     int value = Integer.parseInt(text);
     value += gain;
     textField.setText("" + value);
-  } 
+  }
 
-  private Pane createEmptyPane(int width, int height) { 
+  private Pane createEmptyPane(int width, int height) {
     Pane pane = new Pane();
     pane.setPrefWidth(width);
     pane.setPrefHeight(height);
     return pane;
-  } 
+  }
 
-  void closeRequest() { 
+  void closeRequest() {
 
     MyProperties mp = new MyProperties(PROP_DIR + "/preset_editor.fxml");
     mp.setProperty(okButton);
     mp.store();
-  } 
+  }
 
-  private void storePreset() { 
+  private void storePreset() {
 
     MyProperties preset = new MyProperties(presetFile);
 
@@ -238,9 +226,9 @@ public class PresetEditorController {
     preset.setProperty(KEY_FRAME_COUNT, "" + frameCount);
 
     preset.store();
-  } 
+  }
 
-  void setPresetFile(File file) { 
+  void setPresetFile(File file) {
 
     presetFile = file;
 
@@ -256,19 +244,19 @@ public class PresetEditorController {
       frameCountTextField.setText(
           mp.getProperty(KEY_FRAME_COUNT).orElse(WALK_PREST_DEFAULT_VALUE_FRAME_COUNT));
     }
-  } 
+  }
 
   @FXML
-  private void fileChooserButtonOnAction() { 
+  private void fileChooserButtonOnAction() {
 
     mfc.openFile()
         .ifPresent(
             file -> {
               setPreviewImage(file);
             });
-  } 
+  }
 
-  void setPreviewImage(File file) { 
+  void setPreviewImage(File file) {
 
     Image image = new Image("file:" + file.getPath());
     int width = (int) image.getWidth();
@@ -280,20 +268,20 @@ public class PresetEditorController {
     imageFileTextField.setText(file.getName());
     previewImageWidthTextField.setText("" + width);
     previewImageHeightTextField.setText("" + height);
-  } 
+  }
 
   @FXML
-  private void okButtonOnAction() { 
+  private void okButtonOnAction() {
 
     closeRequest();
     cancelButton.getScene().getWindow().hide();
     storePreset();
-  } 
+  }
 
   @FXML
-  private void cancelButtonOnAction() { 
+  private void cancelButtonOnAction() {
 
     closeRequest();
     cancelButton.getScene().getWindow().hide();
-  } 
+  }
 }

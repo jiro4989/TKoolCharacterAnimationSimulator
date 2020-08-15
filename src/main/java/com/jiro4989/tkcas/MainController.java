@@ -1,7 +1,6 @@
 package com.jiro4989.tkcas;
 
 import static com.jiro4989.tkcas.util.Texts.*;
-import static java.util.stream.IntStream.range;
 
 import com.jiro4989.tkcas.config.ConfigStage;
 import com.jiro4989.tkcas.menubar.TrimmingSelector;
@@ -9,7 +8,6 @@ import com.jiro4989.tkcas.stage.MyFileChooser;
 import com.jiro4989.tkcas.standard.Standards;
 import com.jiro4989.tkcas.util.DialogUtils;
 import com.jiro4989.tkcas.util.MyProperties;
-import com.jiro4989.tkcas.util.OpenRecentFilesUtils;
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -244,20 +242,6 @@ public class MainController {
 
   // private methods
 
-  private void storeRecentFile(MyProperties log, List<String> openedList) {
-
-    List<String> newList = OpenRecentFilesUtils.createContainsNullList(openedList);
-    range(0, OpenRecentFilesUtils.MAX)
-        .forEach(
-            i -> {
-              String key = KEY_LOG + i;
-              String value = newList.get(i);
-              log.setProperty(key, value);
-            });
-
-    log.store();
-  }
-
   private Stage getStage() {
     return null;
     // return (Stage) positionsFlowPane.getScene().getWindow();
@@ -275,24 +259,6 @@ public class MainController {
           cs.setZoomRate(rate);
           cs.setDuration(duration);
         });
-  }
-
-  private List<String> createRecentListWith(MyProperties log) {
-
-    log.load();
-
-    String empty = OpenRecentFilesUtils.EMPTY;
-    int max = OpenRecentFilesUtils.MAX;
-
-    List<String> list = new ArrayList<>(max);
-    for (int i = 0; i < max; i++) {
-
-      String path = log.getProperty(KEY_LOG + i).orElse(empty);
-      if (path.equals(empty)) break;
-      list.add(path);
-    }
-
-    return list;
   }
 
   // Getter
@@ -353,15 +319,6 @@ public class MainController {
     // boolean alwaysOnTop = Boolean.valueOf(a);
     // getStage().setAlwaysOnTop(alwaysOnTop);
     // myMenuBar.setAlwaysOnTop(alwaysOnTop);
-  }
-
-  void setRecentFiles() {
-
-    List<String> walkList = createRecentListWith(walkLog);
-    // myMenuBar.setRecentWalkFilePaths(walkList);
-
-    List<String> sideViewList = createRecentListWith(sideViewLog);
-    // myMenuBar.setRecentSideViewFilePaths(sideViewList);
   }
 
   private MyFileChooser imagefileChooser;
@@ -627,10 +584,6 @@ public class MainController {
   }
 
   // private メソッド
-  private void setFontSize(RadioMenuItem rmi) {
-    // String fontSize = rmi.getText();
-    // mainController.setFontSize(fontSize);
-  }
 
   private void setPresetText(MenuItem item, String text) {
 
@@ -638,14 +591,6 @@ public class MainController {
     String top = current.split(":")[0];
     String newText = top + ": " + text;
     item.setText(newText);
-  }
-
-  private void changeSelectedFontMenuItem() {
-    String defaultLanguage = Locale.getDefault().getLanguage();
-    String ja = Locale.JAPAN.getLanguage();
-
-    if (defaultLanguage.equals(ja)) jpRadioMenuItem.setSelected(true);
-    else usRadioMenuItem.setSelected(true);
   }
 
   private MenuItem createMenuItemHasWalkAction(String path) {

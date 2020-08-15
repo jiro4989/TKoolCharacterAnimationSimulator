@@ -31,9 +31,6 @@
               </accelerator>
             </MenuItem>
 
-            <Menu fx:id="openWalkRecentMenu" mnemonicParsing="false" text="%openWalkRecentMenu" />
-            <Menu fx:id="openSideViewRecentMenu" mnemonicParsing="false" text="%openSideViewRecentMenu" />
-
             <SeparatorMenuItem mnemonicParsing="false" />
 
             <MenuItem fx:id="closeMenuItem" disable="true" mnemonicParsing="false" onAction="#closeMenuItemOnAction" text="%closeMenuItem" />

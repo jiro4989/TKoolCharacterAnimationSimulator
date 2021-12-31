@@ -7,8 +7,6 @@
  */
 
 buildscript {
-    ext.javafx_version = '14'
-
     repositories {
         mavenCentral()
         maven {
@@ -47,18 +45,18 @@ dependencies {
     implementation 'com.google.guava:guava:28.2-jre'
 
     // Use JUnit test framework
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.8.2'
     testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.6.2'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.8.2'
     testCompile "org.testfx:testfx-junit5:4.0.16-alpha"
 
     // JavaFX
-    implementation "org.openjfx:javafx-fxml:$javafx_version"
-    implementation "org.openjfx:javafx-base:$javafx_version"
-    implementation "org.openjfx:javafx-controls:$javafx_version"
-    implementation "org.openjfx:javafx-graphics:$javafx_version"
-    implementation "org.openjfx:javafx-swing:$javafx_version"
+    implementation "org.openjfx:javafx-fxml:14"
+    implementation "org.openjfx:javafx-base:14"
+    implementation "org.openjfx:javafx-controls:14"
+    implementation "org.openjfx:javafx-graphics:14"
+    implementation "org.openjfx:javafx-swing:14"
 }
 
 sourceCompatibility = 14

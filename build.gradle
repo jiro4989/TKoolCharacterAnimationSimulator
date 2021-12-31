@@ -7,8 +7,6 @@
  */
 
 buildscript {
-    ext.javafx_version = '14'
-
     repositories {
         mavenCentral()
         maven {
@@ -54,11 +52,11 @@ dependencies {
     testCompile "org.testfx:testfx-junit5:4.0.16-alpha"
 
     // JavaFX
-    implementation "org.openjfx:javafx-fxml:$javafx_version"
-    implementation "org.openjfx:javafx-base:$javafx_version"
-    implementation "org.openjfx:javafx-controls:$javafx_version"
-    implementation "org.openjfx:javafx-graphics:$javafx_version"
-    implementation "org.openjfx:javafx-swing:$javafx_version"
+    implementation "org.openjfx:javafx-fxml:14"
+    implementation "org.openjfx:javafx-base:14"
+    implementation "org.openjfx:javafx-controls:14"
+    implementation "org.openjfx:javafx-graphics:14"
+    implementation "org.openjfx:javafx-swing:14"
 }
 
 sourceCompatibility = 14

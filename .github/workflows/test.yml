@@ -10,8 +10,8 @@ on:
 
 env:
   APP_NAME: 'tkcas'
-  JAVA_VERSION: '14'
-  JAVAFX_VERSION: '14.0.1'
+  JAVA_VERSION: '16'
+  JAVAFX_VERSION: '16'
 
 defaults:
   run:
@@ -48,7 +48,7 @@ jobs:
       - uses: actions/setup-java@v2.5.0
         with:
           distribution: 'zulu'
-          java-version: '14'
+          java-version: ${{ env.JAVA_VERSION }}
           java-package: jdk
           architecture: x64
       - name: Build

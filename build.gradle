@@ -52,11 +52,11 @@ dependencies {
     testCompile "org.testfx:testfx-junit5:4.0.16-alpha"
 
     // JavaFX
-    implementation "org.openjfx:javafx-fxml:14"
-    implementation "org.openjfx:javafx-base:14"
-    implementation "org.openjfx:javafx-controls:14"
-    implementation "org.openjfx:javafx-graphics:14"
-    implementation "org.openjfx:javafx-swing:14"
+    implementation "org.openjfx:javafx-fxml:17.0.1"
+    implementation "org.openjfx:javafx-base:17.0.1"
+    implementation "org.openjfx:javafx-controls:17.0.1"
+    implementation "org.openjfx:javafx-graphics:17.0.1"
+    implementation "org.openjfx:javafx-swing:17.0.1"
 }
 
 sourceCompatibility = 14

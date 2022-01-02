@@ -58,8 +58,8 @@ sourceCompatibility = 16
 targetCompatibility = 16
 
 application {
-    // Define the main class for the application.
-    mainClassName = 'com.jiro4989.tkcas.Main'
+  // Define the main class for the application.
+  getMainClass().set('com.jiro4989.tkcas.Main')
 }
 
 compileJava {
@@ -129,8 +129,6 @@ task versionSet(type: Copy) {
   expand(version: version, commitHash: commitHash)
 }
 
-compileJava.dependsOn(['versionSet'])
-
 def libDir = './lib'
 
 task clearDependencies {
@@ -140,7 +138,7 @@ task clearDependencies {
 // dependenciesで取得したjarファイルをlib配下にコピーする。
 //
 // runAppで実行するときにライブラリのパスを指定するために使用する。
-task dumpDependencies(dependsOn: clearDependencies) {
+task dumpDependencies() {
   doLast {
     configurations.compileClasspath.each {
       def jarFile = it.absolutePath
@@ -160,7 +158,7 @@ def appMods = [
   'javafx.fxml',
   ]
 
-task runApp(type: Exec, dependsOn: dumpDependencies) {
+task runApp(type: Exec) {
   commandLine 'java',
     '--module-path', libDir,
     '--add-modules', appMods.join(','),
@@ -179,7 +177,7 @@ task clearCustomJRE {
 }
 
 // カスタムJREを作成する。
-task jlink(type: Exec, dependsOn: clearCustomJRE) {
+task jlink(type: Exec) {
   commandLine 'jlink',
     '--module-path', jmodsDir,
     '--add-modules', appMods.join(','),

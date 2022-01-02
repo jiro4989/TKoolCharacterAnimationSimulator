@@ -54,8 +54,8 @@ dependencies {
     implementation "org.openjfx:javafx-swing:17.0.1"
 }
 
-sourceCompatibility = 14
-targetCompatibility = 14
+sourceCompatibility = 16
+targetCompatibility = 16
 
 application {
     // Define the main class for the application.

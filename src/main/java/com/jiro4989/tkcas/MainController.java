@@ -83,9 +83,7 @@ public class MainController {
     if (board.hasFiles()) {
 
       Pattern p = Pattern.compile("^.*\\.((?i)png)");
-      board
-          .getFiles()
-          .stream()
+      board.getFiles().stream()
           .filter(f -> p.matcher(f.getName()).matches())
           .forEach(
               file -> {

@@ -165,8 +165,7 @@ public class PositionsFlowPane extends FlowPane {
     disableAllCharaChips();
     charaChipOpt.ifPresent(
         ccgpList -> {
-          ccgpList
-              .stream()
+          ccgpList.stream()
               .filter(ccgp -> ccgp == selectedPane)
               .forEach(
                   ccgp -> {
@@ -181,8 +180,7 @@ public class PositionsFlowPane extends FlowPane {
     charaChipOpt.ifPresent(
         ccgpList -> {
           viewerMode = false;
-          ccgpList
-              .stream()
+          ccgpList.stream()
               .forEach(
                   ccgp -> {
                     getChildren().add(ccgp);

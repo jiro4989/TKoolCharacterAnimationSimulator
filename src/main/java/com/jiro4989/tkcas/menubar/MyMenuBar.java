@@ -371,27 +371,21 @@ public class MyMenuBar extends VBox {
   // Getter
   public List<String> getRecentOpenedWalkFiles() { // {{{
 
-    return openWalkRecentMenu
-        .getItems()
-        .stream()
+    return openWalkRecentMenu.getItems().stream()
         .map(item -> item.getText())
         .collect(Collectors.toList());
   } // }}}
 
   public List<String> getRecentOpenedSideViewFiles() { // {{{
 
-    return openSideViewRecentMenu
-        .getItems()
-        .stream()
+    return openSideViewRecentMenu.getItems().stream()
         .map(item -> item.getText())
         .collect(Collectors.toList());
   } // }}}
   // Setter
   public void setFontSizeOfMenuBar(String fontSize) { // {{{
 
-    fontGroup
-        .getToggles()
-        .stream()
+    fontGroup.getToggles().stream()
         .map(t -> (RadioMenuItem) t)
         .filter(t -> t.getText().equals(fontSize))
         .forEach(t -> t.setSelected(true));
@@ -399,8 +393,7 @@ public class MyMenuBar extends VBox {
 
   public void setRecentWalkFilePaths(List<String> paths) { // {{{
 
-    paths
-        .stream()
+    paths.stream()
         .distinct()
         .filter(p -> new File(p).exists())
         .map(this::createMenuItemHasWalkAction)
@@ -412,8 +405,7 @@ public class MyMenuBar extends VBox {
 
   public void setRecentSideViewFilePaths(List<String> paths) { // {{{
 
-    paths
-        .stream()
+    paths.stream()
         .distinct()
         .filter(p -> new File(p).exists())
         .map(this::createMenuItemHasSideViewAction)

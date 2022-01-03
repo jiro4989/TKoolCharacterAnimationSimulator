@@ -214,6 +214,15 @@ task jlink(type: Exec) {
     '--output', customJREDir
 }
 
+tasks.register('cleanCustomJRE') {
+  group = "Build"
+  description = "生成したカスタムJREを削除する"
+
+  doLast {
+    delete customJREDir
+  }
+}
+
 // 実行順序の明示
 spotlessApply.dependsOn(['clean'])
 versionSet.dependsOn(['spotlessApply'])

@@ -1,4 +1,4 @@
-= TKoolCharacterAnimationSimulatorTKoolFacetileMaker2
+= TKoolCharacterAnimationSimulator
 :toc: left
 :sectnums:
 

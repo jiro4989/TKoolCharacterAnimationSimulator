@@ -51,7 +51,7 @@ dependencies {
   implementation "org.openjfx:javafx-base:20"
   implementation "org.openjfx:javafx-controls:20"
   implementation "org.openjfx:javafx-graphics:20"
-  implementation "org.openjfx:javafx-swing:20"
+  implementation "org.openjfx:javafx-swing:20.0.1"
 }
 
 sourceCompatibility = 16

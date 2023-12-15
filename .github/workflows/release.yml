@@ -73,7 +73,7 @@ jobs:
           esac
 
           mv $archive_file dist/
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ matrix.os }}
           path: |
@@ -107,7 +107,7 @@ jobs:
       - name: Write upload_url to file
         run: echo '${{ steps.create-release.outputs.upload_url }}' > upload_url.txt
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: create-release
           path: upload_url.txt

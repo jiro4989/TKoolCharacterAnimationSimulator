@@ -128,11 +128,11 @@ jobs:
             asset_name_suffix: macos.tar.gz
             asset_content_type: application/gzip
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: artifact-${{ matrix.os }}
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: create-release
 
